@@ -13,4 +13,165 @@
 */
 
 
-/* write custom css after this line */
+/* ═══════════════════════════════════════════════════════════
+   🎨 BLUVIA TRAVEL — نظام الألوان والخطوط المركزي
+   ═══════════════════════════════════════════════════════════
+   غيّر القيم هنا فقط وستنعكس على الموقع كله
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  /* ── الألوان الأساسية ── */
+  --bv-primary:        #3B82F6;   /* الأزرق الرئيسي */
+  --bv-primary-dark:   #1D4ED8;   /* أزرق داكن (hover) */
+  --bv-primary-light:  #60A5FA;   /* أزرق فاتح (تفاصيل) */
+  --bv-primary-glow:   rgba(59,130,246,.18);
+
+  /* ── الذهبي (VIP والمميز) ── */
+  --bv-gold:           #D4AF37;
+  --bv-gold-light:     #F5D37A;
+  --bv-gold-glow:      rgba(212,175,55,.22);
+
+  /* ── الخلفيات الداكنة ── */
+  --bv-dark-900:       #060e1f;   /* الأداكن */
+  --bv-dark-800:       #0a1628;   /* رئيسي */
+  --bv-dark-700:       #0d1a2e;   /* أفتح قليلاً */
+  --bv-dark-600:       #1e3a5f;   /* بطاقات hover */
+
+  /* ── النصوص ── */
+  --bv-text-white:     #ffffff;
+  --bv-text-muted:     rgba(255,255,255,.55);
+  --bv-text-faint:     rgba(255,255,255,.30);
+
+  /* ── الحدود ── */
+  --bv-border:         rgba(255,255,255,.08);
+  --bv-border-blue:    rgba(59,130,246,.30);
+
+  /* ── الخطوط ── */
+  --bv-font:           'Cairo', sans-serif;
+  --bv-fw-regular:     400;
+  --bv-fw-medium:      600;
+  --bv-fw-bold:        700;
+  --bv-fw-black:       900;
+
+  /* ── الحجوم ── */
+  --bv-radius-sm:      10px;
+  --bv-radius-md:      16px;
+  --bv-radius-lg:      24px;
+  --bv-radius-pill:    50px;
+
+  /* ── الظلال ── */
+  --bv-shadow-blue:    0 12px 36px rgba(59,130,246,.35);
+  --bv-shadow-dark:    0 20px 50px rgba(0,0,0,.45);
+
+  /* ── واتساب ── */
+  --bv-wa:             #25D366;
+  --bv-wa-glow:        rgba(37,211,102,.35);
+}
+
+/* ══════════════════════════════════════════════════
+   تطبيق الخط على القالب الأب (Jannah)
+   ══════════════════════════════════════════════════ */
+body,
+.site-header,
+.main-nav,
+.post-title,
+.entry-title,
+.widget-title,
+.section-title,
+h1, h2, h3, h4, h5, h6,
+p, a, span, li, button,
+input, select, textarea, label {
+  font-family: var(--bv-font) !important;
+}
+
+/* وزن العناوين */
+h1, h2, h3, .post-title, .entry-title {
+  font-weight: var(--bv-fw-black) !important;
+}
+h4, h5, h6, .widget-title {
+  font-weight: var(--bv-fw-bold) !important;
+}
+p, li, span {
+  font-weight: var(--bv-fw-regular);
+}
+
+/* ══════════════════════════════════════════════════
+   تحسينات عامة على القالب
+   ══════════════════════════════════════════════════ */
+
+/* روابط الموقع */
+a { transition: color .25s ease !important; }
+a:hover { color: var(--bv-primary-light) !important; }
+
+/* أزرار القالب الأصلية */
+.btn, .button, input[type="submit"],
+.tie-btn, .mag-btn {
+  font-family: var(--bv-font) !important;
+  font-weight: var(--bv-fw-bold) !important;
+  border-radius: var(--bv-radius-pill) !important;
+  transition: all .3s ease !important;
+}
+
+/* شريط التنقل */
+.main-nav ul li a {
+  font-weight: var(--bv-fw-bold) !important;
+  letter-spacing: .3px;
+}
+
+/* ══════════════════════════════════════════════════
+   مكونات بلوفيا — تطبيق المتغيرات
+   ══════════════════════════════════════════════════ */
+
+/* الأزرار الرئيسية */
+.bvBtnBl, .bvBk_btnNext, .bvPkg_btn--feat {
+  background: linear-gradient(135deg, var(--bv-primary), var(--bv-primary-dark)) !important;
+  box-shadow: var(--bv-shadow-blue) !important;
+}
+
+/* الأزرار الذهبية */
+.bvPkg_btn--vip {
+  background: linear-gradient(135deg, var(--bv-gold), #A07820) !important;
+  box-shadow: 0 8px 24px var(--bv-gold-glow) !important;
+}
+
+/* الأزرار الخضراء (واتساب) */
+.bvBtnWa, .bvFq_ctaBtn, .bvBk_btnWa, .bvWF_wa {
+  background: var(--bv-wa) !important;
+}
+
+/* الخلفيات الداكنة */
+#bvH, #bvPosts, #bvTsec, #bvSt, #bvWU,
+#bvBk, #bvPkg, #bvFq, #bvTr, #bvGl {
+  font-family: var(--bv-font) !important;
+}
+
+/* النقاط الزرقاء والعناصر الثانوية */
+.bvBadge2, .bvTTag, .bvWU_tag, .bvBk_tag,
+.bvPkg_tag, .bvFq_tag, .bvSt_tag, .bvPTag {
+  background: var(--bv-primary-glow) !important;
+  color: var(--bv-primary-light) !important;
+  border-color: var(--bv-border-blue) !important;
+}
+
+/* progress bar اللون */
+.bvPb, #bvScProg { background: linear-gradient(to right, var(--bv-primary), var(--bv-primary-light)) !important; }
+
+/* cursor اللون */
+#bvCur { background: var(--bv-primary) !important; }
+#bvCurRing { border-color: rgba(59,130,246,.4) !important; }
+
+/* شارة مثبّت */
+.bvPinnedBadge { background: var(--bv-primary) !important; }
+
+/* الأرقام في العداد */
+.bvSt_num { color: var(--bv-primary-light) !important; }
+
+/* النجوم */
+.bvTStars { color: var(--bv-gold-light) !important; }
+
+/* ══════════════════════════════════════════════════
+   Responsive — تحسينات الموبايل العامة
+   ══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  h1 { font-size: clamp(22px, 5vw, 36px) !important; }
+  h2 { font-size: clamp(20px, 4vw, 30px) !important; }
+}

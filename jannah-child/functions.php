@@ -82,3 +82,9 @@ add_shortcode( 'bluvia_gallery', function(){ return bluvia_load_file('bluvia-gal
 /* [bluvia_global]    — خط Cairo + cursor + scroll reveal + progress bar
    ضعه مرة واحدة فقط في أول الصفحة الرئيسية */
 add_shortcode( 'bluvia_global', function(){ return bluvia_load_file('bluvia-global.html'); } );
+
+/* [bluvia_countdown] — شريط عداد تنازلي للعروض */
+add_shortcode( 'bluvia_countdown', function(){ return bluvia_load_file('bluvia-countdown.html'); } );
+
+/* [bluvia_map]       — خريطة وجهات تفاعلية (تركيا + تونس) */
+add_shortcode( 'bluvia_map', function(){ return bluvia_load_file('bluvia-map.html'); } );
