@@ -83,8 +83,20 @@ add_shortcode( 'bluvia_gallery', function(){ return bluvia_load_file('bluvia-gal
    ضعه مرة واحدة فقط في أول الصفحة الرئيسية */
 add_shortcode( 'bluvia_global', function(){ return bluvia_load_file('bluvia-global.html'); } );
 
-/* [bluvia_countdown] — شريط عداد تنازلي للعروض */
+/* [bluvia_countdown]   — شريط عداد تنازلي للعروض */
 add_shortcode( 'bluvia_countdown', function(){ return bluvia_load_file('bluvia-countdown.html'); } );
 
-/* [bluvia_map]       — خريطة وجهات تفاعلية (تركيا + تونس) */
+/* [bluvia_map]         — خريطة وجهات تفاعلية (تركيا + تونس) */
 add_shortcode( 'bluvia_map', function(){ return bluvia_load_file('bluvia-map.html'); } );
+
+/* [bluvia_topbar]      — شريط إشعار علوي ثابت */
+add_shortcode( 'bluvia_topbar', function(){ return bluvia_load_file('bluvia-topbar.html'); } );
+
+/* [bluvia_exit_intent] — نافذة نية الخروج */
+add_shortcode( 'bluvia_exit_intent', function(){ return bluvia_load_file('bluvia-exit-intent.html'); } );
+
+/* [bluvia_destination] — صفحة وجهة مخصصة (يقرأ ?dest=xxx من URL) */
+add_shortcode( 'bluvia_destination', function(){ return bluvia_load_file('bluvia-destination.html'); } );
+
+/* [bluvia_share]       — أزرار مشاركة عائمة (واتساب + تويتر + فيسبوك) */
+add_shortcode( 'bluvia_share', function(){ return bluvia_load_file('bluvia-share.html'); } );

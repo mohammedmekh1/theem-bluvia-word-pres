@@ -1,0 +1,115 @@
+<!-- [bluvia_share] أزرار مشاركة عائمة -->
+<div id="bvShr" dir="rtl" aria-label="مشاركة الصفحة">
+  <button class="bvShr_toggle" onclick="bvShrToggle()" aria-label="مشاركة" title="شارك هذه الرحلة">
+    <svg class="bvShr_ico bvShr_ico--share" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    <svg class="bvShr_ico bvShr_ico--x" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+
+  <div class="bvShr_menu" id="bvShrMenu">
+    <button class="bvShr_item bvShr_wa"  onclick="bvShrWa()"  title="واتساب">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.533 5.851L.057 23.571A.75.75 0 0 0 .75 24.5l6.01-1.574A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 0 1-4.964-1.363l-.356-.212-3.693.966.987-3.607-.232-.372A9.719 9.719 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      <span>واتساب</span>
+    </button>
+    <button class="bvShr_item bvShr_tw"  onclick="bvShrTw()"  title="تويتر/X">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <span>تويتر</span>
+    </button>
+    <button class="bvShr_item bvShr_fb"  onclick="bvShrFb()"  title="فيسبوك">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      <span>فيسبوك</span>
+    </button>
+    <button class="bvShr_item bvShr_cp"  onclick="bvShrCopy()" title="نسخ الرابط" id="bvShrCpBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      <span>نسخ الرابط</span>
+    </button>
+  </div>
+</div>
+
+<style>
+#bvShr{
+  position:fixed;bottom:100px;left:20px;z-index:9998;
+  display:flex;flex-direction:column-reverse;align-items:center;gap:10px;
+  direction:rtl;
+}
+#bvShr *{box-sizing:border-box}
+.bvShr_toggle{
+  width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#3B82F6,#1D4ED8);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(59,130,246,.4);
+  transition:all .3s;
+  position:relative;
+}
+.bvShr_toggle:hover{transform:scale(1.1);box-shadow:0 8px 28px rgba(59,130,246,.55)}
+.bvShr_ico{position:absolute;transition:all .25s}
+.bvShr_ico--x{opacity:0;transform:rotate(90deg)}
+#bvShr.bvShr--open .bvShr_ico--share{opacity:0;transform:rotate(-90deg)}
+#bvShr.bvShr--open .bvShr_ico--x{opacity:1;transform:rotate(0)}
+
+.bvShr_menu{
+  display:flex;flex-direction:column;gap:8px;
+  opacity:0;pointer-events:none;
+  transform:translateY(10px) scale(.95);
+  transition:all .25s ease;
+}
+#bvShr.bvShr--open .bvShr_menu{
+  opacity:1;pointer-events:auto;
+  transform:translateY(0) scale(1);
+}
+
+.bvShr_item{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px 8px 10px;border-radius:50px;border:none;cursor:pointer;
+  font-family:Cairo,sans-serif;font-size:12px;font-weight:700;
+  color:#fff;white-space:nowrap;
+  box-shadow:0 4px 14px rgba(0,0,0,.3);
+  transition:transform .2s,box-shadow .2s;
+}
+.bvShr_item:hover{transform:scale(1.06)}
+.bvShr_wa{background:#25D366}
+.bvShr_tw{background:#000}
+.bvShr_fb{background:#1877F2}
+.bvShr_cp{background:#334155}
+
+/* نجاح النسخ */
+.bvShr_cp.bvShr--copied{background:#10B981}
+
+@media(max-width:480px){
+  #bvShr{bottom:80px;left:12px}
+  .bvShr_item span{display:none}
+  .bvShr_item{padding:10px}
+}
+</style>
+
+<script>
+function bvShrToggle(){
+  document.getElementById('bvShr').classList.toggle('bvShr--open');
+}
+function bvShrWa(){
+  var txt=encodeURIComponent('شاهد هذه الرحلة الرائعة: '+location.href);
+  window.open('https://api.whatsapp.com/send?text='+txt,'_blank','noopener');
+}
+function bvShrTw(){
+  var txt=encodeURIComponent(document.title+' — '+location.href);
+  window.open('https://twitter.com/intent/tweet?text='+txt,'_blank','noopener,width=600,height=400');
+}
+function bvShrFb(){
+  window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank','noopener,width=600,height=400');
+}
+function bvShrCopy(){
+  navigator.clipboard.writeText(location.href).then(function(){
+    var btn=document.getElementById('bvShrCpBtn');
+    btn.classList.add('bvShr--copied');
+    btn.querySelector('span').textContent='تم النسخ!';
+    setTimeout(function(){
+      btn.classList.remove('bvShr--copied');
+      btn.querySelector('span').textContent='نسخ الرابط';
+    },2000);
+  });
+}
+/* إغلاق عند النقر خارج القائمة */
+document.addEventListener('click',function(e){
+  var el=document.getElementById('bvShr');
+  if(el&&!el.contains(e.target)) el.classList.remove('bvShr--open');
+});
+</script>

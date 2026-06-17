@@ -1,0 +1,400 @@
+<!-- [bluvia_destination] صفحة وجهة مخصصة — يقرأ ?dest=istanbul من URL -->
+<section id="bvDest" dir="rtl">
+<div class="bvDest_wrap" id="bvDestWrap">
+
+  <!-- حالة تحميل -->
+  <div class="bvDest_loading" id="bvDestLoad">
+    <div class="bvDest_spinner"></div>
+    <p>جاري تحميل الوجهة…</p>
+  </div>
+
+  <!-- المحتوى الفعلي (مخفي حتى التحميل) -->
+  <div id="bvDestContent" hidden>
+
+    <!-- هيرو الوجهة -->
+    <div class="bvDest_hero" id="bvDestHero">
+      <div class="bvDest_heroOv"></div>
+      <div class="bvDest_heroBody">
+        <span class="bvDest_flag" id="bvDestFlag"></span>
+        <h1 class="bvDest_name" id="bvDestName"></h1>
+        <p class="bvDest_country" id="bvDestCountry"></p>
+        <div class="bvDest_heroMeta" id="bvDestHeroMeta"></div>
+      </div>
+    </div>
+
+    <!-- التفاصيل -->
+    <div class="bvDest_body">
+
+      <!-- برنامج الرحلة -->
+      <div class="bvDest_section">
+        <h2 class="bvDest_sTitle">📅 البرنامج اليومي</h2>
+        <div class="bvDest_timeline" id="bvDestTimeline"></div>
+      </div>
+
+      <!-- ما يشمله -->
+      <div class="bvDest_section">
+        <h2 class="bvDest_sTitle">✅ ما تشمله الباقة</h2>
+        <ul class="bvDest_includes" id="bvDestIncludes"></ul>
+      </div>
+
+      <!-- أبرز الأماكن -->
+      <div class="bvDest_section">
+        <h2 class="bvDest_sTitle">📍 أبرز الأماكن</h2>
+        <div class="bvDest_places" id="bvDestPlaces"></div>
+      </div>
+
+      <!-- السعر + الحجز -->
+      <div class="bvDest_cta" id="bvDestCta"></div>
+
+    </div>
+  </div>
+
+  <!-- وجهة غير موجودة -->
+  <div id="bvDestNotFound" hidden class="bvDest_404">
+    <div class="bvDest_404icon">🗺️</div>
+    <h2>الوجهة غير متوفرة</h2>
+    <p>اختر وجهة من <a href="/">الصفحة الرئيسية</a> أو تواصل معنا مباشرة.</p>
+  </div>
+
+</div>
+</section>
+
+<style>
+#bvDest{direction:rtl;font-family:Cairo,sans-serif;background:#060e1f;min-height:60vh}
+#bvDest *{box-sizing:border-box}
+.bvDest_wrap{max-width:900px;margin:0 auto;padding:0 20px 80px}
+
+/* Loading */
+.bvDest_loading{text-align:center;padding:80px 20px;color:rgba(255,255,255,.5)}
+.bvDest_spinner{width:40px;height:40px;border:3px solid rgba(59,130,246,.2);border-top-color:#3B82F6;border-radius:50%;animation:bvDestSpin 1s linear infinite;margin:0 auto 16px}
+@keyframes bvDestSpin{to{transform:rotate(360deg)}}
+
+/* Hero */
+.bvDest_hero{
+  position:relative;height:clamp(240px,40vw,420px);border-radius:20px;overflow:hidden;
+  background:linear-gradient(135deg,#0a1628,#1a2a4a);
+  margin-bottom:0;display:flex;align-items:flex-end;
+}
+.bvDest_heroOv{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,14,31,.9) 0%,rgba(6,14,31,.3) 60%,transparent 100%)}
+.bvDest_heroBody{position:relative;z-index:1;padding:28px 32px;width:100%}
+.bvDest_flag{font-size:36px;display:block;margin-bottom:8px}
+.bvDest_name{font-size:clamp(26px,4vw,42px);font-weight:900;color:#fff;margin:0 0 4px}
+.bvDest_country{font-size:14px;color:rgba(255,255,255,.5);margin:0 0 12px}
+.bvDest_heroMeta{display:flex;flex-wrap:wrap;gap:10px}
+.bvDest_meta{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);
+  border-radius:50px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.8);font-weight:600;
+}
+
+/* Body */
+.bvDest_body{padding:36px 0 0}
+.bvDest_section{margin-bottom:44px}
+.bvDest_sTitle{font-size:18px;font-weight:800;color:#fff;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)}
+
+/* Timeline */
+.bvDest_timeline{display:flex;flex-direction:column;gap:0}
+.bvDest_day{
+  display:grid;grid-template-columns:64px 1fr;gap:0;
+  position:relative;
+}
+.bvDest_day:not(:last-child) .bvDest_dayLine{border-left:2px dashed rgba(59,130,246,.25)}
+.bvDest_dayNum{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  padding-top:4px;
+}
+.bvDest_dayBadge{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#3B82F6,#1D4ED8);
+  color:#fff;font-size:12px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.bvDest_dayLine{flex:1;width:2px;margin:6px auto 0}
+.bvDest_dayContent{padding:0 0 28px 0}
+.bvDest_dayTitle{font-size:14px;font-weight:800;color:#fff;margin:0 0 6px;padding-top:7px}
+.bvDest_dayDesc{font-size:13px;color:rgba(255,255,255,.5);margin:0;line-height:1.6}
+
+/* Includes */
+.bvDest_includes{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bvDest_includes li{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
+  border-radius:10px;padding:10px 14px;
+  font-size:13px;color:rgba(255,255,255,.7);font-weight:600;
+}
+.bvDest_incIcon{font-size:16px;flex-shrink:0}
+
+/* Places */
+.bvDest_places{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bvDest_place{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:16px;text-align:center;
+  transition:transform .25s,border-color .25s;
+}
+.bvDest_place:hover{transform:translateY(-4px);border-color:rgba(59,130,246,.3)}
+.bvDest_placeIcon{font-size:28px;margin-bottom:8px;display:block}
+.bvDest_placeName{font-size:13px;font-weight:700;color:#fff}
+
+/* CTA */
+.bvDest_cta{
+  background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(29,78,216,.12));
+  border:1px solid rgba(59,130,246,.2);
+  border-radius:20px;padding:32px;text-align:center;
+}
+.bvDest_ctaPrice{font-size:13px;color:rgba(255,255,255,.5);margin:0 0 6px}
+.bvDest_ctaNum{font-size:clamp(32px,5vw,48px);font-weight:900;color:#fff;margin:0 0 4px}
+.bvDest_ctaSub{font-size:12px;color:rgba(255,255,255,.4);margin:0 0 24px}
+.bvDest_ctaBtn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 40px;border-radius:50px;
+  background:linear-gradient(135deg,#25D366,#128C5E);
+  color:#fff!important;font-size:16px;font-weight:800;
+  text-decoration:none!important;
+  box-shadow:0 8px 28px rgba(37,211,102,.3);
+  transition:all .3s;font-family:Cairo,sans-serif;
+}
+.bvDest_ctaBtn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(37,211,102,.45)!important;color:#fff!important}
+
+/* 404 */
+.bvDest_404{text-align:center;padding:80px 20px;color:rgba(255,255,255,.5)}
+.bvDest_404icon{font-size:64px;margin-bottom:16px}
+.bvDest_404 h2{color:#fff;font-size:22px;margin:0 0 10px}
+.bvDest_404 a{color:#60A5FA}
+
+@media(max-width:700px){
+  .bvDest_includes{grid-template-columns:1fr}
+  .bvDest_places{grid-template-columns:repeat(2,1fr)}
+  .bvDest_heroBody{padding:20px}
+}
+@media(max-width:440px){
+  .bvDest_places{grid-template-columns:1fr 1fr}
+  .bvDest_day{grid-template-columns:48px 1fr}
+}
+</style>
+
+<script>
+(function(){
+  /* ═══════════════════════════════════════════
+     بيانات الوجهات — عدّلها حسب حاجتك
+     ═══════════════════════════════════════════ */
+  var DESTS = {
+    istanbul: {
+      name:'إسطنبول', flag:'🇹🇷', country:'تركيا',
+      bg:'https://images.pexels.com/photos/3881104/pexels-photo-3881104.jpeg?auto=compress&w=1200',
+      meta:[{i:'📅',t:'5–8 أيام'},{i:'💰',t:'يبدأ من 2,500 ريال'},{i:'🌡️',t:'معتدل صيفاً'}],
+      days:[
+        {t:'الوصول وجولة البازار الكبير',d:'استقبال في المطار، فندق في قلب إسطنبول، جولة في البازار الكبير مساءً'},
+        {t:'آيا صوفيا والمسجد الأزرق',d:'الأحياء التاريخية، قصر توبقابي، الغداء بإطلالة على البوسفور'},
+        {t:'جزر الأميرات ورحلة البوسفور',d:'رحلة بحرية على مضيق البوسفور، العودة للتسوق في نظام الطاقة'},
+        {t:'شارع الاستقلال وتقسيم',d:'التسوق والمتاحف الحديثة، عشاء في مطعم على السطح'},
+        {t:'المغادرة',d:'وقت حر للتسوق، إيصال المطار'},
+      ],
+      includes:[
+        {i:'✈️',t:'تذكرة طيران'},{i:'🏨',t:'فندق 4–5 نجوم'},
+        {i:'🚌',t:'مواصلات'},{i:'👨‍💼',t:'مرافق عربي'},
+        {i:'🗺️',t:'جميع الجولات'},{i:'🍳',t:'وجبة إفطار'},
+        {i:'📋',t:'تأشيرة (مساعدة)'},{i:'💬',t:'دعم 24/7'},
+      ],
+      places:[
+        {i:'🕌',n:'آيا صوفيا'},{i:'🛍️',n:'البازار الكبير'},
+        {i:'🏰',n:'قصر توبقابي'},{i:'⛵',n:'البوسفور'},
+        {i:'🕌',n:'المسجد الأزرق'},{i:'🌉',n:'جسر السلطان'},
+      ],
+      price:'2,500', wa:'إسطنبول'
+    },
+    cappadocia: {
+      name:'كابادوكيا', flag:'🇹🇷', country:'تركيا',
+      bg:'https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&w=1200',
+      meta:[{i:'📅',t:'3–5 أيام'},{i:'💰',t:'يبدأ من 3,200 ريال'},{i:'🎈',t:'رحلة بالون'}],
+      days:[
+        {t:'الوصول وجولة وادي الحمام',d:'استقبال في نيفشهير، تسكين في فندق كهفي أصيل، جولة في وادي الحمام'},
+        {t:'رحلة البالون الطائر',d:'إقلاع فجراً بالبالون الهوائي، جولة متحف غوريمي، بلدة أوشيسار'},
+        {t:'الوديان والتسوق',d:'وادي الحب، وادي الخيال، التسوق في الفخار الكبادوكي التقليدي'},
+        {t:'المغادرة',d:'وقت حر، إيصال المطار'},
+      ],
+      includes:[
+        {i:'✈️',t:'طيران داخلي'},{i:'🏨',t:'فندق كهفي'},
+        {i:'🎈',t:'رحلة بالون'},{i:'👨‍💼',t:'مرافق عربي'},
+        {i:'🚌',t:'مواصلات'},{i:'🍳',t:'وجبة إفطار'},
+        {i:'🗺️',t:'جميع الجولات'},{i:'💬',t:'دعم 24/7'},
+      ],
+      places:[
+        {i:'🎈',n:'رحلة البالون'},{i:'🏔️',n:'وادي الحب'},
+        {i:'🏛️',n:'متحف غوريمي'},{i:'🪨',n:'أوشيسار'},
+        {i:'🎨',n:'الفخار التقليدي'},{i:'🌄',n:'وادي الخيال'},
+      ],
+      price:'3,200', wa:'كابادوكيا'
+    },
+    antalya: {
+      name:'أنطاليا', flag:'🇹🇷', country:'تركيا',
+      bg:'https://images.pexels.com/photos/3601426/pexels-photo-3601426.jpeg?auto=compress&w=1200',
+      meta:[{i:'📅',t:'5–7 أيام'},{i:'💰',t:'يبدأ من 2,800 ريال'},{i:'🏖️',t:'شواطئ فاخرة'}],
+      days:[
+        {t:'الوصول والشاطئ',d:'استقبال، تسكين في منتجع مطل على البحر، استجمام'},
+        {t:'المدينة القديمة كاليكي',d:'جولة في المدينة القديمة، متحف أنطاليا، منارة هيدرليك'},
+        {t:'شلالات دودن',d:'زيارة شلالات دودن السفلية والعليا، نزهة طبيعية'},
+        {t:'المنتجع والبحر',d:'يوم حر، رياضات مائية اختيارية، عشاء بحري'},
+        {t:'المغادرة',d:'وقت حر، إيصال المطار'},
+      ],
+      includes:[
+        {i:'✈️',t:'تذكرة طيران'},{i:'🏨',t:'منتجع 5 نجوم'},
+        {i:'🏖️',t:'شاطئ خاص'},{i:'👨‍💼',t:'مرافق عربي'},
+        {i:'🚌',t:'مواصلات'},{i:'🍽️',t:'وجبات شاملة'},
+        {i:'🗺️',t:'جولات'},{i:'💬',t:'دعم 24/7'},
+      ],
+      places:[
+        {i:'🏖️',n:'شاطئ كونيالتي'},{i:'🏛️',n:'المدينة القديمة'},
+        {i:'💧',n:'شلالات دودن'},{i:'🏛️',n:'متحف أنطاليا'},
+        {i:'🚤',n:'جولة بحرية'},{i:'🏔️',n:'جبال طوروس'},
+      ],
+      price:'2,800', wa:'أنطاليا'
+    },
+    tunis: {
+      name:'تونس العاصمة', flag:'🇹🇳', country:'تونس',
+      bg:'https://images.pexels.com/photos/1619569/pexels-photo-1619569.jpeg?auto=compress&w=1200',
+      meta:[{i:'📅',t:'4–6 أيام'},{i:'💰',t:'يبدأ من 2,200 ريال'},{i:'🏛️',t:'إرث حضاري'}],
+      days:[
+        {t:'الوصول والمدينة العتيقة',d:'استقبال، جولة في مدينة تونس العتيقة اليونسكو، سوق العطارين'},
+        {t:'قرطاج وسيدي بوسعيد',d:'آثار قرطاج التاريخية، القرية الزرقاء البيضاء سيدي بوسعيد بإطلالة خليج تونس'},
+        {t:'متحف باردو والحي الفرنسي',d:'متحف باردو العالمي، جولة في الحي الأوروبي، شارع الحبيب بورقيبة'},
+        {t:'التسوق والتراث',d:'سوق المنقوشات، شراء الصناعات التقليدية، عشاء تونسي أصيل'},
+        {t:'المغادرة',d:'وقت حر، إيصال المطار'},
+      ],
+      includes:[
+        {i:'✈️',t:'تذكرة طيران'},{i:'🏨',t:'فندق 4 نجوم'},
+        {i:'🚌',t:'مواصلات'},{i:'👨‍💼',t:'مرافق عربي'},
+        {i:'🗺️',t:'جميع الجولات'},{i:'🍳',t:'وجبة إفطار'},
+        {i:'📋',t:'مساعدة تأشيرة'},{i:'💬',t:'دعم 24/7'},
+      ],
+      places:[
+        {i:'🏛️',n:'قرطاج'},{i:'🕌',n:'المدينة العتيقة'},
+        {i:'🏘️',n:'سيدي بوسعيد'},{i:'🖼️',n:'متحف باردو'},
+        {i:'🛍️',n:'سوق العطارين'},{i:'🌊',n:'خليج تونس'},
+      ],
+      price:'2,200', wa:'تونس العاصمة'
+    },
+    hammamet: {
+      name:'الحمامات', flag:'🇹🇳', country:'تونس',
+      bg:'https://images.pexels.com/photos/1320684/pexels-photo-1320684.jpeg?auto=compress&w=1200',
+      meta:[{i:'📅',t:'5–7 أيام'},{i:'💰',t:'يبدأ من 2,400 ريال'},{i:'🏖️',t:'شواطئ البحر الأبيض'}],
+      days:[
+        {t:'الوصول والمنتجع',d:'استقبال، تسكين في منتجع ساحلي، استجمام على الشاطئ'},
+        {t:'المدينة القديمة والمدينة الجديدة',d:'جولة في المدينة القديمة للحمامات، حديقة بوشقة، السوق التقليدي'},
+        {t:'نابل والحرف التقليدية',d:'زيارة مدينة نابل للفخار والخزف، الأسواق الشعبية'},
+        {t:'الاستجمام والرياضات المائية',d:'يوم حر، رياضات مائية، سبا وعلاجات'},
+        {t:'المغادرة',d:'وقت حر، إيصال مطار تونس'},
+      ],
+      includes:[
+        {i:'✈️',t:'تذكرة طيران'},{i:'🏨',t:'منتجع ساحلي'},
+        {i:'🏖️',t:'شاطئ'},{i:'👨‍💼',t:'مرافق'},
+        {i:'🚌',t:'مواصلات'},{i:'🍽️',t:'إفطار وعشاء'},
+        {i:'🗺️',t:'جولات'},{i:'💬',t:'دعم 24/7'},
+      ],
+      places:[
+        {i:'🏖️',n:'شاطئ الحمامات'},{i:'🕌',n:'المدينة القديمة'},
+        {i:'🏺',n:'فخار نابل'},{i:'🌿',n:'حديقة بوشقة'},
+        {i:'🛍️',n:'السوق التقليدي'},{i:'🚤',n:'رياضات بحرية'},
+      ],
+      price:'2,400', wa:'الحمامات'
+    },
+    djerba: {
+      name:'جربة', flag:'🇹🇳', country:'تونس',
+      bg:'https://images.pexels.com/photos/2187605/pexels-photo-2187605.jpeg?auto=compress&w=1200',
+      meta:[{i:'📅',t:'5–7 أيام'},{i:'💰',t:'يبدأ من 2,600 ريال'},{i:'🏝️',t:'جزيرة الأحلام'}],
+      days:[
+        {t:'الوصول وجولة هوميت سوق',d:'استقبال في مطار جربة، جولة في السوق المركزي هوميت سوق'},
+        {t:'المتحف وقرية إيدة',d:'متحف التراث والفنون الشعبية، قرية إيدة الأثرية ذات البيوت البيضاء'},
+        {t:'الشواطئ الشمالية',d:'شاطئ سيدي محرز، بحيرة بوغرارة، الغوص الاختياري'},
+        {t:'الجزيرة بالدراجة',d:'جولة بالدراجة بين أحياء الجزيرة والبساتين والمزارع التقليدية'},
+        {t:'التسوق والمغادرة',d:'شراء الصناعات التقليدية، إيصال المطار'},
+      ],
+      includes:[
+        {i:'✈️',t:'تذكرة طيران'},{i:'🏨',t:'منتجع 4 نجوم'},
+        {i:'🏝️',t:'جولة الجزيرة'},{i:'👨‍💼',t:'مرافق'},
+        {i:'🚌',t:'مواصلات'},{i:'🍳',t:'وجبة إفطار'},
+        {i:'🗺️',t:'جولات'},{i:'💬',t:'دعم 24/7'},
+      ],
+      places:[
+        {i:'🏝️',n:'شاطئ سيدي محرز'},{i:'🕌',n:'جامع الكتبية'},
+        {i:'🏛️',n:'متحف التراث'},{i:'🛍️',n:'هوميت سوق'},
+        {i:'🌿',n:'قرية إيدة'},{i:'🚲',n:'جولة بالدراجة'},
+      ],
+      price:'2,600', wa:'جربة'
+    }
+  };
+
+  function build(d){
+    /* Hero bg */
+    var hero=document.getElementById('bvDestHero');
+    if(d.bg) hero.style.backgroundImage='url('+d.bg+')';
+    hero.style.backgroundSize='cover';
+    hero.style.backgroundPosition='center';
+
+    document.getElementById('bvDestFlag').textContent=d.flag;
+    document.getElementById('bvDestName').textContent=d.name;
+    document.getElementById('bvDestCountry').textContent=d.country;
+
+    /* Meta */
+    var metaEl=document.getElementById('bvDestHeroMeta');
+    d.meta.forEach(function(m){
+      var s=document.createElement('span');
+      s.className='bvDest_meta';
+      s.innerHTML=m.i+' '+m.t;
+      metaEl.appendChild(s);
+    });
+
+    /* Timeline */
+    var tl=document.getElementById('bvDestTimeline');
+    d.days.forEach(function(day,i){
+      var div=document.createElement('div');
+      div.className='bvDest_day';
+      div.innerHTML='<div class="bvDest_dayNum"><div class="bvDest_dayBadge">'+(i+1)+'</div><div class="bvDest_dayLine"></div></div>'
+        +'<div class="bvDest_dayContent"><p class="bvDest_dayTitle">'+day.t+'</p><p class="bvDest_dayDesc">'+day.d+'</p></div>';
+      tl.appendChild(div);
+    });
+
+    /* Includes */
+    var inc=document.getElementById('bvDestIncludes');
+    d.includes.forEach(function(it){
+      var li=document.createElement('li');
+      li.innerHTML='<span class="bvDest_incIcon">'+it.i+'</span>'+it.t;
+      inc.appendChild(li);
+    });
+
+    /* Places */
+    var pl=document.getElementById('bvDestPlaces');
+    d.places.forEach(function(p){
+      var div=document.createElement('div');
+      div.className='bvDest_place';
+      div.innerHTML='<span class="bvDest_placeIcon">'+p.i+'</span><span class="bvDest_placeName">'+p.n+'</span>';
+      pl.appendChild(div);
+    });
+
+    /* CTA */
+    var waText=encodeURIComponent('أريد الاستفسار عن رحلة '+d.wa);
+    document.getElementById('bvDestCta').innerHTML=
+      '<p class="bvDest_ctaPrice">يبدأ من</p>'
+      +'<p class="bvDest_ctaNum">'+d.price+' <small style="font-size:18px;font-weight:600;color:rgba(255,255,255,.5)">ريال</small></p>'
+      +'<p class="bvDest_ctaSub">للشخص الواحد · يختلف حسب الموسم وعدد المسافرين</p>'
+      +'<a class="bvDest_ctaBtn" href="https://wa.me/966555888555?text='+waText+'" target="_blank" rel="noopener">'
+      +'<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.533 5.851L.057 23.571A.75.75 0 0 0 .75 24.5l6.01-1.574A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 0 1-4.964-1.363l-.356-.212-3.693.966.987-3.607-.232-.372A9.719 9.719 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>'
+      +' احجز عبر واتساب</a>';
+  }
+
+  /* قراءة dest من URL */
+  var params=new URLSearchParams(window.location.search);
+  var id=(params.get('dest')||'').toLowerCase();
+  var load=document.getElementById('bvDestLoad');
+  var content=document.getElementById('bvDestContent');
+  var notFound=document.getElementById('bvDestNotFound');
+
+  if(DESTS[id]){
+    build(DESTS[id]);
+    load.style.display='none';
+    content.removeAttribute('hidden');
+  } else {
+    load.style.display='none';
+    notFound.removeAttribute('hidden');
+  }
+}());
+</script>
