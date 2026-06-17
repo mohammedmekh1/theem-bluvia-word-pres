@@ -28,3 +28,17 @@ function bluvia_hero_shortcode() {
 	return ob_get_clean();
 }
 add_shortcode( 'bluvia_hero', 'bluvia_hero_shortcode' );
+
+/* ═══════════════════════════════════════════════════════
+   شورت كود شهادات العملاء
+   الاستخدام: [bluvia_testimonials]
+   ═══════════════════════════════════════════════════════ */
+function bluvia_testimonials_shortcode() {
+	ob_start();
+	$file = get_stylesheet_directory() . '/bluvia-testimonials.html';
+	if ( file_exists( $file ) ) {
+		include $file;
+	}
+	return ob_get_clean();
+}
+add_shortcode( 'bluvia_testimonials', 'bluvia_testimonials_shortcode' );
