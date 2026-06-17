@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bluevia Travel - احجز رحلتك</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(160deg, #0a1628, #060e1f);
+    min-height: 100vh;
+    color: #e2e8f0;
+    direction: rtl;
+    overflow-x: hidden;
+  }
+
+  /* Animated background orbs */
+  .bvBk_bg_canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .bvBk_bg_orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: bvBk_orbFloat 12s ease-in-out infinite alternate;
+  }
+
+  .bvBk_bg_orb:nth-child(1) {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #3B82F6, transparent);
+    top: -100px; right: -100px;
+    animation-delay: 0s;
+  }
+
+  .bvBk_bg_orb:nth-child(2) {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, #1d4ed8, transparent);
+    bottom: -80px; left: -80px;
+    animation-delay: -4s;
+  }
+
+  .bvBk_bg_orb:nth-child(3) {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, #60a5fa, transparent);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -8s;
+  }
+
+  @keyframes bvBk_orbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 40px) scale(1.1); }
+  }
+
+  /* Full-width section */
+  .bvBk_section_wrap {
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    z-index: 1;
+  }
+
+  /* Header */
+  .bvBk_header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: bvBk_fadeDown 0.8s ease both;
+  }
+
+  .bvBk_logo_wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .bvBk_logo_icon {
+    width: 54px; height: 54px;
+    background: linear-gradient(135deg, #3B82F6, #1d4ed8);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 0 30px rgba(59,130,246,0.5);
+    animation: bvBk_iconPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes bvBk_iconPulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(59,130,246,0.5); }
+    50% { box-shadow: 0 0 50px rgba(59,130,246,0.8), 0 0 80px rgba(59,130,246,0.3); }
+  }
+
+  .bvBk_logo_text {
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #ffffff, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+
+  .bvBk_header_subtitle {
+    font-size: 16px;
+    color: #94a3b8;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+
+  /* Glassmorphism card */
+  .bvBk_card {
+    width: 100%;
+    max-width: 620px;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 24px;
+    padding: 44px 40px;
+    box-shadow:
+      0 0 0 1px rgba(59,130,246,0.1),
+      0 20px 60px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+    animation: bvBk_fadeUp 0.9s ease both 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bvBk_card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #3B82F6, #60a5fa, transparent);
+    background-size: 200% 100%;
+    animation: bvBk_shimmer 3s linear infinite;
+  }
+
+  @keyframes bvBk_shimmer {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+
+  @keyframes bvBk_fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bvBk_fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Progress bar */
+  .bvBk_progress_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .bvBk_progress_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .bvBk_progress_dot {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(59,130,246,0.25);
+    background: rgba(255,255,255,0.04);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #64748b;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+  }
+
+  .bvBk_progress_dot.bvBk_active {
+    background: linear-gradient(135deg, #3B82F6, #1d4ed8);
+    border-color: #3B82F6;
+    color: #fff;
+    animation: bvBk_dotPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes bvBk_dotPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(59,130,246,0.6), 0 0 40px rgba(59,130,246,0.3); }
+    50% { box-shadow: 0 0 30px rgba(59,130,246,0.9), 0 0 60px rgba(59,130,246,0.5); }
+  }
+
+  .bvBk_progress_dot.bvBk_completed {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-color: #10b981;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(16,185,129,0.5);
+  }
+
+  .bvBk_progress_dot.bvBk_completed .bvBk_dot_num {
+    display: none;
+  }
+
+  .bvBk_progress_dot.bvBk_completed::after {
+    content: '✓';
+    font-size: 18px;
+  }
+
+  .bvBk_progress_label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+
+  .bvBk_progress_item.bvBk_p_active .bvBk_progress_label,
+  .bvBk_progress_item.bvBk_p_completed .bvBk_progress_label {
+    color: #93c5fd;
+  }
+
+  .bvBk_progress_line {
+    flex: 1;
+    height: 3px;
+    background: rgba(59,130,246,0.12);
+    margin: 0 8px;
+    margin-bottom: 28px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    min-width: 40px;
+    max-width: 80px;
+  }
+
+  .bvBk_progress_line_fill {
+    position: absolute;
+    top: 0; right: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #1d4ed8, #3B82F6);
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 8px rgba(59,130,246,0.6);
+  }
+
+  .bvBk_progress_line_fill.bvBk_filled { width: 100%; }
+
+  /* Step title */
+  .bvBk_step_title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .bvBk_step_title h2 {
+    font-size: 24px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ffffff, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+
+  .bvBk_step_title p {
+    font-size: 14px;
+    color: #64748b;
+  }
+
+  /* Step panels */
+  .bvBk_step_panel {
+    display: none;
+  }
+
+  .bvBk_step_panel.bvBk_step_active {
+    display: block;
+    animation: bvBk_slideIn 0.4s cubic-bezier(0.4,0,0.2,1) both;
+  }
+
+  .bvBk_step_panel.bvBk_step_active.bvBk_slide_back {
+    animation-name: bvBk_slideInBack;
+  }
+
+  @keyframes bvBk_slideIn {
+    from { opacity: 0; transform: translateX(-24px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes bvBk_slideInBack {
+    from { opacity: 0; transform: translateX(24px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Form fields */
+  .bvBk_field_group {
+    margin-bottom: 20px;
+  }
+
+  .bvBk_field_label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #93c5fd;
+    margin-bottom: 8px;
+  }
+
+  .bvBk_field_label .bvBk_label_icon { font-size: 16px; }
+
+  .bvBk_field_input,
+  .bvBk_field_select,
+  .bvBk_field_textarea {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(59,130,246,0.18);
+    border-radius: 12px;
+    color: #e2e8f0;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    outline: none;
+    direction: rtl;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .bvBk_field_input::placeholder,
+  .bvBk_field_textarea::placeholder { color: #475569; }
+
+  .bvBk_field_input:focus,
+  .bvBk_field_select:focus,
+  .bvBk_field_textarea:focus {
+    border-color: #3B82F6;
+    background: rgba(59,130,246,0.08);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15), 0 0 20px rgba(59,130,246,0.08);
+  }
+
+  .bvBk_field_input.bvBk_err_field,
+  .bvBk_field_select.bvBk_err_field,
+  .bvBk_field_textarea.bvBk_err_field {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239,68,68,0.15) !important;
+  }
+
+  .bvBk_field_select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233B82F6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 14px center;
+    padding-left: 44px;
+  }
+
+  .bvBk_field_select option {
+    background: #0d1f3c;
+    color: #e2e8f0;
+  }
+
+  .bvBk_field_textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .bvBk_err_msg {
+    font-size: 13px;
+    color: #f87171;
+    margin-top: 6px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .bvBk_err_msg.bvBk_err_show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Two-column grid */
+  .bvBk_fields_row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Navigation */
+  .bvBk_nav_wrap {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    align-items: center;
+  }
+
+  .bvBk_btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bvBk_btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background 0.3s;
+  }
+
+  .bvBk_btn:hover::after { background: rgba(255,255,255,0.06); }
+
+  .bvBk_btn_next {
+    background: linear-gradient(135deg, #3B82F6, #1d4ed8);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+    flex: 1;
+    justify-content: center;
+  }
+
+  .bvBk_btn_next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(59,130,246,0.6);
+  }
+
+  .bvBk_btn_next:active { transform: translateY(0); }
+
+  .bvBk_btn_prev {
+    background: rgba(255,255,255,0.05);
+    color: #94a3b8;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    flex: 0 0 auto;
+  }
+
+  .bvBk_btn_prev:hover {
+    background: rgba(255,255,255,0.1);
+    color: #e2e8f0;
+    transform: translateY(-2px);
+  }
+
+  .bvBk_btn_whatsapp {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    width: 100%;
+    justify-content: center;
+    font-size: 17px;
+    padding: 16px 32px;
+  }
+
+  .bvBk_btn_whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(37,211,102,0.6);
+  }
+
+  /* Confirmation card */
+  .bvBk_confirm_wrap {
+    background: rgba(59,130,246,0.05);
+    border: 1px solid rgba(59,130,246,0.18);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 18px;
+  }
+
+  .bvBk_confirm_title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #93c5fd;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(59,130,246,0.15);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bvBk_confirm_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .bvBk_confirm_row:last-child { border-bottom: none; }
+
+  .bvBk_confirm_key {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .bvBk_confirm_val {
+    font-size: 14px;
+    color: #e2e8f0;
+    font-weight: 600;
+    text-align: left;
+    max-width: 55%;
+    word-break: break-word;
+  }
+
+  /* Thank you banner */
+  .bvBk_thank_badge {
+    text-align: center;
+    margin-bottom: 22px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(5,150,105,0.04));
+    border: 1px solid rgba(16,185,129,0.25);
+    border-radius: 16px;
+    animation: bvBk_fadeUp 0.5s ease both;
+  }
+
+  .bvBk_thank_icon {
+    font-size: 44px;
+    display: block;
+    margin-bottom: 10px;
+    animation: bvBk_bounceIn 0.6s cubic-bezier(0.68,-0.55,0.265,1.55) both 0.15s;
+  }
+
+  @keyframes bvBk_bounceIn {
+    from { opacity: 0; transform: scale(0.3); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .bvBk_thank_title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #10b981;
+    margin-bottom: 5px;
+  }
+
+  .bvBk_thank_sub {
+    font-size: 14px;
+    color: #64748b;
+  }
+
+  /* Stars */
+  .bvBk_stars {
+    text-align: center;
+    color: #f59e0b;
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 4px;
+  }
+
+  /* Divider */
+  .bvBk_divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent);
+    margin: 4px 0 22px;
+  }
+
+  /* Date input */
+  .bvBk_field_input[type="date"] {
+    direction: ltr;
+    text-align: right;
+  }
+
+  .bvBk_field_input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.6) sepia(1) saturate(2) hue-rotate(200deg);
+    cursor: pointer;
+  }
+
+  .bvBk_field_input[type="number"]::-webkit-inner-spin-button { opacity: 0.5; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .bvBk_card { padding: 28px 18px; border-radius: 18px; }
+    .bvBk_fields_row { grid-template-columns: 1fr; }
+    .bvBk_logo_text { font-size: 26px; }
+    .bvBk_progress_line { min-width: 24px; max-width: 50px; }
+    .bvBk_progress_dot { width: 38px; height: 38px; font-size: 13px; }
+    .bvBk_progress_label { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bvBk_bg_canvas">
+  <div class="bvBk_bg_orb"></div>
+  <div class="bvBk_bg_orb"></div>
+  <div class="bvBk_bg_orb"></div>
+</div>
+
+<div class="bvBk_section_wrap">
+
+  <div class="bvBk_header">
+    <div class="bvBk_logo_wrap">
+      <div class="bvBk_logo_icon">✈️</div>
+      <span class="bvBk_logo_text">Bluevia Travel</span>
+    </div>
+    <div class="bvBk_stars">★ ★ ★ ★ ★</div>
+    <p class="bvBk_header_subtitle">احجز رحلة أحلامك في خطوات بسيطة</p>
+  </div>
+
+  <div class="bvBk_card">
+
+    <!-- Progress Steps -->
+    <div class="bvBk_progress_wrap">
+      <div class="bvBk_progress_item bvBk_p_active" id="bvBk_prog_1">
+        <div class="bvBk_progress_dot bvBk_active" id="bvBk_dot_1">
+          <span class="bvBk_dot_num">1</span>
+        </div>
+        <span class="bvBk_progress_label">رحلتك</span>
+      </div>
+      <div class="bvBk_progress_line">
+        <div class="bvBk_progress_line_fill" id="bvBk_line_1"></div>
+      </div>
+      <div class="bvBk_progress_item" id="bvBk_prog_2">
+        <div class="bvBk_progress_dot" id="bvBk_dot_2">
+          <span class="bvBk_dot_num">2</span>
+        </div>
+        <span class="bvBk_progress_label">بياناتك</span>
+      </div>
+      <div class="bvBk_progress_line">
+        <div class="bvBk_progress_line_fill" id="bvBk_line_2"></div>
+      </div>
+      <div class="bvBk_progress_item" id="bvBk_prog_3">
+        <div class="bvBk_progress_dot" id="bvBk_dot_3">
+          <span class="bvBk_dot_num">3</span>
+        </div>
+        <span class="bvBk_progress_label">تأكيد</span>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="bvBk_step_panel bvBk_step_active" id="bvBk_step_1">
+      <div class="bvBk_step_title">
+        <h2>🗺️ اختر رحلتك</h2>
+        <p>حدد الوجهة والتاريخ وعدد المسافرين</p>
+      </div>
+      <div class="bvBk_divider"></div>
+
+      <div class="bvBk_field_group">
+        <label class="bvBk_field_label" for="bvBk_dest">
+          <span class="bvBk_label_icon">📍</span> الوجهة السياحية
+        </label>
+        <select class="bvBk_field_select" id="bvBk_dest">
+          <option value="">-- اختر وجهتك --</option>
+          <optgroup label="تركيا">
+            <option value="إسطنبول">إسطنبول</option>
+            <option value="كبادوكيا">كبادوكيا</option>
+            <option value="أنطاليا">أنطاليا</option>
+          </optgroup>
+          <optgroup label="تونس">
+            <option value="تونس العاصمة">تونس العاصمة</option>
+            <option value="الحمامات">الحمامات</option>
+            <option value="سيدي بوسعيد">سيدي بوسعيد</option>
+          </optgroup>
+        </select>
+        <div class="bvBk_err_msg" id="bvBk_err_dest">⚠ الرجاء اختيار الوجهة</div>
+      </div>
+
+      <div class="bvBk_fields_row">
+        <div class="bvBk_field_group">
+          <label class="bvBk_field_label" for="bvBk_date">
+            <span class="bvBk_label_icon">📅</span> تاريخ السفر
+          </label>
+          <input type="date" class="bvBk_field_input" id="bvBk_date">
+          <div class="bvBk_err_msg" id="bvBk_err_date">⚠ الرجاء تحديد التاريخ</div>
+        </div>
+        <div class="bvBk_field_group">
+          <label class="bvBk_field_label" for="bvBk_persons">
+            <span class="bvBk_label_icon">👥</span> عدد الأشخاص
+          </label>
+          <input type="number" class="bvBk_field_input" id="bvBk_persons" placeholder="1" min="1" max="50">
+          <div class="bvBk_err_msg" id="bvBk_err_persons">⚠ أدخل عدد الأشخاص</div>
+        </div>
+      </div>
+
+      <div class="bvBk_nav_wrap">
+        <button class="bvBk_btn bvBk_btn_next" onclick="bvBk_nextStep(1)">
+          التالي &larr;
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="bvBk_step_panel" id="bvBk_step_2">
+      <div class="bvBk_step_title">
+        <h2>👤 بياناتك الشخصية</h2>
+        <p>أدخل معلومات التواصل لإتمام الحجز</p>
+      </div>
+      <div class="bvBk_divider"></div>
+
+      <div class="bvBk_field_group">
+        <label class="bvBk_field_label" for="bvBk_name">
+          <span class="bvBk_label_icon">🪪</span> الاسم الكامل
+        </label>
+        <input type="text" class="bvBk_field_input" id="bvBk_name" placeholder="أدخل اسمك الكامل">
+        <div class="bvBk_err_msg" id="bvBk_err_name">⚠ الرجاء إدخال الاسم الكامل (٣ أحرف على الأقل)</div>
+      </div>
+
+      <div class="bvBk_fields_row">
+        <div class="bvBk_field_group">
+          <label class="bvBk_field_label" for="bvBk_phone">
+            <span class="bvBk_label_icon">📱</span> رقم الجوال
+          </label>
+          <input type="tel" class="bvBk_field_input" id="bvBk_phone" placeholder="05xxxxxxxx">
+          <div class="bvBk_err_msg" id="bvBk_err_phone">⚠ أدخل رقم جوال صحيح</div>
+        </div>
+        <div class="bvBk_field_group">
+          <label class="bvBk_field_label" for="bvBk_email">
+            <span class="bvBk_label_icon">✉️</span> البريد الإلكتروني
+          </label>
+          <input type="email" class="bvBk_field_input" id="bvBk_email" placeholder="example@email.com">
+          <div class="bvBk_err_msg" id="bvBk_err_email">⚠ أدخل بريد إلكتروني صحيح</div>
+        </div>
+      </div>
+
+      <div class="bvBk_field_group">
+        <label class="bvBk_field_label" for="bvBk_notes">
+          <span class="bvBk_label_icon">📝</span> ملاحظات إضافية
+          <span style="color:#475569;font-weight:400;font-size:12px;">(اختياري)</span>
+        </label>
+        <textarea class="bvBk_field_textarea" id="bvBk_notes" placeholder="أي طلبات خاصة أو ملاحظات تودّ إضافتها..."></textarea>
+      </div>
+
+      <div class="bvBk_nav_wrap">
+        <button class="bvBk_btn bvBk_btn_prev" onclick="bvBk_prevStep(2)">
+          &rarr; رجوع
+        </button>
+        <button class="bvBk_btn bvBk_btn_next" onclick="bvBk_nextStep(2)">
+          مراجعة الحجز &larr;
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="bvBk_step_panel" id="bvBk_step_3">
+      <div class="bvBk_step_title">
+        <h2>✅ مراجعة وتأكيد</h2>
+        <p>تحقق من بياناتك قبل الإرسال</p>
+      </div>
+      <div class="bvBk_divider"></div>
+
+      <div class="bvBk_thank_badge">
+        <span class="bvBk_thank_icon">🎉</span>
+        <div class="bvBk_thank_title">رحلتك جاهزة للتأكيد!</div>
+        <div class="bvBk_thank_sub">راجع التفاصيل أدناه وأرسل طلبك عبر واتساب</div>
+      </div>
+
+      <div class="bvBk_confirm_wrap">
+        <div class="bvBk_confirm_title">✈️ تفاصيل الرحلة</div>
+        <div class="bvBk_confirm_row">
+          <span class="bvBk_confirm_key">📍 الوجهة</span>
+          <span class="bvBk_confirm_val" id="bvBk_sum_dest">—</span>
+        </div>
+        <div class="bvBk_confirm_row">
+          <span class="bvBk_confirm_key">📅 تاريخ السفر</span>
+          <span class="bvBk_confirm_val" id="bvBk_sum_date">—</span>
+        </div>
+        <div class="bvBk_confirm_row">
+          <span class="bvBk_confirm_key">👥 عدد الأشخاص</span>
+          <span class="bvBk_confirm_val" id="bvBk_sum_persons">—</span>
+        </div>
+      </div>
+
+      <div class="bvBk_confirm_wrap">
+        <div class="bvBk_confirm_title">👤 بيانات المسافر</div>
+        <div class="bvBk_confirm_row">
+          <span class="bvBk_confirm_key">🪪 الاسم</span>
+          <span class="bvBk_confirm_val" id="bvBk_sum_name">—</span>
+        </div>
+        <div class="bvBk_confirm_row">
+          <span class="bvBk_confirm_key">📱 الجوال</span>
+          <span class="bvBk_confirm_val" id="bvBk_sum_phone">—</span>
+        </div>
+        <div class="bvBk_confirm_row">
+          <span class="bvBk_confirm_key">✉️ البريد</span>
+          <span class="bvBk_confirm_val" id="bvBk_sum_email">—</span>
+        </div>
+        <div class="bvBk_confirm_row" id="bvBk_sum_notes_row" style="display:none">
+          <span class="bvBk_confirm_key">📝 ملاحظات</span>
+          <span class="bvBk_confirm_val" id="bvBk_sum_notes">—</span>
+        </div>
+      </div>
+
+      <button class="bvBk_btn bvBk_btn_whatsapp" onclick="bvBk_sendWhatsApp()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        أرسل حجزك عبر واتساب
+      </button>
+
+      <div class="bvBk_nav_wrap" style="margin-top:14px;">
+        <button class="bvBk_btn bvBk_btn_prev" style="width:100%;justify-content:center;" onclick="bvBk_prevStep(3)">
+          &rarr; تعديل البيانات
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="text-align:center;color:#1e3a5f;font-size:13px;margin-top:24px;font-weight:500;">
+    &copy; 2024 Bluevia Travel &middot; جميع الحقوق محفوظة
+  </p>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // Set minimum date
+  var today = new Date();
+  var yyyy = today.getFullYear();
+  var mm = String(today.getMonth() + 1).padStart('0', 2);
+  var dd = String(today.getDate()).padStart('0', 2);
+  // Fix padStart usage
+  mm = (today.getMonth() + 1 < 10 ? '0' : '') + (today.getMonth() + 1);
+  dd = (today.getDate() < 10 ? '0' : '') + today.getDate();
+  document.getElementById('bvBk_date').min = yyyy + '-' + mm + '-' + dd;
+
+  window.bvBk_currentStep = 1;
+
+  window.bvBk_setError = function(fieldId, errId, show) {
+    var field = document.getElementById(fieldId);
+    var err = document.getElementById(errId);
+    if (show) {
+      field.classList.add('bvBk_err_field');
+      err.style.display = 'flex';
+      // Force reflow for animation
+      void err.offsetWidth;
+      err.classList.add('bvBk_err_show');
+    } else {
+      field.classList.remove('bvBk_err_field');
+      err.classList.remove('bvBk_err_show');
+      setTimeout(function() { err.style.display = 'none'; }, 300);
+    }
+  };
+
+  window.bvBk_validateStep1 = function() {
+    var dest = document.getElementById('bvBk_dest').value;
+    var date = document.getElementById('bvBk_date').value;
+    var persons = document.getElementById('bvBk_persons').value;
+    var ok = true;
+
+    if (!dest) { bvBk_setError('bvBk_dest','bvBk_err_dest',true); ok = false; }
+    else { bvBk_setError('bvBk_dest','bvBk_err_dest',false); }
+
+    if (!date) { bvBk_setError('bvBk_date','bvBk_err_date',true); ok = false; }
+    else { bvBk_setError('bvBk_date','bvBk_err_date',false); }
+
+    if (!persons || parseInt(persons,10) < 1) { bvBk_setError('bvBk_persons','bvBk_err_persons',true); ok = false; }
+    else { bvBk_setError('bvBk_persons','bvBk_err_persons',false); }
+
+    return ok;
+  };
+
+  window.bvBk_validateStep2 = function() {
+    var name = document.getElementById('bvBk_name').value.trim();
+    var phone = document.getElementById('bvBk_phone').value.trim();
+    var email = document.getElementById('bvBk_email').value.trim();
+    var ok = true;
+
+    if (name.length < 3) { bvBk_setError('bvBk_name','bvBk_err_name',true); ok = false; }
+    else { bvBk_setError('bvBk_name','bvBk_err_name',false); }
+
+    if (!/^[\d\+\-\s\(\)]{7,15}$/.test(phone)) { bvBk_setError('bvBk_phone','bvBk_err_phone',true); ok = false; }
+    else { bvBk_setError('bvBk_phone','bvBk_err_phone',false); }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { bvBk_setError('bvBk_email','bvBk_err_email',true); ok = false; }
+    else { bvBk_setError('bvBk_email','bvBk_err_email',false); }
+
+    return ok;
+  };
+
+  window.bvBk_formatDate = function(str) {
+    if (!str) return '—';
+    var p = str.split('-');
+    if (p.length !== 3) return str;
+    var months = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+    return parseInt(p[2],10) + ' ' + months[parseInt(p[1],10) - 1] + ' ' + p[0];
+  };
+
+  window.bvBk_fillSummary = function() {
+    var dest = document.getElementById('bvBk_dest').value;
+    var date = document.getElementById('bvBk_date').value;
+    var persons = document.getElementById('bvBk_persons').value;
+    var name = document.getElementById('bvBk_name').value.trim();
+    var phone = document.getElementById('bvBk_phone').value.trim();
+    var email = document.getElementById('bvBk_email').value.trim();
+    var notes = document.getElementById('bvBk_notes').value.trim();
+
+    document.getElementById('bvBk_sum_dest').textContent = dest || '—';
+    document.getElementById('bvBk_sum_date').textContent = bvBk_formatDate(date);
+    document.getElementById('bvBk_sum_persons').textContent = persons ? persons + ' أشخاص' : '—';
+    document.getElementById('bvBk_sum_name').textContent = name || '—';
+    document.getElementById('bvBk_sum_phone').textContent = phone || '—';
+    document.getElementById('bvBk_sum_email').textContent = email || '—';
+
+    var notesRow = document.getElementById('bvBk_sum_notes_row');
+    if (notes) {
+      notesRow.style.display = 'flex';
+      document.getElementById('bvBk_sum_notes').textContent = notes;
+    } else {
+      notesRow.style.display = 'none';
+    }
+  };
+
+  window.bvBk_updateProgress = function(step) {
+    for (var i = 1; i <= 3; i++) {
+      var pi = document.getElementById('bvBk_prog_' + i);
+      var dot = document.getElementById('bvBk_dot_' + i);
+      dot.classList.remove('bvBk_active','bvBk_completed');
+      pi.classList.remove('bvBk_p_active','bvBk_p_completed');
+      if (i < step) {
+        dot.classList.add('bvBk_completed');
+        pi.classList.add('bvBk_p_completed');
+      } else if (i === step) {
+        dot.classList.add('bvBk_active');
+        pi.classList.add('bvBk_p_active');
+      }
+    }
+    document.getElementById('bvBk_line_1').classList.toggle('bvBk_filled', step > 1);
+    document.getElementById('bvBk_line_2').classList.toggle('bvBk_filled', step > 2);
+  };
+
+  window.bvBk_goToStep = function(target, isBack) {
+    var cur = document.getElementById('bvBk_step_' + bvBk_currentStep);
+    var nxt = document.getElementById('bvBk_step_' + target);
+
+    cur.classList.remove('bvBk_step_active');
+    nxt.classList.remove('bvBk_slide_back');
+    if (isBack) nxt.classList.add('bvBk_slide_back');
+    nxt.classList.add('bvBk_step_active');
+
+    bvBk_currentStep = target;
+    bvBk_updateProgress(target);
+
+    var card = document.querySelector('.bvBk_card');
+    if (card) {
+      setTimeout(function() {
+        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  };
+
+  window.bvBk_nextStep = function(from) {
+    if (from === 1 && !bvBk_validateStep1()) return;
+    if (from === 2 && !bvBk_validateStep2()) return;
+    if (from === 2) bvBk_fillSummary();
+    bvBk_goToStep(from + 1, false);
+  };
+
+  window.bvBk_prevStep = function(from) {
+    bvBk_goToStep(from - 1, true);
+  };
+
+  window.bvBk_sendWhatsApp = function() {
+    var dest    = document.getElementById('bvBk_dest').value;
+    var date    = document.getElementById('bvBk_date').value;
+    var persons = document.getElementById('bvBk_persons').value;
+    var name    = document.getElementById('bvBk_name').value.trim();
+    var phone   = document.getElementById('bvBk_phone').value.trim();
+    var email   = document.getElementById('bvBk_email').value.trim();
+    var notes   = document.getElementById('bvBk_notes').value.trim();
+
+    var msg =
+      '🌍 *طلب حجز رحلة - Bluevia Travel*\n' +
+      '━━━━━━━━━━━━━━━━━━\n' +
+      '✈️ *تفاصيل الرحلة:*\n' +
+      '📍 الوجهة: ' + dest + '\n' +
+      '📅 تاريخ السفر: ' + bvBk_formatDate(date) + '\n' +
+      '👥 عدد الأشخاص: ' + persons + '\n' +
+      '━━━━━━━━━━━━━━━━━━\n' +
+      '👤 *بيانات المسافر:*\n' +
+      '🪪 الاسم: ' + name + '\n' +
+      '📱 الجوال: ' + phone + '\n' +
+      '✉️ البريد: ' + email + '\n';
+
+    if (notes) {
+      msg += '📝 ملاحظات: ' + notes + '\n';
+    }
+
+    msg +=
+      '━━━━━━━━━━━━━━━━━━\n' +
+      '🙏 أرجو تأكيد الحجز، شكراً!';
+
+    window.open('https://wa.me/966555888555?text=' + encodeURIComponent(msg), '_blank');
+  };
+
+})();
+</script>
+</body>
+</html>
