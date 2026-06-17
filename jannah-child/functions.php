@@ -42,3 +42,43 @@ function bluvia_testimonials_shortcode() {
 	return ob_get_clean();
 }
 add_shortcode( 'bluvia_testimonials', 'bluvia_testimonials_shortcode' );
+
+/* ═══════════════════════════════════════════════════════
+   دالة مساعدة لتوليد شورت كودات الملفات
+   ═══════════════════════════════════════════════════════ */
+function bluvia_load_file( $filename ) {
+	ob_start();
+	$file = get_stylesheet_directory() . '/' . $filename;
+	if ( file_exists( $file ) ) {
+		include $file;
+	}
+	return ob_get_clean();
+}
+
+/* [bluvia_whatsapp]  — زر واتساب عائم + العودة للأعلى */
+add_shortcode( 'bluvia_whatsapp', function(){ return bluvia_load_file('bluvia-whatsapp.html'); } );
+
+/* [bluvia_stats]     — عداد أرقام متحرك */
+add_shortcode( 'bluvia_stats', function(){ return bluvia_load_file('bluvia-stats.html'); } );
+
+/* [bluvia_why_us]    — لماذا تختار بلوفيا؟ */
+add_shortcode( 'bluvia_why_us', function(){ return bluvia_load_file('bluvia-why-us.html'); } );
+
+/* [bluvia_booking]   — نموذج حجز بـ 3 خطوات */
+add_shortcode( 'bluvia_booking', function(){ return bluvia_load_file('bluvia-booking.html'); } );
+
+/* [bluvia_packages]  — باقات سياحية (اقتصادي/مميز/VIP) */
+add_shortcode( 'bluvia_packages', function(){ return bluvia_load_file('bluvia-packages.html'); } );
+
+/* [bluvia_faq]       — أسئلة شائعة accordion */
+add_shortcode( 'bluvia_faq', function(){ return bluvia_load_file('bluvia-faq.html'); } );
+
+/* [bluvia_trust]     — شارات ثقة + شريط شركاء */
+add_shortcode( 'bluvia_trust', function(){ return bluvia_load_file('bluvia-trust.html'); } );
+
+/* [bluvia_gallery]   — معرض صور Masonry */
+add_shortcode( 'bluvia_gallery', function(){ return bluvia_load_file('bluvia-gallery.html'); } );
+
+/* [bluvia_global]    — خط Cairo + cursor + scroll reveal + progress bar
+   ضعه مرة واحدة فقط في أول الصفحة الرئيسية */
+add_shortcode( 'bluvia_global', function(){ return bluvia_load_file('bluvia-global.html'); } );
