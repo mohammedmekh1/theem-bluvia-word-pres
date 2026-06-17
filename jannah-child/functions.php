@@ -14,3 +14,17 @@ function tie_theme_child_styles_scripts() {
 	/* Uncomment this line if you want to add custom javascript */
 	//wp_enqueue_script( 'jannah-child-js', get_stylesheet_directory_uri() .'/js/scripts.js', '', false, true );
 }
+
+/* ═══════════════════════════════════════════════════════
+   شورت كود بلوفيا هيرو
+   الاستخدام: [bluvia_hero]
+   ═══════════════════════════════════════════════════════ */
+function bluvia_hero_shortcode() {
+	ob_start();
+	$file = get_stylesheet_directory() . '/bluvia-hero.html';
+	if ( file_exists( $file ) ) {
+		include $file;
+	}
+	return ob_get_clean();
+}
+add_shortcode( 'bluvia_hero', 'bluvia_hero_shortcode' );
