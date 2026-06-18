@@ -2,119 +2,168 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
 
+#bvTr-wrap { display:block!important; width:100%!important; }
+
 #bvTr {
-  position:relative!important; left:50%!important; right:50%!important;
+  display:block!important;
+  position:relative!important;
+  left:50%!important; right:50%!important;
   margin-left:-50vw!important; margin-right:-50vw!important;
   width:100vw!important; max-width:100vw!important;
   box-sizing:border-box!important;
-  background:#060e1f;
-  padding:60px 0;
-  direction:rtl;
-  overflow:hidden;
+  background:#060e1f!important;
+  padding:60px 0!important;
+  direction:rtl!important;
+  overflow:hidden!important;
 }
-#bvTr * { box-sizing:border-box!important; font-family:Cairo,sans-serif!important; }
-
-.bvTr_wrap { max-width:1280px; margin:0 auto; padding:0 24px; }
-
-/* ── Badges ── */
-.bvTr_badges {
-  display:flex; align-items:stretch; justify-content:center;
-  flex-wrap:wrap; gap:0; margin-bottom:56px;
-}
-.bvTr_badge {
-  display:flex; align-items:center; gap:14px;
-  padding:20px 36px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.10)!important;
-  position:relative;
-  transition:background .3s, transform .3s;
-  cursor:default;
-}
-.bvTr_badge:first-child { border-radius:0 16px 16px 0; }
-.bvTr_badge:last-child  { border-radius:16px 0 0 16px; }
-.bvTr_badge:not(:last-child)::after {
-  content:""; position:absolute; left:0; top:15%;
-  height:70%; width:1px; background:rgba(255,255,255,.12);
-}
-.bvTr_badge:hover { background:rgba(59,130,246,.12); transform:translateY(-3px); }
-.bvTr_badge:hover .bvTr_iconWrap {
-  background:rgba(59,130,246,.25);
-  border-color:rgba(59,130,246,.5)!important;
+#bvTr * {
+  box-sizing:border-box!important;
+  font-family:Cairo,sans-serif!important;
 }
 
-.bvTr_iconWrap {
-  width:48px; height:48px; border-radius:12px;
-  background:rgba(59,130,246,.12);
-  border:1px solid rgba(59,130,246,.3)!important;
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0; transition:background .3s, border-color .3s;
-}
-.bvTr_iconWrap svg {
-  width:22px; height:22px;
-  stroke:#3B82F6; fill:none;
-  stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
-}
-.bvTr_badgeText { display:flex; flex-direction:column; gap:2px; }
-.bvTr_badgeLabel { font-size:13px; font-weight:400; color:rgba(255,255,255,.5)!important; line-height:1.3; }
-.bvTr_badgeValue { font-size:15px; font-weight:700; color:#fff!important; line-height:1.3; }
-
-/* ── Partners ── */
-.bvTr_partnersWrap { text-align:center; }
-.bvTr_partnersHeading {
-  font-size:13px; font-weight:600; color:rgba(255,255,255,.4)!important;
-  letter-spacing:2px; text-transform:uppercase;
-  margin-bottom:28px; display:inline-flex; align-items:center; gap:16px;
-}
-.bvTr_partnersHeading::before,
-.bvTr_partnersHeading::after {
-  content:""; display:block; width:60px; height:1px;
-  background:rgba(255,255,255,.15);
+#bvTr .bvTr_wrap {
+  max-width:1280px!important;
+  margin:0 auto!important;
+  padding:0 24px!important;
 }
 
-.bvTr_marqueeOuter {
-  position:relative; overflow:hidden; width:100%;
-  mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);
+/* ── Badges row ── */
+#bvTr .bvTr_badges {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex-wrap:wrap!important;
+  gap:0!important;
+  margin-bottom:56px!important;
 }
-.bvTr_marqueeTrack {
-  display:flex; align-items:center; gap:20px;
-  width:max-content;
-  animation:bvTrScroll 28s linear infinite;
+#bvTr .bvTr_badge {
+  display:flex!important;
+  align-items:center!important;
+  gap:14px!important;
+  padding:20px 36px!important;
+  background:rgba(255,255,255,.05)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  position:relative!important;
+  transition:background .3s, transform .3s!important;
+  cursor:default!important;
+  flex:1!important;
+  min-width:200px!important;
 }
-.bvTr_marqueeOuter:hover .bvTr_marqueeTrack { animation-play-state:paused; }
+#bvTr .bvTr_badge:first-child { border-radius:0 16px 16px 0!important; }
+#bvTr .bvTr_badge:last-child  { border-radius:16px 0 0 16px!important; }
+#bvTr .bvTr_badge:not(:last-child)::after {
+  content:""!important;
+  position:absolute!important; left:0!important; top:15%!important;
+  height:70%!important; width:1px!important;
+  background:rgba(255,255,255,.12)!important;
+}
+#bvTr .bvTr_badge:hover {
+  background:rgba(59,130,246,.15)!important;
+  transform:translateY(-3px)!important;
+}
+
+#bvTr .bvTr_iconWrap {
+  width:48px!important; height:48px!important;
+  border-radius:12px!important;
+  background:rgba(59,130,246,.15)!important;
+  border:1px solid rgba(59,130,246,.35)!important;
+  display:flex!important; align-items:center!important; justify-content:center!important;
+  flex-shrink:0!important;
+}
+#bvTr .bvTr_iconWrap svg {
+  width:22px!important; height:22px!important;
+  stroke:#60A5FA!important; fill:none!important;
+  stroke-width:2!important; stroke-linecap:round!important; stroke-linejoin:round!important;
+}
+#bvTr .bvTr_badgeText {
+  display:flex!important; flex-direction:column!important; gap:3px!important;
+}
+#bvTr .bvTr_badgeLabel {
+  font-size:12px!important; font-weight:500!important;
+  color:rgba(255,255,255,.5)!important; line-height:1.3!important;
+  margin:0!important;
+}
+#bvTr .bvTr_badgeValue {
+  font-size:15px!important; font-weight:700!important;
+  color:#fff!important; line-height:1.3!important;
+  margin:0!important;
+}
+
+/* ── Partners marquee ── */
+#bvTr .bvTr_partnersWrap { text-align:center!important; }
+#bvTr .bvTr_partnersHeading {
+  font-size:12px!important; font-weight:600!important;
+  color:rgba(255,255,255,.4)!important;
+  letter-spacing:2px!important; text-transform:uppercase!important;
+  margin-bottom:24px!important;
+  display:inline-flex!important; align-items:center!important; gap:14px!important;
+}
+#bvTr .bvTr_partnersHeading::before,
+#bvTr .bvTr_partnersHeading::after {
+  content:""!important; display:block!important;
+  width:50px!important; height:1px!important;
+  background:rgba(255,255,255,.15)!important;
+}
+#bvTr .bvTr_marqueeOuter {
+  position:relative!important; overflow:hidden!important; width:100%!important;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%)!important;
+  mask-image:linear-gradient(to right,transparent 0%,#000 10%,#000 90%,transparent 100%)!important;
+}
+#bvTr .bvTr_marqueeTrack {
+  display:flex!important; align-items:center!important; gap:16px!important;
+  width:max-content!important;
+  animation:bvTrScroll 28s linear infinite!important;
+}
+#bvTr .bvTr_marqueeOuter:hover .bvTr_marqueeTrack {
+  animation-play-state:paused!important;
+}
 @keyframes bvTrScroll {
   0%   { transform:translateX(0); }
   100% { transform:translateX(-50%); }
 }
-
-.bvTr_partnerPill {
-  display:inline-flex; align-items:center; gap:10px;
-  padding:12px 24px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08)!important;
-  border-radius:100px; white-space:nowrap;
-  transition:background .3s, border-color .3s;
-  cursor:default; flex-shrink:0;
+#bvTr .bvTr_partnerPill {
+  display:inline-flex!important; align-items:center!important; gap:10px!important;
+  padding:10px 22px!important;
+  background:rgba(255,255,255,.04)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:100px!important; white-space:nowrap!important;
+  flex-shrink:0!important; cursor:default!important;
+  transition:background .3s, border-color .3s!important;
 }
-.bvTr_partnerPill:hover {
-  background:rgba(59,130,246,.1);
+#bvTr .bvTr_partnerPill:hover {
+  background:rgba(59,130,246,.1)!important;
   border-color:rgba(59,130,246,.3)!important;
 }
-.bvTr_partnerDot { width:6px; height:6px; border-radius:50%; background:#3B82F6; flex-shrink:0; }
-.bvTr_partnerName { font-size:14px; font-weight:600; color:rgba(255,255,255,.7)!important; letter-spacing:.3px; }
+#bvTr .bvTr_partnerDot {
+  width:6px!important; height:6px!important;
+  border-radius:50%!important; background:#3B82F6!important; flex-shrink:0!important;
+}
+#bvTr .bvTr_partnerName {
+  font-size:14px!important; font-weight:600!important;
+  color:rgba(255,255,255,.7)!important;
+}
 
 /* ── Responsive ── */
-@media(max-width:1024px) { .bvTr_badge { padding:16px 24px; } }
-@media(max-width:768px) {
-  #bvTr { padding:48px 0; }
-  .bvTr_badges { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:44px; }
-  .bvTr_badge { border-radius:14px!important; padding:16px 18px; }
-  .bvTr_badge::after { display:none!important; }
-  .bvTr_iconWrap { width:42px; height:42px; }
+@media(max-width:900px) {
+  #bvTr .bvTr_badge { padding:16px 20px!important; min-width:160px!important; }
 }
-@media(max-width:480px) {
-  .bvTr_badges { grid-template-columns:1fr; }
-  .bvTr_badge { border-radius:12px!important; }
+@media(max-width:640px) {
+  #bvTr { padding:44px 0!important; }
+  #bvTr .bvTr_badges {
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:10px!important;
+    margin-bottom:40px!important;
+  }
+  #bvTr .bvTr_badge {
+    border-radius:14px!important;
+    padding:16px!important;
+    flex:unset!important;
+  }
+  #bvTr .bvTr_badge::after { display:none!important; }
+}
+@media(max-width:400px) {
+  #bvTr .bvTr_badges { grid-template-columns:1fr!important; }
 }
 </style>
 
