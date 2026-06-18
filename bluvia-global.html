@@ -1,367 +1,93 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bluevia Travel — Global Effects</title>
+<!-- [bluvia_global] تأثيرات عامة: كيرسور مخصص + شريط تقدم التمرير + Scroll Reveal -->
 
-  <!-- ══════════════════════════════════════════
-       1. Google Fonts — Cairo (Arabic)
-  ══════════════════════════════════════════ -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<!-- عناصر الكيرسور المخصص -->
+<div class="bvGl_cursor" id="bvGl_cursor" aria-hidden="true"></div>
+<div class="bvGl_cursorRing" id="bvGl_cursorRing" aria-hidden="true"></div>
 
-  <style>
-    /* ══════════════════════════════════════════
-       2. Global Typography & RTL
-    ══════════════════════════════════════════ */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+<!-- شريط تقدم التمرير -->
+<div class="bvGl_progressBar" id="bvGl_progressBar" role="progressbar" aria-hidden="true"></div>
 
-    html {
-      direction: rtl;
-      scroll-behavior: smooth;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
 
-    body {
-      font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, sans-serif;
-      direction: rtl;
-      background: #0a1628;
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-      /* Needed to make custom cursor visible throughout */
-      cursor: none;
-    }
+*,*::before,*::after{box-sizing:border-box}
+html{direction:rtl;scroll-behavior:smooth}
+body{font-family:'Cairo','Segoe UI',Tahoma,Geneva,sans-serif;direction:rtl;margin:0;padding:0}
+h1,h2,h3,h4,h5,h6,p,a,span,li,td,th,button,input,textarea,select,label,blockquote,figcaption,caption{font-family:'Cairo','Segoe UI',Tahoma,sans-serif}
 
-    /* Apply Cairo to all common Arabic-facing elements */
-    h1, h2, h3, h4, h5, h6,
-    p, a, span, li, td, th,
-    button, input, textarea, select, label,
-    blockquote, figcaption, caption {
-      font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
-    }
+/* ── Scroll Reveal ── */
+.bvReveal{opacity:0;transform:translateY(30px);transition:opacity .65s cubic-bezier(.25,.46,.45,.94),transform .65s cubic-bezier(.25,.46,.45,.94);will-change:opacity,transform}
+.bvReveal.bvReveal--visible{opacity:1;transform:translateY(0)}
+.bvReveal:nth-child(1){transition-delay:0ms}
+.bvReveal:nth-child(2){transition-delay:80ms}
+.bvReveal:nth-child(3){transition-delay:160ms}
+.bvReveal:nth-child(4){transition-delay:240ms}
+.bvReveal:nth-child(5){transition-delay:320ms}
+.bvReveal:nth-child(6){transition-delay:400ms}
 
-    /* ══════════════════════════════════════════
-       3. Scroll Reveal — bvReveal class
-    ══════════════════════════════════════════ */
-    .bvReveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      will-change: opacity, transform;
-    }
+/* ── كيرسور مخصص ── */
+.bvGl_cursor{position:fixed;top:0;left:0;width:10px;height:10px;background:#3B82F6;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s ease,height .2s ease,background .2s ease,opacity .2s ease;will-change:transform;mix-blend-mode:screen}
+.bvGl_cursorRing{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid rgba(59,130,246,.55);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .25s ease,height .25s ease,border-color .25s ease,opacity .2s ease;will-change:transform}
+body.bvGl_cursorHover .bvGl_cursor{width:16px;height:16px;background:#60a5fa}
+body.bvGl_cursorHover .bvGl_cursorRing{width:52px;height:52px;border-color:rgba(59,130,246,.8)}
+@media(max-width:768px){.bvGl_cursor,.bvGl_cursorRing{display:none!important}body{cursor:auto}}
 
-    .bvReveal.bvReveal--visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* ── شريط التقدم ── */
+.bvGl_progressBar{position:fixed;top:0;right:0;left:auto;width:0%;height:3px;background:linear-gradient(to left,#93c5fd,#3B82F6,#2563eb);z-index:9999;border-radius:0 0 0 3px;box-shadow:0 0 8px rgba(59,130,246,.6),0 0 20px rgba(59,130,246,.3);transition:width .05s linear;transform-origin:right center}
+.bvGl_progressBar::after{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:#60a5fa;box-shadow:0 0 10px #3B82F6,0 0 20px rgba(59,130,246,.8)}
+</style>
 
-    /* Staggered children delay */
-    .bvReveal:nth-child(1) { transition-delay: 0ms; }
-    .bvReveal:nth-child(2) { transition-delay: 80ms; }
-    .bvReveal:nth-child(3) { transition-delay: 160ms; }
-    .bvReveal:nth-child(4) { transition-delay: 240ms; }
-    .bvReveal:nth-child(5) { transition-delay: 320ms; }
-    .bvReveal:nth-child(6) { transition-delay: 400ms; }
+<script>
+(function(){
+  'use strict';
 
-    /* ══════════════════════════════════════════
-       4. Custom Cursor
-    ══════════════════════════════════════════ */
-    .bvGl_cursor {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 10px;
-      height: 10px;
-      background: #3B82F6;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, opacity 0.2s ease;
-      will-change: transform;
-      mix-blend-mode: screen;
-    }
-
-    .bvGl_cursorRing {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 36px;
-      height: 36px;
-      border: 1.5px solid rgba(59, 130, 246, 0.55);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99998;
-      transform: translate(-50%, -50%);
-      /* Lag effect via slower transition on the ring */
-      transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.2s ease;
-      will-change: transform;
-    }
-
-    /* Cursor expanded state on hoverable elements */
-    body.bvGl_cursorHover .bvGl_cursor {
-      width: 16px;
-      height: 16px;
-      background: #60a5fa;
-    }
-
-    body.bvGl_cursorHover .bvGl_cursorRing {
-      width: 52px;
-      height: 52px;
-      border-color: rgba(59, 130, 246, 0.8);
-    }
-
-    /* Hide custom cursor on mobile */
-    @media (max-width: 768px) {
-      .bvGl_cursor,
-      .bvGl_cursorRing {
-        display: none !important;
+  /* Scroll Reveal */
+  var revealObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('bvReveal--visible');
+        revealObserver.unobserve(entry.target);
       }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 
-      body {
-        cursor: auto;
-      }
-    }
+  function initReveal(){
+    document.querySelectorAll('.bvReveal').forEach(function(el){ revealObserver.observe(el); });
+  }
+  document.addEventListener('DOMContentLoaded', initReveal);
+  window.bvRevealInit = initReveal;
 
-    /* ══════════════════════════════════════════
-       5. Scroll Progress Bar
-    ══════════════════════════════════════════ */
-    .bvGl_progressBar {
-      position: fixed;
-      top: 0;
-      right: 0;          /* RTL: start from right */
-      left: auto;
-      width: 0%;         /* JS will update this */
-      height: 3px;
-      background: linear-gradient(to left, #93c5fd, #3B82F6, #2563eb);
-      z-index: 9999;
-      border-radius: 0 0 0 3px;
-      box-shadow: 0 0 8px rgba(59, 130, 246, 0.6), 0 0 20px rgba(59, 130, 246, 0.3);
-      transition: width 0.05s linear;
-      transform-origin: right center;
-      /* Glowing tip */
-    }
+  /* كيرسور مخصص */
+  if(!window.matchMedia('(max-width:768px)').matches){
+    var cursor=document.getElementById('bvGl_cursor');
+    var ring=document.getElementById('bvGl_cursorRing');
+    var mx=-100,my=-100,rx=-100,ry=-100,LAG=.12;
 
-    .bvGl_progressBar::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #60a5fa;
-      box-shadow: 0 0 10px #3B82F6, 0 0 20px rgba(59, 130, 246, 0.8);
-    }
+    document.addEventListener('mousemove',function(e){ mx=e.clientX; my=e.clientY; });
+    document.addEventListener('mouseleave',function(){ cursor.style.opacity='0'; ring.style.opacity='0'; });
+    document.addEventListener('mouseenter',function(){ cursor.style.opacity='1'; ring.style.opacity='1'; });
 
-    /* ══════════════════════════════════════════
-       Demo body styles (remove in production)
-    ══════════════════════════════════════════ */
-    .bvGl_demoSection {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 24px;
-    }
+    var hoverSel='a,button,[role="button"],input,textarea,select,label';
+    document.addEventListener('mouseover',function(e){ if(e.target.closest(hoverSel)) document.body.classList.add('bvGl_cursorHover'); });
+    document.addEventListener('mouseout',function(e){ if(e.target.closest(hoverSel)) document.body.classList.remove('bvGl_cursorHover'); });
 
-    .bvGl_demoCard {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 36px;
-      margin-bottom: 32px;
-    }
+    (function loop(){
+      cursor.style.transform='translate('+(mx-5)+'px,'+(my-5)+'px)';
+      rx+=(mx-rx)*LAG; ry+=(my-ry)*LAG;
+      ring.style.transform='translate('+(rx-18)+'px,'+(ry-18)+'px)';
+      requestAnimationFrame(loop);
+    }());
+  }
 
-    .bvGl_demoCard h3 {
-      font-size: 22px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-
-    .bvGl_demoCard p {
-      font-size: 15px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.8;
-    }
-
-    .bvGl_demoNote {
-      text-align: center;
-      padding: 24px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.3);
-      font-weight: 400;
-      letter-spacing: 0.5px;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ══════════════════════════════════════════
-       4. Custom Cursor Elements (injected in body)
-  ══════════════════════════════════════════ -->
-  <div class="bvGl_cursor" id="bvGl_cursor" aria-hidden="true"></div>
-  <div class="bvGl_cursorRing" id="bvGl_cursorRing" aria-hidden="true"></div>
-
-  <!-- ══════════════════════════════════════════
-       5. Scroll Progress Bar Element
-  ══════════════════════════════════════════ -->
-  <div class="bvGl_progressBar" id="bvGl_progressBar" role="progressbar" aria-hidden="true"></div>
-
-  <!-- ══════════════════════════════════════════
-       Demo content (for previewing effects)
-       Remove this section in production
-  ══════════════════════════════════════════ -->
-  <div class="bvGl_demoSection">
-    <div class="bvGl_demoNote">ملف التأثيرات العامة — مرر الصفحة لرؤية التأثيرات</div>
-
-    <div class="bvGl_demoCard bvReveal">
-      <h3>تأثير الظهور عند التمرير</h3>
-      <p>كل عنصر يحمل الكلاس <code>bvReveal</code> سيظهر بانيميشن fade-in + انزلاق للأعلى عند دخوله نطاق الرؤية.</p>
-    </div>
-
-    <div class="bvGl_demoCard bvReveal">
-      <h3>مؤشر الماوس المخصص</h3>
-      <p>يتبع الماوس دائرة زرقاء صغيرة مع حلقة خارجية بتأثير تأخر سلس. يختفي تلقائياً على الشاشات اللمسية (أقل من 768px).</p>
-    </div>
-
-    <div class="bvGl_demoCard bvReveal">
-      <h3>شريط تقدم التمرير</h3>
-      <p>يوجد شريط أزرق رفيع في أعلى الصفحة يمتلئ تدريجياً أثناء تمرير المستخدم للأسفل.</p>
-    </div>
-
-    <div class="bvGl_demoCard bvReveal">
-      <h3>خط بلوفيا للسياحة</h3>
-      <p>Bluevia Travel — نقدم تجارب سياحية لا تُنسى في تركيا وتونس والمغرب وأوروبا. رحلات مميزة بلمسة عربية أصيلة.</p>
-    </div>
-
-    <div class="bvGl_demoCard bvReveal">
-      <h3>تصميم متجاوب RTL</h3>
-      <p>جميع العناصر مبنية باتجاه من اليمين لليسار لضمان تجربة مستخدم مثالية للزائر العربي.</p>
-    </div>
-  </div>
-  <!-- /Demo content -->
-
-  <!-- ══════════════════════════════════════════
-       JavaScript — All Effects
-  ══════════════════════════════════════════ -->
-  <script>
-    (function () {
-      'use strict';
-
-      /* ─────────────────────────────────────────
-         3. Scroll Reveal (IntersectionObserver)
-      ───────────────────────────────────────── */
-      var revealObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('bvReveal--visible');
-            // Once revealed, stop observing for performance
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
-      });
-
-      function initReveal() {
-        var els = document.querySelectorAll('.bvReveal');
-        els.forEach(function (el) {
-          revealObserver.observe(el);
-        });
-      }
-
-      // Run on DOM ready and expose globally for dynamic content
-      document.addEventListener('DOMContentLoaded', initReveal);
-      window.bvRevealInit = initReveal; // re-call after AJAX content loads
-
-      /* ─────────────────────────────────────────
-         4. Custom Cursor (smooth lag via rAF)
-      ───────────────────────────────────────── */
-      var isMobile = window.matchMedia('(max-width: 768px)');
-
-      if (!isMobile.matches) {
-        var cursor     = document.getElementById('bvGl_cursor');
-        var cursorRing = document.getElementById('bvGl_cursorRing');
-
-        // Real mouse position
-        var mouseX = -100, mouseY = -100;
-        // Lagged ring position
-        var ringX  = -100, ringY  = -100;
-        // Lag factor: lower = more lag (0 < lag <= 1)
-        var LAG = 0.12;
-
-        document.addEventListener('mousemove', function (e) {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-        });
-
-        document.addEventListener('mouseleave', function () {
-          cursor.style.opacity     = '0';
-          cursorRing.style.opacity = '0';
-        });
-
-        document.addEventListener('mouseenter', function () {
-          cursor.style.opacity     = '1';
-          cursorRing.style.opacity = '1';
-        });
-
-        // Hover detection on interactive elements
-        var hoverTargets = 'a, button, [role="button"], input, textarea, select, label, .bvTr_badge, .bvGl_item, .bvTr_partnerPill';
-
-        document.addEventListener('mouseover', function (e) {
-          if (e.target.closest(hoverTargets)) {
-            document.body.classList.add('bvGl_cursorHover');
-          }
-        });
-
-        document.addEventListener('mouseout', function (e) {
-          if (e.target.closest(hoverTargets)) {
-            document.body.classList.remove('bvGl_cursorHover');
-          }
-        });
-
-        // rAF loop for smooth cursor & lagged ring
-        function animateCursor() {
-          // Cursor follows mouse exactly
-          cursor.style.transform = 'translate(' + (mouseX - 5) + 'px, ' + (mouseY - 5) + 'px)';
-
-          // Ring interpolates (lag effect)
-          ringX += (mouseX - ringX) * LAG;
-          ringY += (mouseY - ringY) * LAG;
-          cursorRing.style.transform = 'translate(' + (ringX - 18) + 'px, ' + (ringY - 18) + 'px)';
-
-          requestAnimationFrame(animateCursor);
-        }
-
-        requestAnimationFrame(animateCursor);
-      }
-
-      /* ─────────────────────────────────────────
-         5. Scroll Progress Bar
-      ───────────────────────────────────────── */
-      var progressBar = document.getElementById('bvGl_progressBar');
-
-      function updateProgress() {
-        var scrollTop    = window.pageYOffset || document.documentElement.scrollTop;
-        var docHeight    = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        var progress     = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progressBar.style.width = progress.toFixed(2) + '%';
-      }
-
-      window.addEventListener('scroll', updateProgress, { passive: true });
-      window.addEventListener('resize', updateProgress, { passive: true });
-      updateProgress(); // initial call
-
-    })();
-  </script>
-
-</body>
-</html>
+  /* شريط التقدم */
+  var bar=document.getElementById('bvGl_progressBar');
+  function updateProgress(){
+    var st=window.pageYOffset||document.documentElement.scrollTop;
+    var dh=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    bar.style.width=(dh>0?(st/dh*100):0).toFixed(2)+'%';
+  }
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  window.addEventListener('resize',updateProgress,{passive:true});
+  updateProgress();
+}());
+</script>
