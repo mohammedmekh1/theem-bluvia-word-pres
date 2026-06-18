@@ -19,7 +19,7 @@
   gap:20px;flex-wrap:wrap;
 }
 .bvCd_right{display:flex;align-items:center;gap:12px;flex:1;min-width:180px}
-.bvCd_fire{font-size:26px;animation:bvFire 1s ease infinite alternate;flex-shrink:0}
+.bvCd_clock{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.25)!important}
 .bvCd_label{font-size:12px;font-weight:700;color:#D4AF37;margin-bottom:3px;letter-spacing:.3px}
 .bvCd_title{font-size:15px;font-weight:800;color:#fff}
 .bvCd_center{display:flex;align-items:center;gap:6px;flex-shrink:0}
@@ -32,7 +32,7 @@
   min-width:56px;display:block;line-height:1.1;
   transition:transform .12s;
 }
-.bvCd_num.flip{transform:scale(1.1)}
+.bvCd_num.bvFlip{transform:scale(1.12)}
 .bvCd_lbl{font-size:10px;color:rgba(255,255,255,.4);margin-top:4px;font-weight:600}
 .bvCd_sep{font-size:26px;font-weight:900;color:#60A5FA;margin-bottom:14px;line-height:1;flex-shrink:0}
 .bvCd_left{flex-shrink:0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
@@ -60,7 +60,6 @@
 .bvCd_wa:hover{background:rgba(37,211,102,.22)!important;color:#fff!important}
 .bvCd_wa svg{display:block!important;flex-shrink:0}
 .bvCd_wa span{display:block;line-height:1}
-@keyframes bvFire{from{transform:rotate(-8deg)}to{transform:rotate(8deg) translateY(-3px)}}
 @media(max-width:900px){
   .bvCd_wrap{justify-content:center;text-align:center}
   .bvCd_right{justify-content:center;flex-basis:100%}
@@ -73,9 +72,11 @@
   <div class="bvCd_wrap">
 
     <div class="bvCd_right">
-      <span class="bvCd_fire">🔥</span>
+      <div class="bvCd_clock">
+        <svg width="22" height="22" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
+      </div>
       <div>
-        <div class="bvCd_label"><svg style="display:inline-block;vertical-align:middle;margin-left:4px" width="13" height="13" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg> عرض محدود — ينتهي قريباً</div>
+        <div class="bvCd_label">عرض محدود — ينتهي قريباً</div>
         <div class="bvCd_title">خصم 20% على رحلات إسطنبول الصيفية</div>
       </div>
     </div>
@@ -117,42 +118,41 @@
 </section>
 
 <script>
-setTimeout(function(){
+var bvCdEnd = Date.now() + 19 * 24 * 60 * 60 * 1000;
+
+function bvCdTick() {
   var dEl = document.getElementById('bvCdD');
   var hEl = document.getElementById('bvCdH');
   var mEl = document.getElementById('bvCdM');
   var sEl = document.getElementById('bvCdS');
-  if (!dEl || !hEl || !mEl || !sEl) return;
+  if (!dEl) return;
 
-  var CYCLE = 19 * 24 * 60 * 60 * 1000;
-  var REF   = 1748736000000;
+  var diff = bvCdEnd - Date.now();
+  if (diff < 0) diff = 0;
 
-  function pad(n) {
-    n = Math.floor(n);
-    return (n < 10 ? '0' : '') + n;
+  var d = Math.floor(diff / 86400000);
+  var h = Math.floor((diff % 86400000) / 3600000);
+  var m = Math.floor((diff % 3600000) / 60000);
+  var s = Math.floor((diff % 60000) / 1000);
+
+  function p(n){ return n < 10 ? '0'+n : ''+n; }
+  function set(el, v){
+    if (el.textContent !== v){
+      el.textContent = v;
+      el.classList.remove('bvFlip');
+      void el.offsetWidth;
+      el.classList.add('bvFlip');
+      setTimeout(function(){ el.classList.remove('bvFlip'); }, 130);
+    }
   }
 
-  function set(el, val) {
-    if (el.textContent === val) return;
-    el.classList.add('flip');
-    el.textContent = val;
-    setTimeout(function(){ el.classList.remove('flip'); }, 130);
-  }
+  set(dEl, p(d));
+  set(hEl, p(h));
+  set(mEl, p(m));
+  set(sEl, p(s));
+}
 
-  function tick() {
-    var now  = Date.now();
-    var diff = CYCLE - ((now - REF) % CYCLE);
-    var DAY  = 24 * 60 * 60 * 1000;
-    var HR   = 60 * 60 * 1000;
-    var MIN  = 60 * 1000;
-    set(dEl, pad(Math.floor(diff / DAY)));
-    set(hEl, pad(Math.floor((diff % DAY) / HR)));
-    set(mEl, pad(Math.floor((diff % HR)  / MIN)));
-    set(sEl, pad(Math.floor((diff % MIN) / 1000)));
-  }
-
-  tick();
-  setInterval(tick, 1000);
-}, 0);
+bvCdTick();
+setInterval(bvCdTick, 1000);
 </script>
 </div>
