@@ -68,7 +68,8 @@
 
 <script>
 (function(){
-  var END_DATE = "2026-07-07T00:00:00";
+  var CYCLE = 19 * 24 * 60 * 60 * 1000;
+  var REF   = new Date("2026-06-18T00:00:00").getTime();
   var dEl = document.getElementById("bvCdD");
   var hEl = document.getElementById("bvCdH");
   var mEl = document.getElementById("bvCdM");
@@ -82,16 +83,15 @@
     setTimeout(function(){ el.textContent = val; el.classList.remove("flip"); }, 75);
   }
   function tick(){
-    var now = new Date(), end = new Date(END_DATE);
-    var diff = Math.max(0, end - now);
+    var now  = new Date().getTime();
+    var diff = CYCLE - ((now - REF) % CYCLE);
     flip(dEl, pad(Math.floor(diff / 86400000)));
     flip(hEl, pad(Math.floor((diff % 86400000) / 3600000)));
     flip(mEl, pad(Math.floor((diff % 3600000) / 60000)));
     flip(sEl, pad(Math.floor((diff % 60000) / 1000)));
-    if (diff === 0){ document.getElementById("bvCdTitle").textContent = "انتهى العرض — تابعونا للعروض القادمة"; clearInterval(timer); }
   }
   tick();
-  var timer = setInterval(tick, 1000);
+  setInterval(tick, 1000);
 }());
 </script>
 </div>
