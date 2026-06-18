@@ -61,18 +61,18 @@
 </section>
 
 <style>
-#bvDest{direction:rtl;font-family:Cairo,sans-serif;background:#060e1f;min-height:60vh}
+#bvDest{direction:rtl;font-family:Cairo,sans-serif;background:#f8fafc;min-height:60vh}
 #bvDest *{box-sizing:border-box;font-family:Cairo,sans-serif}
 .bvDest_wrap{max-width:900px;margin:0 auto;padding:0 20px 40px}
 
 /* Loading */
-.bvDest_loading{text-align:center;padding:80px 20px;color:rgba(255,255,255,.5)}
+.bvDest_loading{text-align:center;padding:80px 20px;color:#64748b}
 .bvDest_spinner{width:40px;height:40px;border:3px solid rgba(59,130,246,.2);border-top-color:#3B82F6;border-radius:50%;animation:bvDestSpin 1s linear infinite;margin:0 auto 16px}
 @keyframes bvDestSpin{to{transform:rotate(360deg)}}
 
 /* Hero */
 .bvDest_hero{
-  position:relative;height:clamp(240px,40vw,420px);border-radius:20px;overflow:hidden;
+  position:relative;height:clamp(240px,40vw,420px);border-radius:16px;overflow:hidden;
   background:linear-gradient(135deg,#0a1628,#1a2a4a);
   margin-bottom:0;display:flex;align-items:flex-end;
 }
@@ -80,30 +80,24 @@
 .bvDest_heroBody{position:relative;z-index:1;padding:28px 32px;width:100%}
 .bvDest_flag{font-size:36px;display:block;margin-bottom:8px}
 .bvDest_name{font-size:clamp(26px,4vw,42px);font-weight:900;color:#fff;margin:0 0 4px}
-.bvDest_country{font-size:14px;color:rgba(255,255,255,.5);margin:0 0 12px}
+.bvDest_country{font-size:14px;color:rgba(255,255,255,.6);margin:0 0 12px}
 .bvDest_heroMeta{display:flex;flex-wrap:wrap;gap:10px}
 .bvDest_meta{
   display:flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);
-  border-radius:50px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.8);font-weight:600;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  border-radius:50px;padding:6px 14px;font-size:12px;color:#fff;font-weight:600;
 }
 
 /* Body */
-.bvDest_body{padding:36px 0 0}
-.bvDest_section{margin-bottom:44px}
-.bvDest_sTitle{font-size:18px;font-weight:800;color:#fff;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)}
+.bvDest_body{padding:32px 0 0}
+.bvDest_section{margin-bottom:36px}
+.bvDest_sTitle{font-size:17px;font-weight:800;color:#0a1628;margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid #e2e8f0}
 
 /* Timeline */
 .bvDest_timeline{display:flex;flex-direction:column;gap:0}
-.bvDest_day{
-  display:grid;grid-template-columns:64px 1fr;gap:0;
-  position:relative;
-}
-.bvDest_day:not(:last-child) .bvDest_dayLine{border-left:2px dashed rgba(59,130,246,.25)}
-.bvDest_dayNum{
-  display:flex;flex-direction:column;align-items:center;gap:0;
-  padding-top:4px;
-}
+.bvDest_day{display:grid;grid-template-columns:64px 1fr;gap:0;position:relative}
+.bvDest_day:not(:last-child) .bvDest_dayLine{border-left:2px dashed rgba(59,130,246,.3)}
+.bvDest_dayNum{display:flex;flex-direction:column;align-items:center;gap:0;padding-top:4px}
 .bvDest_dayBadge{
   width:36px;height:36px;border-radius:50%;
   background:linear-gradient(135deg,#3B82F6,#1D4ED8);
@@ -111,56 +105,55 @@
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .bvDest_dayLine{flex:1;width:2px;margin:6px auto 0}
-.bvDest_dayContent{padding:0 0 28px 0}
-.bvDest_dayTitle{font-size:14px;font-weight:800;color:#fff;margin:0 0 6px;padding-top:7px}
-.bvDest_dayDesc{font-size:13px;color:rgba(255,255,255,.5);margin:0;line-height:1.6}
+.bvDest_dayContent{padding:0 0 24px 0}
+.bvDest_dayTitle{font-size:14px;font-weight:800;color:#0a1628;margin:0 0 5px;padding-top:7px}
+.bvDest_dayDesc{font-size:13px;color:#64748b;margin:0;line-height:1.6}
 
 /* Includes */
 .bvDest_includes{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .bvDest_includes li{
   display:flex;align-items:center;gap:10px;
-  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
+  background:#fff;border:1px solid #e2e8f0;
   border-radius:10px;padding:10px 14px;
-  font-size:13px;color:rgba(255,255,255,.7);font-weight:600;
+  font-size:13px;color:#334155;font-weight:600;
 }
 .bvDest_incIcon{font-size:16px;flex-shrink:0}
 
 /* Places */
 .bvDest_places{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .bvDest_place{
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  background:#fff;border:1px solid #e2e8f0;
   border-radius:12px;padding:16px;text-align:center;
-  transition:transform .25s,border-color .25s;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
 }
-.bvDest_place:hover{transform:translateY(-4px);border-color:rgba(59,130,246,.3)}
+.bvDest_place:hover{transform:translateY(-4px);border-color:#93C5FD;box-shadow:0 8px 24px rgba(59,130,246,.12)}
 .bvDest_placeIcon{font-size:28px;margin-bottom:8px;display:block}
-.bvDest_placeName{font-size:13px;font-weight:700;color:#fff}
+.bvDest_placeName{font-size:13px;font-weight:700;color:#0a1628}
 
 /* CTA */
 .bvDest_cta{
-  background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(29,78,216,.12));
-  border:1px solid rgba(59,130,246,.2);
-  border-radius:20px;padding:32px;text-align:center;
+  background:linear-gradient(160deg,#0a1628 0%,#1a2a4a 100%);
+  border-radius:16px;padding:32px;text-align:center;
 }
 .bvDest_ctaPrice{font-size:13px;color:rgba(255,255,255,.5);margin:0 0 6px}
 .bvDest_ctaNum{font-size:clamp(32px,5vw,48px);font-weight:900;color:#fff;margin:0 0 4px}
 .bvDest_ctaSub{font-size:12px;color:rgba(255,255,255,.4);margin:0 0 24px}
 .bvDest_ctaBtn{
   display:inline-flex;align-items:center;gap:10px;
-  padding:16px 40px;border-radius:50px;
+  padding:14px 36px;border-radius:50px;
   background:linear-gradient(135deg,#25D366,#128C5E);
-  color:#fff!important;font-size:16px;font-weight:800;
+  color:#fff!important;font-size:15px;font-weight:800;
   text-decoration:none!important;
   box-shadow:0 8px 28px rgba(37,211,102,.3);
-  transition:all .3s;font-family:Cairo,sans-serif;
+  transition:all .3s;
 }
 .bvDest_ctaBtn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(37,211,102,.45)!important;color:#fff!important}
 
 /* 404 */
-.bvDest_404{text-align:center;padding:80px 20px;color:rgba(255,255,255,.5)}
+.bvDest_404{text-align:center;padding:80px 20px;color:#64748b}
 .bvDest_404icon{font-size:64px;margin-bottom:16px}
-.bvDest_404 h2{color:#fff;font-size:22px;margin:0 0 10px}
-.bvDest_404 a{color:#60A5FA}
+.bvDest_404 h2{color:#0a1628;font-size:22px;margin:0 0 10px}
+.bvDest_404 a{color:#3B82F6}
 
 @media(max-width:700px){
   .bvDest_includes{grid-template-columns:1fr}
@@ -382,9 +375,9 @@
       +' احجز عبر واتساب</a>';
   }
 
-  /* قراءة dest من URL */
+  /* قراءة dest من URL، وإسطنبول افتراضياً */
   var params=new URLSearchParams(window.location.search);
-  var id=(params.get('dest')||'').toLowerCase();
+  var id=(params.get('dest')||'istanbul').toLowerCase();
   var load=document.getElementById('bvDestLoad');
   var content=document.getElementById('bvDestContent');
   var notFound=document.getElementById('bvDestNotFound');
@@ -394,8 +387,9 @@
     load.style.display='none';
     content.removeAttribute('hidden');
   } else {
+    build(DESTS['istanbul']);
     load.style.display='none';
-    notFound.removeAttribute('hidden');
+    content.removeAttribute('hidden');
   }
 }());
 </script>
