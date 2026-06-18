@@ -14,3 +14,50 @@
 */
 
 /* The stylesheet is located in "assets/css/style.css". */
+
+/* ===== تطبيق خط ثمين على عناصر الصفحة الرئيسية ===== */
+
+/* البلوكات */
+.block-area .post-title,
+.block-area .post-title a,
+.block-area .post-excerpt,
+.block-area .cat-title,
+.block-area .block-title,
+.block-area h2, .block-area h3,
+.posts-container .post-title a {
+    font-family: 'thameen', sans-serif !important;
+}
+
+/* السلايدرات */
+.slide-title,
+.slide-title a,
+.slider-overlay .slide-title,
+.main-slider .slide-title a,
+[class*="tie-slider"] .slide-title {
+    font-family: 'thameen', sans-serif !important;
+}
+
+/* الهيدر والقوائم */
+.main-nav > ul > li > a,
+.main-nav .sub-menu li a,
+.top-bar,
+.breaking-news-title,
+.breaking-news span {
+    font-family: 'thameen', sans-serif !important;
+}
+
+/* الفوتر */
+.footer-widget .widget-title,
+.footer-widget li,
+.footer-widget p,
+.footer-bottom {
+    font-family: 'thameen', sans-serif !important;
+}
+
+/* التصنيفات */
+.cat-label,
+.post-cat,
+.cat-title a,
+.categories-list li a {
+    font-family: 'thameen', sans-serif !important;
+}
