@@ -1,13 +1,69 @@
-<!-- [bluvia_booking] نموذج حجز بـ 3 خطوات -->
+<div id="bvBk-wrap">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
+#bvBk{position:relative!important;left:50%!important;right:50%!important;margin-left:-50vw!important;margin-right:-50vw!important;width:100vw!important;max-width:100vw!important;box-sizing:border-box!important;background:#f8fafc;padding:60px 0;direction:rtl;overflow:hidden}
+#bvBk *{box-sizing:border-box!important;font-family:Cairo,sans-serif!important}
+.bvBk_wrap{max-width:780px;margin:0 auto;padding:0 24px}
+.bvBk_head{text-align:center;margin-bottom:40px}
+.bvBk_title{font-size:clamp(22px,3vw,34px);font-weight:900;color:#0a1628!important;margin:0 0 8px!important}
+.bvBk_title span{color:#3B82F6}
+/* progress */
+.bvBk_progress{display:flex;align-items:center;justify-content:center;margin-bottom:32px}
+.bvBk_step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto}
+.bvBk_stepIco{width:38px;height:38px;border-radius:50%;background:#e2e8f0;border:2px solid #e2e8f0!important;color:#94a3b8;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;transition:all .4s}
+.bvBk_stepLbl{font-size:11px;color:#94a3b8;white-space:nowrap;transition:color .4s}
+.bvBk_step.active .bvBk_stepIco{background:#3B82F6;border-color:#3B82F6!important;color:#fff;box-shadow:0 0 0 4px rgba(59,130,246,.15)}
+.bvBk_step.active .bvBk_stepLbl{color:#3B82F6}
+.bvBk_step.done .bvBk_stepIco{background:#10B981;border-color:#10B981!important;color:#fff}
+.bvBk_step.done .bvBk_stepLbl{color:#10B981}
+.bvBk_line{flex:1;height:2px;background:#e2e8f0;max-width:80px;margin:0 8px;position:relative;top:-10px}
+/* card */
+.bvBk_card{background:#fff;border:1px solid #e2e8f0!important;border-radius:20px;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.bvBk_panel{display:none}
+.bvBk_panel.active{display:block}
+.bvBk_ptitle{font-size:18px;font-weight:800;color:#0a1628!important;margin:0 0 24px!important}
+.bvBk_fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bvBk_field--full{grid-column:1/-1}
+.bvBk_lbl{display:block;font-size:13px;font-weight:600;color:#64748b;margin-bottom:7px}
+.bvBk_inp{width:100%;background:#f8fafc!important;border:1.5px solid #e2e8f0!important;border-radius:10px;padding:12px 14px;color:#0a1628!important;font-size:14px;outline:none;transition:border-color .3s,box-shadow .3s}
+.bvBk_inp:focus{border-color:#3B82F6!important;box-shadow:0 0 0 3px rgba(59,130,246,.1);background:#fff!important}
+.bvBk_inp option{background:#fff;color:#0a1628}
+.bvBk_ta{min-height:90px;resize:vertical}
+/* counter */
+.bvBk_counter{display:flex;align-items:center;gap:14px;background:#f8fafc!important;border:1.5px solid #e2e8f0!important;border-radius:10px;padding:9px 14px}
+.bvBk_cBtn{width:30px;height:30px;border-radius:8px;background:rgba(59,130,246,.1)!important;border:1px solid rgba(59,130,246,.2)!important;color:#3B82F6;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0!important;transition:all .2s}
+.bvBk_cBtn:hover{background:#3B82F6!important;color:#fff}
+.bvBk_cVal{font-size:18px;font-weight:800;color:#0a1628;min-width:26px;text-align:center}
+/* radios */
+.bvBk_radios{display:flex;gap:8px;flex-wrap:wrap}
+.bvBk_radio{display:flex;align-items:center;gap:6px;background:#f1f5f9;border:1.5px solid #e2e8f0!important;border-radius:50px;padding:7px 14px;cursor:pointer;font-size:13px;color:#475569;transition:all .2s}
+.bvBk_radio:has(input:checked){background:rgba(59,130,246,.08)!important;border-color:#3B82F6!important;color:#1D4ED8}
+.bvBk_radio input{display:none}
+/* actions */
+.bvBk_actions{display:flex;justify-content:flex-start;gap:10px;margin-top:28px}
+.bvBk_actions--center{justify-content:center;flex-wrap:wrap}
+.bvBk_btnNext{padding:12px 28px;border-radius:50px;background:linear-gradient(135deg,#3B82F6,#1D4ED8)!important;border:none!important;color:#fff!important;font-size:14px;font-weight:800;cursor:pointer;transition:all .3s}
+.bvBk_btnNext:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(59,130,246,.35)}
+.bvBk_btnBack{padding:11px 22px;border-radius:50px;background:#f1f5f9!important;border:1.5px solid #e2e8f0!important;color:#475569!important;font-size:14px;font-weight:700;cursor:pointer;transition:all .3s}
+.bvBk_btnBack:hover{background:#e2e8f0!important;color:#0a1628!important}
+.bvBk_btnWa{display:inline-flex!important;align-items:center;gap:8px;padding:12px 28px!important;border-radius:50px!important;background:#25D366!important;border:none!important;color:#fff!important;font-size:14px;font-weight:800;text-decoration:none!important;transition:all .3s}
+.bvBk_btnWa:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(37,211,102,.35)!important;color:#fff!important}
+/* confirm */
+.bvBk_confirm{text-align:center}
+.bvBk_tick{margin-bottom:14px}
+.bvBk_summary{background:#f8fafc;border:1.5px solid #e2e8f0!important;border-radius:14px;padding:18px 22px;text-align:right;margin:18px 0;font-size:14px;color:#475569!important;line-height:2.2}
+.bvBk_summary strong{color:#1D4ED8!important}
+.bvBk_note{font-size:13px;color:#94a3b8!important;margin:0 0 20px!important}
+@media(max-width:600px){.bvBk_fields{grid-template-columns:1fr}.bvBk_card{padding:22px 16px}#bvBk{padding:40px 0}.bvBk_stepLbl{display:none}}
+</style>
+
 <section id="bvBk" dir="rtl">
   <div class="bvBk_wrap">
-    <div class="bvBk_head bvReveal">
-      <span class="bvBk_tag">✈ احجز رحلتك</span>
-      <h2 class="bvBk_title">ابدأ رحلتك في 3 خطوات بسيطة</h2>
-      <p class="bvBk_sub">أخبرنا عن رحلة أحلامك وسنتولى كل التفاصيل</p>
+
+    <div class="bvBk_head">
+      <h2 class="bvBk_title">إبدأ رحلتك الآن مع <span>Bluvia Travel</span></h2>
     </div>
 
-    <!-- شريط التقدم -->
     <div class="bvBk_progress">
       <div class="bvBk_step active" data-step="1">
         <div class="bvBk_stepIco">1</div>
@@ -25,7 +81,6 @@
       </div>
     </div>
 
-    <!-- البطاقة -->
     <div class="bvBk_card">
 
       <!-- الخطوة 1 -->
@@ -100,11 +155,11 @@
         </div>
       </div>
 
-      <!-- الخطوة 3: تأكيد -->
+      <!-- الخطوة 3 -->
       <div class="bvBk_panel" id="bvBkP3">
         <div class="bvBk_confirm">
           <div class="bvBk_tick">
-            <svg width="36" height="36" fill="none" stroke="#4ade80" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <svg width="40" height="40" fill="none" stroke="#10B981" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <h3 class="bvBk_ptitle">ملخص طلب الحجز</h3>
           <div class="bvBk_summary" id="bvBkSummary"></div>
@@ -112,7 +167,7 @@
           <div class="bvBk_actions bvBk_actions--center">
             <button class="bvBk_btnBack" onclick="bvBkBack(3)">→ تعديل</button>
             <a class="bvBk_btnWa" id="bvBkWaBtn" href="#" target="_blank" rel="noopener">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               أرسل الطلب عبر واتساب
             </a>
           </div>
@@ -123,91 +178,19 @@
   </div>
 </section>
 
-<style>
-#bvBk{position:relative!important;left:50%!important;right:50%!important;margin-left:-50vw!important;margin-right:-50vw!important;width:100vw!important;max-width:100vw!important;box-sizing:border-box!important;background:linear-gradient(160deg,#0a1628 0%,#060e1f 100%);padding:90px 0;direction:rtl;overflow:hidden}
-#bvBk *{box-sizing:border-box!important}
-.bvBk_wrap{max-width:780px;margin:0 auto;padding:0 24px}
-.bvBk_head{text-align:center;margin-bottom:48px}
-.bvBk_tag{display:inline-block;padding:6px 20px;border-radius:50px;background:rgba(59,130,246,.12);color:#60A5FA;border:1px solid rgba(59,130,246,.25)!important;font-size:12px;font-weight:700;margin-bottom:16px}
-.bvBk_title{font-size:clamp(24px,3vw,38px);font-weight:900;color:#fff!important;margin:0 0 12px!important}
-.bvBk_sub{color:rgba(255,255,255,.5)!important;font-size:15px;margin:0!important}
-/* progress */
-.bvBk_progress{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px}
-.bvBk_step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:0 0 auto}
-.bvBk_stepIco{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.15)!important;color:rgba(255,255,255,.4);font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;transition:all .4s}
-.bvBk_stepLbl{font-size:12px;color:rgba(255,255,255,.35);white-space:nowrap;transition:color .4s}
-.bvBk_step.active .bvBk_stepIco{background:#3B82F6;border-color:#3B82F6!important;color:#fff;box-shadow:0 0 0 4px rgba(59,130,246,.2)}
-.bvBk_step.active .bvBk_stepLbl,.bvBk_step.done .bvBk_stepLbl{color:#60A5FA}
-.bvBk_step.done .bvBk_stepIco{background:#10B981;border-color:#10B981!important;color:#fff}
-.bvBk_line{flex:1;height:2px;background:rgba(255,255,255,.08);max-width:80px;margin:0 8px;position:relative;top:-10px}
-/* card */
-.bvBk_card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)!important;border-radius:24px;padding:40px;backdrop-filter:blur(10px)}
-.bvBk_panel{display:none}
-.bvBk_panel.active{display:block}
-.bvBk_ptitle{font-size:20px;font-weight:800;color:#fff!important;margin:0 0 28px!important}
-.bvBk_fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.bvBk_field--full{grid-column:1/-1}
-.bvBk_lbl{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:8px}
-.bvBk_inp{width:100%;background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:12px;padding:13px 16px;color:#fff!important;font-size:14px;outline:none;transition:border-color .3s,box-shadow .3s;font-family:Cairo,inherit;appearance:none}
-.bvBk_inp:focus{border-color:#3B82F6!important;box-shadow:0 0 0 3px rgba(59,130,246,.15)}
-.bvBk_inp option{background:#0a1628;color:#fff}
-.bvBk_ta{min-height:100px;resize:vertical}
-/* counter */
-.bvBk_counter{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:12px;padding:10px 16px}
-.bvBk_cBtn{width:32px;height:32px;border-radius:8px;background:rgba(59,130,246,.2)!important;border:1px solid rgba(59,130,246,.3)!important;color:#60A5FA;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0!important;transition:all .2s}
-.bvBk_cBtn:hover{background:#3B82F6!important;color:#fff}
-.bvBk_cVal{font-size:20px;font-weight:800;color:#fff;min-width:28px;text-align:center}
-/* radios */
-.bvBk_radios{display:flex;gap:10px;flex-wrap:wrap}
-.bvBk_radio{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)!important;border-radius:50px;padding:8px 14px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.7);transition:all .2s}
-.bvBk_radio:has(input:checked){background:rgba(59,130,246,.15)!important;border-color:#3B82F6!important;color:#60A5FA}
-.bvBk_radio input{display:none}
-/* actions */
-.bvBk_actions{display:flex;justify-content:flex-start;gap:12px;margin-top:32px}
-.bvBk_actions--center{justify-content:center;flex-wrap:wrap}
-.bvBk_btnNext{padding:14px 32px;border-radius:50px;background:linear-gradient(135deg,#3B82F6,#1D4ED8)!important;border:none!important;color:#fff!important;font-size:15px;font-weight:800;cursor:pointer;transition:all .3s;font-family:Cairo,inherit}
-.bvBk_btnNext:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(59,130,246,.4)}
-.bvBk_btnBack{padding:13px 28px;border-radius:50px;background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.15)!important;color:rgba(255,255,255,.7)!important;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;font-family:Cairo,inherit}
-.bvBk_btnBack:hover{background:rgba(255,255,255,.12)!important;color:#fff!important}
-.bvBk_btnWa{display:inline-flex!important;align-items:center;gap:10px;padding:14px 32px!important;border-radius:50px!important;background:#25D366!important;border:none!important;color:#fff!important;font-size:15px;font-weight:800;text-decoration:none!important;transition:all .3s;cursor:pointer}
-.bvBk_btnWa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.4)!important;color:#fff!important}
-/* confirm */
-.bvBk_confirm{text-align:center}
-.bvBk_tick{margin-bottom:16px}
-.bvBk_summary{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)!important;border-radius:16px;padding:20px 24px;text-align:right;margin:20px 0;font-size:14px;color:rgba(255,255,255,.7)!important;line-height:2.2}
-.bvBk_summary strong{color:#60A5FA!important}
-.bvBk_note{font-size:13px;color:rgba(255,255,255,.4)!important;margin:0 0 24px!important}
-@media(max-width:600px){.bvBk_fields{grid-template-columns:1fr}.bvBk_card{padding:24px 18px}#bvBk{padding:60px 0}.bvBk_stepLbl{display:none}}
-</style>
-
 <script>
-var bvBkPax=2;
-function bvBkAdj(n){bvBkPax=Math.max(1,Math.min(20,bvBkPax+n));var el=document.getElementById("bvBkPax");if(el)el.textContent=bvBkPax;}
+var bvBkPax = 2;
+function bvBkAdj(n){ bvBkPax = Math.max(1, Math.min(20, bvBkPax+n)); var el = document.getElementById("bvBkPax"); if(el) el.textContent = bvBkPax; }
 function bvBkNext(from){
-  if(from===1){
-    var d=document.getElementById("bvBkDest"),dt=document.getElementById("bvBkDate");
-    if(!d||!d.value){alert("الرجاء اختيار الوجهة");return;}
-    if(!dt||!dt.value){alert("الرجاء اختيار تاريخ السفر");return;}
-  }
-  if(from===2){
-    var n=document.getElementById("bvBkName"),p=document.getElementById("bvBkPhone");
-    if(!n||!n.value.trim()){alert("الرجاء إدخال الاسم");return;}
-    if(!p||!p.value.trim()){alert("الرجاء إدخال رقم الجوال");return;}
-    bvBkBuildSummary();
-  }
+  if(from===1){ var d=document.getElementById("bvBkDest"), dt=document.getElementById("bvBkDate"); if(!d||!d.value){alert("الرجاء اختيار الوجهة");return;} if(!dt||!dt.value){alert("الرجاء اختيار تاريخ السفر");return;} }
+  if(from===2){ var n=document.getElementById("bvBkName"), p=document.getElementById("bvBkPhone"); if(!n||!n.value.trim()){alert("الرجاء إدخال الاسم");return;} if(!p||!p.value.trim()){alert("الرجاء إدخال رقم الجوال");return;} bvBkBuildSummary(); }
   bvBkGo(from+1);
 }
-function bvBkBack(from){bvBkGo(from-1);}
+function bvBkBack(from){ bvBkGo(from-1); }
 function bvBkGo(to){
-  document.querySelectorAll(".bvBk_panel").forEach(function(p){p.classList.remove("active");});
-  var next=document.getElementById("bvBkP"+to);
-  if(next){next.classList.add("active");}
-  document.querySelectorAll(".bvBk_step").forEach(function(s){
-    var si=parseInt(s.getAttribute("data-step"));
-    s.classList.remove("active","done");
-    if(si===to) s.classList.add("active");
-    else if(si<to) s.classList.add("done");
-  });
+  document.querySelectorAll(".bvBk_panel").forEach(function(p){ p.classList.remove("active"); });
+  var next = document.getElementById("bvBkP"+to); if(next) next.classList.add("active");
+  document.querySelectorAll(".bvBk_step").forEach(function(s){ var si=parseInt(s.getAttribute("data-step")); s.classList.remove("active","done"); if(si===to) s.classList.add("active"); else if(si<to) s.classList.add("done"); });
 }
 function bvBkBuildSummary(){
   var dest=document.getElementById("bvBkDest").value;
@@ -216,12 +199,11 @@ function bvBkBuildSummary(){
   var phone=document.getElementById("bvBkPhone").value;
   var email=document.getElementById("bvBkEmail")?document.getElementById("bvBkEmail").value:"";
   var notes=document.getElementById("bvBkNotes")?document.getElementById("bvBkNotes").value:"";
-  var type=document.querySelector('input[name="bvBkType"]:checked');
-  var typeV=type?type.value:"";
+  var type=document.querySelector('input[name="bvBkType"]:checked'); var typeV=type?type.value:"";
   var s=document.getElementById("bvBkSummary");
   if(s) s.innerHTML="<strong>الوجهة:</strong> "+dest+"<br><strong>التاريخ:</strong> "+date+"<br><strong>المسافرون:</strong> "+bvBkPax+" أشخاص<br><strong>نوع الرحلة:</strong> "+typeV+"<br><strong>الاسم:</strong> "+name+"<br><strong>الجوال:</strong> "+phone+(email?"<br><strong>البريد:</strong> "+email:"")+(notes?"<br><strong>ملاحظات:</strong> "+notes:"");
   var msg="مرحباً، أرغب بحجز رحلة\n\nالوجهة: "+dest+"\nالتاريخ: "+date+"\nالمسافرون: "+bvBkPax+" أشخاص\nنوع الرحلة: "+typeV+"\nالاسم: "+name+"\nالجوال: "+phone+(email?"\nالبريد: "+email:"")+(notes?"\nملاحظات: "+notes:"");
-  var btn=document.getElementById("bvBkWaBtn");
-  if(btn) btn.href="https://wa.me/966555888555?text="+encodeURIComponent(msg);
+  var btn=document.getElementById("bvBkWaBtn"); if(btn) btn.href="https://wa.me/905068668849?text="+encodeURIComponent(msg);
 }
 </script>
+</div>
