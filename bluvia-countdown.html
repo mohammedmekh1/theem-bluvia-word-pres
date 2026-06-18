@@ -2,13 +2,13 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
 #bvCd{position:relative!important;left:50%!important;right:50%!important;margin-left:-50vw!important;margin-right:-50vw!important;width:100vw!important;max-width:100vw!important;box-sizing:border-box!important;background:linear-gradient(135deg,#0a1628 0%,#1a2a4a 50%,#0a1628 100%);border-top:1px solid rgba(59,130,246,.2);border-bottom:1px solid rgba(59,130,246,.2);padding:22px 0;direction:rtl;overflow:hidden}
-#bvCd::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(59,130,246,.06),transparent);animation:bvCdShine 4s ease infinite}
+#bvCd::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(59,130,246,.06),transparent);animation:bvCdShine 4s ease infinite;pointer-events:none}
 #bvCd *{box-sizing:border-box!important;font-family:Cairo,sans-serif!important}
 .bvCd_wrap{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .bvCd_right{display:flex;align-items:center;gap:14px;flex:1;min-width:200px}
-.bvCd_clock{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.3)!important}
-.bvCd_label{font-size:11px;font-weight:700;color:#D4AF37;letter-spacing:.5px;margin-bottom:4px}
-.bvCd_title{font-size:15px;font-weight:800;color:#fff}
+.bvCd_clock{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3)!important}
+.bvCd_label{font-size:14px;font-weight:700;color:#D4AF37;letter-spacing:.5px;margin-bottom:4px}
+.bvCd_title{font-size:13px;font-weight:600;color:rgba(255,255,255,.7)}
 .bvCd_center{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .bvCd_unit{text-align:center;min-width:58px}
 .bvCd_num{font-size:32px;font-weight:900;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)!important;border-radius:10px;padding:6px 10px;line-height:1;min-width:58px;display:block;transition:transform .15s}
@@ -34,7 +34,7 @@
 
     <div class="bvCd_right">
       <div class="bvCd_clock">
-        <svg width="22" height="22" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
+        <svg width="22" height="22" fill="none" stroke="#60A5FA" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
       </div>
       <div>
         <div class="bvCd_label">عرض محدود — ينتهي قريباً</div>
