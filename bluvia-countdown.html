@@ -20,7 +20,7 @@
 }
 .bvCd_right{display:flex;align-items:center;gap:12px;flex:1;min-width:180px}
 .bvCd_fire{font-size:26px;animation:bvFire 1s ease infinite alternate;flex-shrink:0}
-.bvCd_label{font-size:12px;font-weight:700;color:#60A5FA;margin-bottom:3px;letter-spacing:.3px}
+.bvCd_label{font-size:12px;font-weight:700;color:#D4AF37;margin-bottom:3px;letter-spacing:.3px}
 .bvCd_title{font-size:15px;font-weight:800;color:#fff}
 .bvCd_center{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .bvCd_unit{text-align:center}
@@ -75,7 +75,7 @@
     <div class="bvCd_right">
       <span class="bvCd_fire">🔥</span>
       <div>
-        <div class="bvCd_label">⚡ عرض محدود — ينتهي قريباً</div>
+        <div class="bvCd_label"><svg style="display:inline-block;vertical-align:middle;margin-left:4px" width="13" height="13" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg> عرض محدود — ينتهي قريباً</div>
         <div class="bvCd_title">خصم 20% على رحلات إسطنبول الصيفية</div>
       </div>
     </div>
@@ -117,7 +117,7 @@
 </section>
 
 <script>
-window.addEventListener('load', function(){
+setTimeout(function(){
   var dEl = document.getElementById('bvCdD');
   var hEl = document.getElementById('bvCdH');
   var mEl = document.getElementById('bvCdM');
@@ -125,19 +125,18 @@ window.addEventListener('load', function(){
   if (!dEl || !hEl || !mEl || !sEl) return;
 
   var CYCLE = 19 * 24 * 60 * 60 * 1000;
-  var REF   = 1748736000000; /* 2026-06-01 00:00:00 UTC */
+  var REF   = 1748736000000;
 
   function pad(n) {
     n = Math.floor(n);
     return (n < 10 ? '0' : '') + n;
   }
 
-  function update(el, val) {
-    if (el.textContent !== val) {
-      el.classList.add('flip');
-      el.textContent = val;
-      setTimeout(function(){ el.classList.remove('flip'); }, 130);
-    }
+  function set(el, val) {
+    if (el.textContent === val) return;
+    el.classList.add('flip');
+    el.textContent = val;
+    setTimeout(function(){ el.classList.remove('flip'); }, 130);
   }
 
   function tick() {
@@ -146,18 +145,14 @@ window.addEventListener('load', function(){
     var DAY  = 24 * 60 * 60 * 1000;
     var HR   = 60 * 60 * 1000;
     var MIN  = 60 * 1000;
-    var d = Math.floor(diff / DAY);
-    var h = Math.floor((diff % DAY) / HR);
-    var m = Math.floor((diff % HR)  / MIN);
-    var s = Math.floor((diff % MIN) / 1000);
-    update(dEl, pad(d));
-    update(hEl, pad(h));
-    update(mEl, pad(m));
-    update(sEl, pad(s));
+    set(dEl, pad(Math.floor(diff / DAY)));
+    set(hEl, pad(Math.floor((diff % DAY) / HR)));
+    set(mEl, pad(Math.floor((diff % HR)  / MIN)));
+    set(sEl, pad(Math.floor((diff % MIN) / 1000)));
   }
 
   tick();
   setInterval(tick, 1000);
-});
+}, 0);
 </script>
 </div>
