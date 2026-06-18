@@ -1,0 +1,160 @@
+<!-- [bluvia_map] خريطة وجهات تفاعلية -->
+<section id="bvMap" dir="rtl">
+  <div class="bvMap_wrap">
+    <div class="bvMap_head bvReveal">
+      <span class="bvMap_tag">🗺️ وجهاتنا السياحية</span>
+      <h2 class="bvMap_title">اكتشف وجهاتنا</h2>
+      <p class="bvMap_sub">انقر على أي وجهة لتعرف المزيد عنها</p>
+    </div>
+    <div class="bvMap_body">
+      <!-- الخريطة SVG مبسطة للمنطقة -->
+      <div class="bvMap_svg" id="bvMapSvg">
+        <svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+          <!-- خلفية البحر -->
+          <rect width="900" height="480" fill="#0a1628" rx="20"/>
+          <!-- البحر المتوسط -->
+          <ellipse cx="450" cy="200" rx="380" ry="90" fill="#0d2040" opacity=".7"/>
+          <text x="450" y="207" text-anchor="middle" fill="rgba(96,165,250,.35)" font-size="14" font-family="Cairo,sans-serif">البحر المتوسط</text>
+
+          <!-- ── تركيا ── -->
+          <g class="bvMap_country" id="bvMC_turkey" onclick="bvMapSelect('turkey')" style="cursor:pointer">
+            <ellipse cx="600" cy="165" rx="130" ry="55" fill="rgba(59,130,246,.12)" stroke="rgba(59,130,246,.3)" stroke-width="1.5" class="bvMap_shape"/>
+            <text x="600" y="161" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="15" font-weight="700" font-family="Cairo,sans-serif">تركيا</text>
+            <text x="600" y="177" text-anchor="middle" fill="rgba(96,165,250,.7)" font-size="11" font-family="Cairo,sans-serif">Turkey</text>
+          </g>
+
+          <!-- نقاط المدن التركية -->
+          <g class="bvMap_pin" onclick="bvMapSelect('istanbul')" style="cursor:pointer" transform="translate(530,148)">
+            <circle r="10" fill="#3B82F6" class="bvMap_dot" opacity=".9"/>
+            <circle r="10" fill="transparent" stroke="#3B82F6" stroke-width="2" class="bvMap_ring"/>
+            <text y="25" text-anchor="middle" fill="#fff" font-size="11" font-family="Cairo,sans-serif" font-weight="700">إسطنبول</text>
+          </g>
+          <g class="bvMap_pin" onclick="bvMapSelect('cappadocia')" style="cursor:pointer" transform="translate(610,178)">
+            <circle r="8" fill="#8B5CF6" class="bvMap_dot" opacity=".9"/>
+            <circle r="8" fill="transparent" stroke="#8B5CF6" stroke-width="2" class="bvMap_ring"/>
+            <text y="22" text-anchor="middle" fill="#fff" font-size="10" font-family="Cairo,sans-serif" font-weight="700">كبادوكيا</text>
+          </g>
+          <g class="bvMap_pin" onclick="bvMapSelect('antalya')" style="cursor:pointer" transform="translate(578,195)">
+            <circle r="8" fill="#10B981" class="bvMap_dot" opacity=".9"/>
+            <circle r="8" fill="transparent" stroke="#10B981" stroke-width="2" class="bvMap_ring"/>
+            <text y="22" text-anchor="middle" fill="#fff" font-size="10" font-family="Cairo,sans-serif" font-weight="700">أنطاليا</text>
+          </g>
+
+          <!-- ── تونس ── -->
+          <g class="bvMap_country" id="bvMC_tunisia" onclick="bvMapSelect('tunisia')" style="cursor:pointer">
+            <ellipse cx="310" cy="195" rx="65" ry="70" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.3)" stroke-width="1.5" class="bvMap_shape"/>
+            <text x="310" y="191" text-anchor="middle" fill="rgba(255,255,255,.8)" font-size="14" font-weight="700" font-family="Cairo,sans-serif">تونس</text>
+            <text x="310" y="205" text-anchor="middle" fill="rgba(253,230,138,.6)" font-size="11" font-family="Cairo,sans-serif">Tunisia</text>
+          </g>
+
+          <!-- نقاط المدن التونسية -->
+          <g class="bvMap_pin" onclick="bvMapSelect('tunis')" style="cursor:pointer" transform="translate(315,175)">
+            <circle r="10" fill="#F59E0B" class="bvMap_dot" opacity=".9"/>
+            <circle r="10" fill="transparent" stroke="#F59E0B" stroke-width="2" class="bvMap_ring"/>
+            <text y="25" text-anchor="middle" fill="#fff" font-size="11" font-family="Cairo,sans-serif" font-weight="700">تونس العاصمة</text>
+          </g>
+          <g class="bvMap_pin" onclick="bvMapSelect('hammamet')" style="cursor:pointer" transform="translate(330,205)">
+            <circle r="7" fill="#EF4444" class="bvMap_dot" opacity=".9"/>
+            <circle r="7" fill="transparent" stroke="#EF4444" stroke-width="2" class="bvMap_ring"/>
+            <text y="20" text-anchor="middle" fill="#fff" font-size="10" font-family="Cairo,sans-serif" font-weight="700">الحمامات</text>
+          </g>
+          <g class="bvMap_pin" onclick="bvMapSelect('djerba')" style="cursor:pointer" transform="translate(295,228)">
+            <circle r="7" fill="#06B6D4" class="bvMap_dot" opacity=".9"/>
+            <circle r="7" fill="transparent" stroke="#06B6D4" stroke-width="2" class="bvMap_ring"/>
+            <text y="20" text-anchor="middle" fill="#fff" font-size="10" font-family="Cairo,sans-serif" font-weight="700">جربة</text>
+          </g>
+
+          <!-- خط طيران وهمي بين البلدين -->
+          <path d="M 330 185 Q 450 120 530 148" stroke="rgba(96,165,250,.2)" stroke-width="1.5" stroke-dasharray="6 4" fill="none"/>
+          <text x="450" y="140" text-anchor="middle" fill="rgba(96,165,250,.3)" font-size="10" font-family="Cairo,sans-serif">✈</text>
+        </svg>
+      </div>
+
+      <!-- بطاقة معلومات الوجهة -->
+      <div class="bvMap_info" id="bvMapInfo">
+        <div class="bvMap_infoDefault" id="bvMapDefault">
+          <div class="bvMap_infoIco">🗺️</div>
+          <p>انقر على أي وجهة على الخريطة لعرض تفاصيلها</p>
+        </div>
+        <div class="bvMap_infoCard" id="bvMapCard" style="display:none">
+          <div class="bvMap_cardTop">
+            <span class="bvMap_cardFlag" id="bvMapFlag"></span>
+            <div>
+              <h3 class="bvMap_cardName" id="bvMapName"></h3>
+              <span class="bvMap_cardCountry" id="bvMapCountry"></span>
+            </div>
+          </div>
+          <p class="bvMap_cardDesc" id="bvMapDesc"></p>
+          <div class="bvMap_cardMeta" id="bvMapMeta"></div>
+          <a class="bvMap_cardBtn" id="bvMapBtn" href="#" target="_blank" rel="noopener">
+            احجز هذه الوجهة ←
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+#bvMap{position:relative!important;left:50%!important;right:50%!important;margin-left:-50vw!important;margin-right:-50vw!important;width:100vw!important;max-width:100vw!important;box-sizing:border-box!important;background:linear-gradient(180deg,#060e1f,#0a1628);padding:90px 0;direction:rtl;overflow:hidden}
+#bvMap *{box-sizing:border-box!important}
+.bvMap_wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.bvMap_head{text-align:center;margin-bottom:52px}
+.bvMap_tag{display:inline-block;padding:6px 20px;border-radius:50px;background:rgba(59,130,246,.12);color:#60A5FA;border:1px solid rgba(59,130,246,.25)!important;font-size:12px;font-weight:700;margin-bottom:16px}
+.bvMap_title{font-size:clamp(26px,3.5vw,42px);font-weight:900;color:#fff!important;margin:0 0 12px!important}
+.bvMap_sub{color:rgba(255,255,255,.5)!important;font-size:15px;margin:0!important}
+.bvMap_body{display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:center}
+/* خريطة */
+.bvMap_svg{border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.07)!important;background:#0a1628}
+.bvMap_shape{transition:fill .3s,stroke .3s}
+.bvMap_country:hover .bvMap_shape,.bvMap_country.active .bvMap_shape{fill:rgba(59,130,246,.22)!important;stroke:rgba(96,165,250,.6)!important}
+.bvMap_dot{transition:r .2s,opacity .2s}
+.bvMap_ring{animation:bvMapPulse 2s ease infinite}
+.bvMap_pin:hover .bvMap_dot{opacity:1;r:12}
+@keyframes bvMapPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.6);opacity:0}}
+/* بطاقة */
+.bvMap_info{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)!important;border-radius:20px;padding:28px;min-height:320px;display:flex;align-items:center;justify-content:center}
+.bvMap_infoDefault{text-align:center;color:rgba(255,255,255,.35)}
+.bvMap_infoIco{font-size:48px;margin-bottom:12px}
+.bvMap_infoDefault p{font-size:14px;margin:0!important;line-height:1.7}
+.bvMap_infoCard{width:100%}
+.bvMap_cardTop{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.bvMap_cardFlag{font-size:36px}
+.bvMap_cardName{font-size:20px;font-weight:900;color:#fff!important;margin:0 0 4px!important}
+.bvMap_cardCountry{font-size:12px;color:rgba(255,255,255,.4);font-weight:600}
+.bvMap_cardDesc{font-size:14px;color:rgba(255,255,255,.65)!important;line-height:1.8;margin:0 0 16px!important}
+.bvMap_cardMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.bvMap_cardMeta span{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)!important;color:#60A5FA;font-size:11px;font-weight:700;padding:4px 10px;border-radius:50px}
+.bvMap_cardBtn{display:block!important;text-align:center;padding:13px!important;border-radius:50px!important;background:linear-gradient(135deg,#3B82F6,#1D4ED8)!important;color:#fff!important;font-size:14px;font-weight:800;text-decoration:none!important;transition:all .3s;font-family:Cairo,sans-serif}
+.bvMap_cardBtn:hover{box-shadow:0 8px 24px rgba(59,130,246,.4)!important;transform:translateY(-2px);color:#fff!important}
+@media(max-width:800px){.bvMap_body{grid-template-columns:1fr}.bvMap_info{min-height:auto}#bvMap{padding:60px 0}}
+</style>
+
+<script>
+var BV_DESTINATIONS = {
+  turkey:     { name:"تركيا", flag:"🇹🇷", country:"Turkey", desc:"جوهرة الشرق والغرب، وجهة تجمع بين التاريخ العريق والطبيعة الخلابة والحياة العصرية. تضم أكثر من 80 ألف موقع تاريخي.", meta:["أفضل وقت: أبريل–يونيو","عملة: ليرة تركية","تأشيرة: متاحة"], wa:"تركيا" },
+  istanbul:   { name:"إسطنبول", flag:"🕌", country:"تركيا", desc:"المدينة التي تجمع قارتين. آيا صوفيا، البازار الكبير، البوسفور الساحر وأجواء لا تُنسى في كل زاوية.", meta:["5–7 أيام مثالية","بحراً وبراً وجواً","من أجمل مدن العالم"], wa:"إسطنبول" },
+  cappadocia: { name:"كبادوكيا", flag:"🎈", country:"تركيا", desc:"أرض البالونات والتكوينات الصخرية الأسطورية. تجربة ركوب البالون عند الفجر من أكثر التجارب سحراً في العالم.", meta:["2–3 أيام","بالون: 150–200$","أفضل وقت: الربيع والخريف"], wa:"كبادوكيا" },
+  antalya:    { name:"أنطاليا", flag:"🏖️", country:"تركيا", desc:"عروس الريفيرا التركية. شلالات دودن، مدينة المياه، شواطئ ذهبية ومواقع أثرية تعود لآلاف السنين.", meta:["مثالية للعائلات","صيفاً: شواطئ","شتاءً: تزلج قريب"], wa:"أنطاليا" },
+  tunisia:    { name:"تونس", flag:"🇹🇳", country:"Tunisia", desc:"بوابة المغرب العربي وكنز البحر المتوسط. تاريخ فينيقي وروماني وإسلامي في بلد واحد بتكلفة معقولة.", meta:["أفضل وقت: مارس–مايو","عملة: دينار تونسي","تأشيرة: مجانية للسعوديين"], wa:"تونس" },
+  tunis:      { name:"تونس العاصمة", flag:"🏛️", country:"تونس", desc:"المدينة العتيقة التي تُدرج في قائمة اليونسكو، سيدي بوسعيد الأزرق الأبيض، وقرطاج الأسطورية تنتظرك.", meta:["3–4 أيام","المدينة العتيقة","متحف باردو الشهير"], wa:"تونس العاصمة" },
+  hammamet:   { name:"الحمامات", flag:"🏊", country:"تونس", desc:"أجمل منتجعات البحر المتوسط. شواطئ ذهبية نظيفة وفنادق فاخرة وأجواء استجمام مثالية للعائلات.", meta:["مثالية للاسترخاء","شواطئ ذهبية","منتجعات عائلية"], wa:"الحمامات" },
+  djerba:     { name:"جربة", flag:"🌴", country:"تونس", desc:"جزيرة اللوتس الأسطورية. طبيعة ساحرة، ثقافة أمازيغية عريقة، وشواطئ من أجمل شواطئ المتوسط.", meta:["جزيرة سياحية","ثقافة فريدة","طبيعة خلابة"], wa:"جربة" }
+};
+
+function bvMapSelect(id){
+  var d = BV_DESTINATIONS[id];
+  if(!d) return;
+  document.getElementById("bvMapDefault").style.display = "none";
+  var card = document.getElementById("bvMapCard");
+  card.style.display = "block";
+  document.getElementById("bvMapFlag").textContent = d.flag;
+  document.getElementById("bvMapName").textContent = d.name;
+  document.getElementById("bvMapCountry").textContent = d.country;
+  document.getElementById("bvMapDesc").textContent = d.desc;
+  var meta = d.meta.map(function(m){ return '<span>'+m+'</span>'; }).join("");
+  document.getElementById("bvMapMeta").innerHTML = meta;
+  var msg = "أرغب بالاستفسار عن رحلة إلى "+d.wa;
+  document.getElementById("bvMapBtn").href = "https://wa.me/966555888555?text="+encodeURIComponent(msg);
+}
+</script>

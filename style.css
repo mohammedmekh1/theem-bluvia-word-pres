@@ -15,49 +15,83 @@
 
 /* The stylesheet is located in "assets/css/style.css". */
 
-/* ===== تطبيق خط ثمين على عناصر الصفحة الرئيسية ===== */
-
-/* البلوكات */
-.block-area .post-title,
-.block-area .post-title a,
-.block-area .post-excerpt,
-.block-area .cat-title,
-.block-area .block-title,
-.block-area h2, .block-area h3,
-.posts-container .post-title a {
-    font-family: 'thameen', sans-serif !important;
+/* ═══════════════════════════════════════════════════════════
+   BLUVIA TRAVEL — نظام الألوان والخطوط المركزي
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --bv-primary:        #3B82F6;
+  --bv-primary-dark:   #1D4ED8;
+  --bv-primary-light:  #60A5FA;
+  --bv-primary-glow:   rgba(59,130,246,.18);
+  --bv-gold:           #D4AF37;
+  --bv-gold-light:     #F5D37A;
+  --bv-gold-glow:      rgba(212,175,55,.22);
+  --bv-dark-900:       #060e1f;
+  --bv-dark-800:       #0a1628;
+  --bv-dark-700:       #0d1a2e;
+  --bv-dark-600:       #1e3a5f;
+  --bv-text-white:     #ffffff;
+  --bv-text-muted:     rgba(255,255,255,.55);
+  --bv-text-faint:     rgba(255,255,255,.30);
+  --bv-border:         rgba(255,255,255,.08);
+  --bv-border-blue:    rgba(59,130,246,.30);
+  --bv-font:           'Cairo', sans-serif;
+  --bv-fw-regular:     400;
+  --bv-fw-medium:      600;
+  --bv-fw-bold:        700;
+  --bv-fw-black:       900;
+  --bv-radius-sm:      10px;
+  --bv-radius-md:      16px;
+  --bv-radius-lg:      24px;
+  --bv-radius-pill:    50px;
+  --bv-shadow-blue:    0 12px 36px rgba(59,130,246,.35);
+  --bv-shadow-dark:    0 20px 50px rgba(0,0,0,.45);
+  --bv-wa:             #25D366;
+  --bv-wa-glow:        rgba(37,211,102,.35);
 }
 
-/* السلايدرات */
-.slide-title,
-.slide-title a,
-.slider-overlay .slide-title,
-.main-slider .slide-title a,
-[class*="tie-slider"] .slide-title {
-    font-family: 'thameen', sans-serif !important;
+/* تطبيق الخط على القالب */
+body, .site-header, .main-nav, .post-title, .entry-title,
+.widget-title, .section-title, h1, h2, h3, h4, h5, h6,
+p, a, span, li, button, input, select, textarea, label {
+  font-family: var(--bv-font) !important;
 }
+h1, h2, h3, .post-title, .entry-title { font-weight: var(--bv-fw-black) !important; }
+h4, h5, h6, .widget-title            { font-weight: var(--bv-fw-bold) !important; }
 
-/* الهيدر والقوائم */
-.main-nav > ul > li > a,
-.main-nav .sub-menu li a,
-.top-bar,
-.breaking-news-title,
-.breaking-news span {
-    font-family: 'thameen', sans-serif !important;
+/* روابط وأزرار */
+a { transition: color .25s ease !important; }
+a:hover { color: var(--bv-primary-light) !important; }
+.btn, .button, input[type="submit"], .tie-btn, .mag-btn {
+  font-family: var(--bv-font) !important;
+  font-weight: var(--bv-fw-bold) !important;
+  border-radius: var(--bv-radius-pill) !important;
+  transition: all .3s ease !important;
 }
+.main-nav ul li a { font-weight: var(--bv-fw-bold) !important; }
 
-/* الفوتر */
-.footer-widget .widget-title,
-.footer-widget li,
-.footer-widget p,
-.footer-bottom {
-    font-family: 'thameen', sans-serif !important;
+/* مكونات بلوفيا */
+.bvBtnBl, .bvBk_btnNext, .bvPkg_btn--feat {
+  background: linear-gradient(135deg, var(--bv-primary), var(--bv-primary-dark)) !important;
+  box-shadow: var(--bv-shadow-blue) !important;
 }
+.bvPkg_btn--vip {
+  background: linear-gradient(135deg, var(--bv-gold), #A07820) !important;
+  box-shadow: 0 8px 24px var(--bv-gold-glow) !important;
+}
+.bvBtnWa, .bvFq_ctaBtn, .bvBk_btnWa, .bvWF_wa { background: var(--bv-wa) !important; }
+.bvBadge2, .bvTTag, .bvWU_tag, .bvBk_tag, .bvPkg_tag, .bvFq_tag, .bvSt_tag, .bvPTag {
+  background: var(--bv-primary-glow) !important;
+  color: var(--bv-primary-light) !important;
+  border-color: var(--bv-border-blue) !important;
+}
+.bvPb, #bvScProg { background: linear-gradient(to right, var(--bv-primary), var(--bv-primary-light)) !important; }
+#bvCur { background: var(--bv-primary) !important; }
+#bvCurRing { border-color: rgba(59,130,246,.4) !important; }
+.bvSt_num { color: var(--bv-primary-light) !important; }
+.bvTStars { color: var(--bv-gold-light) !important; }
 
-/* التصنيفات */
-.cat-label,
-.post-cat,
-.cat-title a,
-.categories-list li a {
-    font-family: 'thameen', sans-serif !important;
+@media (max-width: 768px) {
+  h1 { font-size: clamp(22px, 5vw, 36px) !important; }
+  h2 { font-size: clamp(20px, 4vw, 30px) !important; }
 }

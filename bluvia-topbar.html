@@ -1,0 +1,85 @@
+<!-- [bluvia_topbar] شريط إشعار علوي ثابت -->
+<div id="bvTb" dir="rtl" role="banner" aria-label="عرض خاص">
+  <div class="bvTb_inner">
+    <span class="bvTb_plane">✈️</span>
+    <p class="bvTb_msg">
+      <strong>عروض الصيف</strong>
+      <span class="bvTb_sep">—</span>
+      <span id="bvTbText">رحلات إسطنبول بدءاً من 2,500 ريال</span>
+    </p>
+    <a class="bvTb_cta" href="https://wa.me/966555888555?text=%D8%A3%D8%B1%D9%8A%D8%AF+%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1+%D8%B9%D9%86+%D8%B9%D8%B1%D9%88%D8%B6+%D8%A7%D9%84%D8%B5%D9%8A%D9%81" target="_blank" rel="noopener">احجز الآن</a>
+    <button class="bvTb_close" onclick="bvTbClose()" aria-label="إغلاق">✕</button>
+  </div>
+</div>
+
+<style>
+#bvTb{
+  position:fixed!important;top:0;left:0;right:0;z-index:99999;
+  background:linear-gradient(90deg,#1D4ED8,#3B82F6 50%,#1D4ED8);
+  padding:10px 16px;direction:rtl;
+  transition:transform .35s ease,opacity .35s ease;
+  box-shadow:0 2px 12px rgba(29,78,216,.4);
+}
+#bvTb.bvTb--hidden{transform:translateY(-100%);opacity:0;pointer-events:none}
+#bvTb *{box-sizing:border-box}
+.bvTb_inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;flex-wrap:wrap;
+}
+.bvTb_plane{font-size:16px;animation:bvTbFly 2s ease infinite alternate;flex-shrink:0}
+.bvTb_msg{margin:0;font-size:13px;color:#fff;font-family:Cairo,sans-serif;font-weight:600;text-align:center;flex:1;min-width:0}
+.bvTb_msg strong{font-weight:900}
+.bvTb_sep{margin:0 6px;opacity:.6}
+.bvTb_cta{
+  flex-shrink:0;
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);
+  color:#fff!important;font-size:12px;font-weight:800;
+  padding:5px 16px;border-radius:50px;text-decoration:none!important;
+  font-family:Cairo,sans-serif;white-space:nowrap;
+  transition:background .2s;
+}
+.bvTb_cta:hover{background:rgba(255,255,255,.3)!important;color:#fff!important}
+.bvTb_close{
+  flex-shrink:0;background:none;border:none;color:rgba(255,255,255,.7);
+  font-size:14px;cursor:pointer;padding:4px 8px;line-height:1;
+  transition:color .2s;font-family:Cairo,sans-serif;
+}
+.bvTb_close:hover{color:#fff}
+/* push page content down */
+body.bvTb--active{padding-top:44px!important}
+@keyframes bvTbFly{from{transform:translateX(0)}to{transform:translateX(6px)}}
+@media(max-width:480px){
+  .bvTb_sep,.bvTb_plane{display:none}
+  .bvTb_msg{font-size:12px}
+  body.bvTb--active{padding-top:52px!important}
+}
+</style>
+
+<script>
+(function(){
+  var KEY='bvTbClosed';
+  if(sessionStorage.getItem(KEY)) { document.getElementById('bvTb').classList.add('bvTb--hidden'); return; }
+  document.body.classList.add('bvTb--active');
+
+  /* تدوير الرسائل */
+  var msgs=[
+    'رحلات إسطنبول بدءاً من 2,500 ريال',
+    'جولات تونس — باقات العائلات والأزواج',
+    'احجز قبل نهاية الشهر واحصل على خصم 15%'
+  ];
+  var i=0;
+  setInterval(function(){
+    var el=document.getElementById('bvTbText');
+    el.style.opacity=0;
+    setTimeout(function(){i=(i+1)%msgs.length;el.textContent=msgs[i];el.style.opacity=1;},300);
+  },4000);
+}());
+
+function bvTbClose(){
+  var el=document.getElementById('bvTb');
+  el.classList.add('bvTb--hidden');
+  document.body.classList.remove('bvTb--active');
+  sessionStorage.setItem('bvTbClosed','1');
+}
+</script>

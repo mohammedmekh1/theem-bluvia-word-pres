@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluevia Travel — Trust & Partners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a1628;
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+    }
+
+    /* ── Trust Section ── */
+    .bvTr_section {
+      width: 100%;
+      background: #060e1f;
+      padding: 60px 0;
+      overflow: hidden;
+    }
+
+    .bvTr_container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Row 1: Badges ── */
+    .bvTr_badges {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .bvTr_badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 36px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      transition: background 0.3s ease, transform 0.3s ease;
+      cursor: default;
+    }
+
+    .bvTr_badge:first-child {
+      border-radius: 0 16px 16px 0;
+    }
+
+    .bvTr_badge:last-child {
+      border-radius: 16px 0 0 16px;
+    }
+
+    .bvTr_badge:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .bvTr_badge:hover {
+      background: rgba(59, 130, 246, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .bvTr_badge:hover .bvTr_iconWrap {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    .bvTr_iconWrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .bvTr_iconWrap svg {
+      width: 22px;
+      height: 22px;
+      color: #3B82F6;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .bvTr_badgeText {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .bvTr_badgeLabel {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.3;
+    }
+
+    .bvTr_badgeValue {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    /* ── Row 2: Partners ── */
+    .bvTr_partnersWrap {
+      text-align: center;
+    }
+
+    .bvTr_partnersHeading {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .bvTr_partnersHeading::before,
+    .bvTr_partnersHeading::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .bvTr_marqueeOuter {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .bvTr_marqueeTrack {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      width: max-content;
+      animation: bvTr_scroll 28s linear infinite;
+    }
+
+    .bvTr_marqueeOuter:hover .bvTr_marqueeTrack {
+      animation-play-state: paused;
+    }
+
+    @keyframes bvTr_scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .bvTr_partnerPill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 100px;
+      white-space: nowrap;
+      transition: background 0.3s, border-color 0.3s;
+      cursor: default;
+      flex-shrink: 0;
+    }
+
+    .bvTr_partnerPill:hover {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .bvTr_partnerDot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3B82F6;
+      flex-shrink: 0;
+    }
+
+    .bvTr_partnerName {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.3px;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .bvTr_badge {
+        padding: 16px 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .bvTr_section {
+        padding: 48px 0;
+      }
+
+      .bvTr_badges {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 44px;
+      }
+
+      .bvTr_badge {
+        border-radius: 14px !important;
+        padding: 16px 18px;
+      }
+
+      .bvTr_badge::after {
+        display: none !important;
+      }
+
+      .bvTr_iconWrap {
+        width: 42px;
+        height: 42px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .bvTr_badges {
+        grid-template-columns: 1fr;
+      }
+
+      .bvTr_badge {
+        border-radius: 12px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="bvTr_section">
+  <div class="bvTr_container">
+
+    <!-- Row 1: Trust Badges -->
+    <div class="bvTr_badges">
+
+      <div class="bvTr_badge">
+        <div class="bvTr_iconWrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <div class="bvTr_badgeText">
+          <span class="bvTr_badgeLabel">عضويّة رسميّة</span>
+          <span class="bvTr_badgeValue">عضو اتحاد الوكالات السياحية</span>
+        </div>
+      </div>
+
+      <div class="bvTr_badge">
+        <div class="bvTr_iconWrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <div class="bvTr_badgeText">
+          <span class="bvTr_badgeLabel">ترخيص حكومي</span>
+          <span class="bvTr_badgeValue">مرخّص من وزارة السياحة</span>
+        </div>
+      </div>
+
+      <div class="bvTr_badge">
+        <div class="bvTr_iconWrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+          </svg>
+        </div>
+        <div class="bvTr_badgeText">
+          <span class="bvTr_badgeLabel">تقييم العملاء</span>
+          <span class="bvTr_badgeValue">تقييم 4.9 / 5 على Google</span>
+        </div>
+      </div>
+
+      <div class="bvTr_badge">
+        <div class="bvTr_iconWrap">
+          <svg viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="bvTr_badgeText">
+          <span class="bvTr_badgeLabel">ثقة موثوقة</span>
+          <span class="bvTr_badgeValue">+2500 عميل سعيد</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- /Row 1 -->
+
+    <!-- Row 2: Partners Marquee -->
+    <div class="bvTr_partnersWrap">
+      <div class="bvTr_partnersHeading">شركاؤنا وثقتهم</div>
+
+      <div class="bvTr_marqueeOuter">
+        <div class="bvTr_marqueeTrack">
+          <!-- Set 1 -->
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">TurkAir Tours</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Medina Hotels</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Carthage Travel</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Bosphorus Group</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Sahara Stays</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Atlas Voyages</span></div>
+          <!-- Set 2 (duplicate for seamless loop) -->
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">TurkAir Tours</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Medina Hotels</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Carthage Travel</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Bosphorus Group</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Sahara Stays</span></div>
+          <div class="bvTr_partnerPill"><span class="bvTr_partnerDot"></span><span class="bvTr_partnerName">Atlas Voyages</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- /Row 2 -->
+
+  </div>
+</section>
+
+</body>
+</html>

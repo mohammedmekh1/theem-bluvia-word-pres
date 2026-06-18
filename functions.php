@@ -66,6 +66,62 @@ function jannah_theme_name( $option ){
 	return tie_get_option( 'white_label_theme_name', esc_html__( 'Jannah News', TIELABS_TEXTDOMAIN ) );
 }
 
+/* ═══════════════════════════════════════════════════════
+   قائمة بيضاء بملفات بلوفيا المسموح بتضمينها فقط
+   ═══════════════════════════════════════════════════════ */
+$GLOBALS['bluvia_allowed_files'] = array(
+	'bluvia-hero.html',
+	'bluvia-testimonials.html',
+	'bluvia-whatsapp.html',
+	'bluvia-stats.html',
+	'bluvia-why-us.html',
+	'bluvia-booking.html',
+	'bluvia-packages.html',
+	'bluvia-faq.html',
+	'bluvia-trust.html',
+	'bluvia-gallery.html',
+	'bluvia-global.html',
+	'bluvia-countdown.html',
+	'bluvia-map.html',
+	'bluvia-topbar.html',
+	'bluvia-exit-intent.html',
+	'bluvia-destination.html',
+	'bluvia-share.html',
+);
+
+/* دالة مساعدة آمنة — تتحقق من القائمة البيضاء أولاً */
+function bluvia_load_file( $filename ) {
+	if ( ! in_array( $filename, $GLOBALS['bluvia_allowed_files'], true ) ) {
+		return '';
+	}
+	$base = get_template_directory();
+	$file = realpath( $base . '/' . basename( $filename ) );
+	if ( $file === false || strpos( $file, realpath( $base ) ) !== 0 ) {
+		return '';
+	}
+	ob_start();
+	include $file;
+	return ob_get_clean();
+}
+
+add_shortcode( 'bluvia_hero',         function(){ return bluvia_load_file('bluvia-hero.html'); } );
+add_shortcode( 'bluvia_testimonials', function(){ return bluvia_load_file('bluvia-testimonials.html'); } );
+add_shortcode( 'bluvia_whatsapp',     function(){ return bluvia_load_file('bluvia-whatsapp.html'); } );
+add_shortcode( 'bluvia_stats',        function(){ return bluvia_load_file('bluvia-stats.html'); } );
+add_shortcode( 'bluvia_why_us',       function(){ return bluvia_load_file('bluvia-why-us.html'); } );
+add_shortcode( 'bluvia_booking',      function(){ return bluvia_load_file('bluvia-booking.html'); } );
+add_shortcode( 'bluvia_packages',     function(){ return bluvia_load_file('bluvia-packages.html'); } );
+add_shortcode( 'bluvia_faq',          function(){ return bluvia_load_file('bluvia-faq.html'); } );
+add_shortcode( 'bluvia_trust',        function(){ return bluvia_load_file('bluvia-trust.html'); } );
+add_shortcode( 'bluvia_gallery',      function(){ return bluvia_load_file('bluvia-gallery.html'); } );
+add_shortcode( 'bluvia_global',       function(){ return bluvia_load_file('bluvia-global.html'); } );
+add_shortcode( 'bluvia_countdown',    function(){ return bluvia_load_file('bluvia-countdown.html'); } );
+add_shortcode( 'bluvia_map',          function(){ return bluvia_load_file('bluvia-map.html'); } );
+add_shortcode( 'bluvia_topbar',       function(){ return bluvia_load_file('bluvia-topbar.html'); } );
+add_shortcode( 'bluvia_exit_intent',  function(){ return bluvia_load_file('bluvia-exit-intent.html'); } );
+add_shortcode( 'bluvia_destination',  function(){ return bluvia_load_file('bluvia-destination.html'); } );
+add_shortcode( 'bluvia_share',        function(){ return bluvia_load_file('bluvia-share.html'); } );
+
 /**
  * Default Theme Color
  */
