@@ -1,71 +1,32 @@
 <div id="bvCd-wrap">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
-#bvCd{
-  position:relative!important;left:50%!important;right:50%!important;
-  margin-left:-50vw!important;margin-right:-50vw!important;
-  width:100vw!important;max-width:100vw!important;
-  box-sizing:border-box!important;
-  background:linear-gradient(135deg,#0a1628 0%,#1a2a4a 50%,#0a1628 100%);
-  border-top:1px solid rgba(59,130,246,.2);
-  border-bottom:1px solid rgba(59,130,246,.2);
-  padding:20px 0;direction:rtl;overflow:hidden;
-  font-family:Cairo,sans-serif;
-}
+#bvCd{position:relative!important;left:50%!important;right:50%!important;margin-left:-50vw!important;margin-right:-50vw!important;width:100vw!important;max-width:100vw!important;box-sizing:border-box!important;background:linear-gradient(135deg,#0a1628 0%,#1a2a4a 50%,#0a1628 100%);border-top:1px solid rgba(59,130,246,.2);border-bottom:1px solid rgba(59,130,246,.2);padding:22px 0;direction:rtl;overflow:hidden}
+#bvCd::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(59,130,246,.06),transparent);animation:bvCdShine 4s ease infinite}
 #bvCd *{box-sizing:border-box!important;font-family:Cairo,sans-serif!important}
-.bvCd_wrap{
-  max-width:1280px;margin:0 auto;padding:0 24px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:20px;flex-wrap:wrap;
-}
-.bvCd_right{display:flex;align-items:center;gap:12px;flex:1;min-width:180px}
-.bvCd_clock{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.25)!important}
-.bvCd_label{font-size:12px;font-weight:700;color:#D4AF37;margin-bottom:3px;letter-spacing:.3px}
+.bvCd_wrap{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.bvCd_right{display:flex;align-items:center;gap:14px;flex:1;min-width:200px}
+.bvCd_clock{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.3)!important}
+.bvCd_label{font-size:11px;font-weight:700;color:#D4AF37;letter-spacing:.5px;margin-bottom:4px}
 .bvCd_title{font-size:15px;font-weight:800;color:#fff}
-.bvCd_center{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.bvCd_unit{text-align:center}
-.bvCd_num{
-  font-size:30px;font-weight:900;color:#fff;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12)!important;
-  border-radius:10px;padding:5px 10px;
-  min-width:56px;display:block;line-height:1.1;
-  transition:transform .12s;
-}
-.bvCd_num.bvFlip{transform:scale(1.12)}
-.bvCd_lbl{font-size:10px;color:rgba(255,255,255,.4);margin-top:4px;font-weight:600}
-.bvCd_sep{font-size:26px;font-weight:900;color:#60A5FA;margin-bottom:14px;line-height:1;flex-shrink:0}
+.bvCd_center{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.bvCd_unit{text-align:center;min-width:58px}
+.bvCd_num{font-size:32px;font-weight:900;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)!important;border-radius:10px;padding:6px 10px;line-height:1;min-width:58px;display:block;transition:transform .15s}
+.bvCd_num.flip{transform:scale(1.08)}
+.bvCd_lbl{font-size:10px;color:rgba(255,255,255,.45);margin-top:5px;font-weight:600}
+.bvCd_sep{font-size:28px;font-weight:900;color:#60A5FA;margin-bottom:14px;line-height:1}
 .bvCd_left{flex-shrink:0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
-.bvCd_btn{
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  gap:6px;padding:10px 22px!important;border-radius:50px!important;
-  background:linear-gradient(135deg,#3B82F6,#1D4ED8)!important;
-  color:#fff!important;font-size:13px;font-weight:800;
-  text-decoration:none!important;
-  box-shadow:0 5px 18px rgba(59,130,246,.4);
-  transition:all .3s;white-space:nowrap;line-height:1;
-}
-.bvCd_btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(59,130,246,.6)!important;color:#fff!important}
+.bvCd_btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px;padding:11px 24px!important;border-radius:50px!important;background:linear-gradient(135deg,#3B82F6,#1D4ED8)!important;color:#fff!important;font-size:13px;font-weight:800;text-decoration:none!important;box-shadow:0 6px 20px rgba(59,130,246,.4);transition:all .3s;white-space:nowrap;line-height:1}
+.bvCd_btn:hover{transform:translateY(-2px) scale(1.04);color:#fff!important;box-shadow:0 10px 28px rgba(59,130,246,.55)!important}
 .bvCd_btn svg{display:block!important;flex-shrink:0}
 .bvCd_btn span{display:block;line-height:1}
-.bvCd_wa{
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  gap:6px;padding:9px 18px!important;border-radius:50px!important;
-  background:rgba(37,211,102,.12)!important;
-  border:1px solid rgba(37,211,102,.35)!important;
-  color:#fff!important;font-size:12px;font-weight:700;
-  text-decoration:none!important;
-  transition:all .3s;white-space:nowrap;line-height:1;
-}
+.bvCd_wa{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px;padding:10px 20px!important;border-radius:50px!important;background:rgba(37,211,102,.12)!important;border:1px solid rgba(37,211,102,.35)!important;color:#fff!important;font-size:12px;font-weight:700;text-decoration:none!important;transition:all .3s;white-space:nowrap;line-height:1}
 .bvCd_wa:hover{background:rgba(37,211,102,.22)!important;color:#fff!important}
 .bvCd_wa svg{display:block!important;flex-shrink:0}
 .bvCd_wa span{display:block;line-height:1}
-@media(max-width:900px){
-  .bvCd_wrap{justify-content:center;text-align:center}
-  .bvCd_right{justify-content:center;flex-basis:100%}
-  .bvCd_left{flex-basis:100%;align-items:center}
-}
-@media(max-width:480px){.bvCd_num{font-size:22px;min-width:44px}.bvCd_sep{font-size:18px}}
+@keyframes bvCdShine{0%,100%{opacity:0}50%{opacity:1}}
+@media(max-width:900px){.bvCd_wrap{justify-content:center;text-align:center}.bvCd_right{justify-content:center;flex-basis:100%}.bvCd_left{flex-basis:100%;align-items:center}}
+@media(max-width:480px){.bvCd_num{font-size:24px;min-width:44px}.bvCd_sep{font-size:20px}}
 </style>
 
 <section id="bvCd" dir="rtl">
@@ -77,30 +38,18 @@
       </div>
       <div>
         <div class="bvCd_label">عرض محدود — ينتهي قريباً</div>
-        <div class="bvCd_title">خصم 20% على رحلات إسطنبول الصيفية</div>
+        <div class="bvCd_title" id="bvCdTitle">خصم 20% على رحلات إسطنبول الصيفية</div>
       </div>
     </div>
 
     <div class="bvCd_center">
-      <div class="bvCd_unit">
-        <div class="bvCd_num" id="bvCdD">19</div>
-        <div class="bvCd_lbl">يوم</div>
-      </div>
+      <div class="bvCd_unit"><div class="bvCd_num" id="bvCdD">00</div><div class="bvCd_lbl">يوم</div></div>
       <div class="bvCd_sep">:</div>
-      <div class="bvCd_unit">
-        <div class="bvCd_num" id="bvCdH">00</div>
-        <div class="bvCd_lbl">ساعة</div>
-      </div>
+      <div class="bvCd_unit"><div class="bvCd_num" id="bvCdH">00</div><div class="bvCd_lbl">ساعة</div></div>
       <div class="bvCd_sep">:</div>
-      <div class="bvCd_unit">
-        <div class="bvCd_num" id="bvCdM">00</div>
-        <div class="bvCd_lbl">دقيقة</div>
-      </div>
+      <div class="bvCd_unit"><div class="bvCd_num" id="bvCdM">00</div><div class="bvCd_lbl">دقيقة</div></div>
       <div class="bvCd_sep">:</div>
-      <div class="bvCd_unit">
-        <div class="bvCd_num" id="bvCdS">00</div>
-        <div class="bvCd_lbl">ثانية</div>
-      </div>
+      <div class="bvCd_unit"><div class="bvCd_num" id="bvCdS">00</div><div class="bvCd_lbl">ثانية</div></div>
     </div>
 
     <div class="bvCd_left">
@@ -118,41 +67,31 @@
 </section>
 
 <script>
-var bvCdEnd = new Date('2026-07-07T00:00:00').getTime();
-
-function bvCdTick() {
-  var dEl = document.getElementById('bvCdD');
-  var hEl = document.getElementById('bvCdH');
-  var mEl = document.getElementById('bvCdM');
-  var sEl = document.getElementById('bvCdS');
+(function(){
+  var END_DATE = "2026-07-07T00:00:00";
+  var dEl = document.getElementById("bvCdD");
+  var hEl = document.getElementById("bvCdH");
+  var mEl = document.getElementById("bvCdM");
+  var sEl = document.getElementById("bvCdS");
   if (!dEl) return;
-
-  var diff = bvCdEnd - Date.now();
-  if (diff < 0) diff = 0;
-
-  var d = Math.floor(diff / 86400000);
-  var h = Math.floor((diff % 86400000) / 3600000);
-  var m = Math.floor((diff % 3600000) / 60000);
-  var s = Math.floor((diff % 60000) / 1000);
-
-  function p(n){ return n < 10 ? '0'+n : ''+n; }
-  function set(el, v){
-    if (el.textContent !== v){
-      el.textContent = v;
-      el.classList.remove('bvFlip');
-      void el.offsetWidth;
-      el.classList.add('bvFlip');
-      setTimeout(function(){ el.classList.remove('bvFlip'); }, 130);
-    }
+  function pad(n){ return String(Math.max(0,n)).padStart(2,"0"); }
+  function flip(el, val){
+    var cur = el.textContent;
+    if (cur === val) return;
+    el.classList.add("flip");
+    setTimeout(function(){ el.textContent = val; el.classList.remove("flip"); }, 75);
   }
-
-  set(dEl, p(d));
-  set(hEl, p(h));
-  set(mEl, p(m));
-  set(sEl, p(s));
-}
-
-bvCdTick();
-setInterval(bvCdTick, 1000);
+  function tick(){
+    var now = new Date(), end = new Date(END_DATE);
+    var diff = Math.max(0, end - now);
+    flip(dEl, pad(Math.floor(diff / 86400000)));
+    flip(hEl, pad(Math.floor((diff % 86400000) / 3600000)));
+    flip(mEl, pad(Math.floor((diff % 3600000) / 60000)));
+    flip(sEl, pad(Math.floor((diff % 60000) / 1000)));
+    if (diff === 0){ document.getElementById("bvCdTitle").textContent = "انتهى العرض — تابعونا للعروض القادمة"; clearInterval(timer); }
+  }
+  tick();
+  var timer = setInterval(tick, 1000);
+}());
 </script>
 </div>
