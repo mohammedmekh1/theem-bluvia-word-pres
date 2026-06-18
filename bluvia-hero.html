@@ -1,470 +1,189 @@
-<!-- ===================================================
-  BLUVIA TRAVEL HERO WIDGET
-  ─ الشريط المتحرك يسحب أحدث 10 مقالات تلقائياً
-  ─ يمكن تثبيت حتى 10 صور ثابتة في PINNED_SLIDES
-  ─ إذا كانت PINNED_SLIDES فارغة يعتمد كلياً على WordPress API
-  =================================================== -->
+<!-- [bluvia_hero] شريط بطولي متحرك -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <div id="bvH" dir="rtl">
   <div id="bvSlides"></div>
   <div class="bvP"><div class="bvPi"><div class="bvPb" id="bvBar"></div></div></div>
   <div class="bvBody">
     <div class="bvBodyIn">
-      <!-- الأيقونة والشعار في المنتصف -->
-      <a href="https://blueviatravel.com/" class="bvLogo">
-        <div class="bvLogoIco">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <div>
-          <div class="bvLogoTxt">Bluevia <span>Travel</span></div>
-          <div class="bvLogoSub">تركيا &amp; تونس</div>
-        </div>
-      </a>
-      <span class="bvBadge2">★ أحدث العروض والمقالات</span>
-      <h1 class="bvTitle" id="bvT"></h1>
-      <p class="bvDesc" id="bvD"></p>
       <div class="bvBtns">
-        <a class="bvBtnBl" id="bvLink" href="https://blueviatravel.com/itineraries" target="_blank" rel="noopener">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <a class="bvBtnBl" href="https://blueviatravel.com/itineraries" target="_blank" rel="noopener">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
           احجز الآن
         </a>
         <a class="bvBtnWa" href="https://wa.me/966555888555?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%2C+%D8%A3%D8%B1%D8%BA%D8%A8+%D8%A8%D8%AD%D8%AC%D8%B2+%D8%B1%D8%AD%D9%84%D8%A9" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           تواصل واتساب
         </a>
       </div>
-      <div class="bvTrust">
-        <span>مرافقة عربية</span>
-        <span>أسعار شاملة</span>
-        <span>حجز فوري</span>
-      </div>
     </div>
   </div>
-  <button class="bvArr bvArrR" id="bvNext" aria-label="التالي">
-    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-  </button>
-  <button class="bvArr bvArrL" id="bvPrev" aria-label="السابق">
-    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-  </button>
   <div class="bvFoot">
     <div class="bvDots" id="bvDots"></div>
-    <div class="bvCtr">
-      <span class="bvCtrN" id="bvCtr">01</span>
-      <span class="bvCtrL"></span>
-      <span id="bvCtrT">05</span>
-    </div>
   </div>
 </div>
 
-<section id="bvPosts" dir="rtl">
-  <div class="bvPI">
-    <div class="bvPH">
-      <span class="bvPTag">آخر المقالات</span>
-      <h2 class="bvPTitle">اكتشف جديد مدونتنا</h2>
-      <p class="bvPSub">أحدث المقالات والأخبار عن تركيا وتونس</p>
-    </div>
-    <div class="bvPGrid" id="bvGrid">
-      <!-- skeleton placeholders -->
-      <div class="bvPC"><div class="bvPImg bvSk"></div><div class="bvPBody"><div class="bvSk" style="height:11px;border-radius:4px"></div><div class="bvSk" style="height:13px;border-radius:4px;width:80%;margin-top:8px"></div><div class="bvSk" style="height:11px;border-radius:4px;width:55%;margin-top:8px"></div></div></div>
-      <div class="bvPC"><div class="bvPImg bvSk"></div><div class="bvPBody"><div class="bvSk" style="height:11px;border-radius:4px"></div><div class="bvSk" style="height:13px;border-radius:4px;width:80%;margin-top:8px"></div><div class="bvSk" style="height:11px;border-radius:4px;width:55%;margin-top:8px"></div></div></div>
-      <div class="bvPC"><div class="bvPImg bvSk"></div><div class="bvPBody"><div class="bvSk" style="height:11px;border-radius:4px"></div><div class="bvSk" style="height:13px;border-radius:4px;width:80%;margin-top:8px"></div><div class="bvSk" style="height:11px;border-radius:4px;width:55%;margin-top:8px"></div></div></div>
-      <div class="bvPC"><div class="bvPImg bvSk"></div><div class="bvPBody"><div class="bvSk" style="height:11px;border-radius:4px"></div><div class="bvSk" style="height:13px;border-radius:4px;width:80%;margin-top:8px"></div><div class="bvSk" style="height:11px;border-radius:4px;width:55%;margin-top:8px"></div></div></div>
-      <div class="bvPC"><div class="bvPImg bvSk"></div><div class="bvPBody"><div class="bvSk" style="height:11px;border-radius:4px"></div><div class="bvSk" style="height:13px;border-radius:4px;width:80%;margin-top:8px"></div><div class="bvSk" style="height:11px;border-radius:4px;width:55%;margin-top:8px"></div></div></div>
-    </div>
-  </div>
-</section>
-
 <style>
-/* ── Reset & Fullwidth ── */
-#bvH,#bvPosts{position:relative!important;left:50%!important;right:50%!important;margin-left:-50vw!important;margin-right:-50vw!important;width:100vw!important;max-width:100vw!important;overflow:hidden!important;box-sizing:border-box!important}
-#bvH{height:100vh;min-height:600px;max-height:920px;background:#0a1628;direction:rtl}
-#bvH *{box-sizing:border-box!important}
-/* ── Slides ── */
-.bvSlide{position:absolute!important;inset:0!important;opacity:0;z-index:1;transition:opacity 1.2s ease,transform 1.2s ease;transform:scale(1.08)}
+#bvH{
+  position:relative!important;left:50%!important;right:50%!important;
+  margin-left:-50vw!important;margin-right:-50vw!important;
+  width:100vw!important;max-width:100vw!important;
+  overflow:hidden!important;box-sizing:border-box!important;
+  height:92vh;min-height:480px;max-height:860px;
+  background:#0a1628;direction:rtl;
+}
+#bvH *{box-sizing:border-box!important;font-family:Cairo,sans-serif}
+/* الشرائح */
+#bvSlides{position:absolute!important;inset:0!important}
+.bvSlide{position:absolute!important;inset:0!important;opacity:0;z-index:1;transition:opacity 1.4s ease,transform 1.4s ease;transform:scale(1.06)}
 .bvSlide.bvOn{opacity:1!important;z-index:2!important;transform:scale(1)!important}
 .bvSlide img{width:100%!important;height:100%!important;object-fit:cover;display:block!important;max-width:none!important}
-/* ── Overlay – تدرج موحد من الأسفل فقط ── */
-.bvOv{position:absolute!important;inset:0!important;background:linear-gradient(to top,rgba(10,22,40,.88) 0%,rgba(10,22,40,.45) 45%,rgba(10,22,40,.25) 100%)}
-/* ── Progress bar ── */
-.bvP{position:absolute!important;top:0!important;left:0!important;right:0!important;height:4px!important;background:rgba(255,255,255,.08)!important;z-index:40!important}
+.bvOv{position:absolute!important;inset:0!important;background:linear-gradient(to top,rgba(6,14,31,.85) 0%,rgba(6,14,31,.35) 50%,rgba(6,14,31,.2) 100%)}
+/* شريط التقدم */
+.bvP{position:absolute!important;top:0!important;left:0!important;right:0!important;height:3px!important;background:rgba(255,255,255,.07)!important;z-index:40!important}
 .bvPi{height:100%!important}
-.bvPb{height:100%!important;background:linear-gradient(to right,#3B82F6,#60A5FA)!important;width:0%;transition:width .1s linear!important}
-/* ── Logo مدمج في المنتصف ── */
-.bvLogo{display:inline-flex;align-items:center;gap:12px;text-decoration:none!important;margin-bottom:24px}
-.bvLogoIco{width:60px;height:60px;min-width:60px;flex:0 0 60px;border-radius:18px;background:linear-gradient(135deg,#3B82F6,#1d4ed8);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(59,130,246,.5);transition:transform .3s}
-.bvLogo:hover .bvLogoIco{transform:rotate(-8deg) scale(1.08)}
-.bvLogoTxt{display:block;color:#fff!important;font-size:26px;font-weight:900;line-height:1.1;text-align:right}
-.bvLogoTxt span{color:#60A5FA!important}
-.bvLogoSub{display:block;font-size:11px;color:rgba(255,255,255,.45);letter-spacing:2px;margin-top:3px;text-align:right}
-/* ── Body content – توسيط كامل ── */
-.bvBody{position:absolute!important;inset:0!important;z-index:20;display:flex;align-items:center;justify-content:center}
-.bvBodyIn{width:100%;max-width:780px;padding:0 24px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.bvBadge2{display:inline-block;color:#60A5FA;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);padding:5px 18px;border-radius:50px;font-size:12px;font-weight:800;margin-bottom:18px}
-.bvTitle{font-size:clamp(26px,4vw,52px);font-weight:900;color:#fff!important;line-height:1.3;margin:0 0 16px!important;text-shadow:0 2px 24px rgba(0,0,0,.4);animation:bvUp .7s ease .05s both;opacity:0}
-.bvDesc{font-size:clamp(14px,1.5vw,18px);color:rgba(255,255,255,.72)!important;line-height:1.9;margin:0 0 32px!important;max-width:580px;animation:bvUp .7s ease .15s both;opacity:0}
-.bvBtns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin:0 0 28px!important;animation:bvUp .7s ease .25s both;opacity:0}
-.bvBtnBl{display:inline-flex!important;align-items:center;gap:8px;padding:16px 36px!important;border-radius:50px!important;font-size:15px;font-weight:800;color:#fff!important;background:linear-gradient(135deg,#3B82F6,#1D4ED8)!important;border:none!important;text-decoration:none!important;box-shadow:0 8px 24px rgba(59,130,246,.45);transition:all .3s}
-.bvBtnBl:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 14px 36px rgba(59,130,246,.55)!important;color:#fff!important}
-.bvBtnWa{display:inline-flex!important;align-items:center;gap:10px;padding:15px 32px!important;border-radius:50px!important;font-size:15px;font-weight:700;color:#fff!important;background:rgba(255,255,255,.08)!important;border:1px solid rgba(255,255,255,.2)!important;text-decoration:none!important;transition:all .3s}
-.bvBtnWa:hover{background:rgba(37,211,102,.2)!important;border-color:#25D366!important;color:#fff!important}
-.bvTrust{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.6);animation:bvUp .7s ease .4s both;opacity:0}
-.bvTrust span{display:flex;align-items:center;gap:6px}
-.bvTrust span::before{content:"✓";color:#60A5FA;font-weight:900}
-/* ── Arrows ── */
-.bvArr{position:absolute!important;top:50%;transform:translateY(-50%);z-index:30;width:48px;height:48px;min-width:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.75);background:rgba(255,255,255,.08)!important;border:1px solid rgba(255,255,255,.15)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);cursor:pointer;transition:all .3s;padding:0!important;margin:0!important}
-.bvArr:hover{color:#fff!important;transform:translateY(-50%) scale(1.1);background:#3B82F6!important;border-color:#60A5FA!important;box-shadow:0 4px 20px rgba(59,130,246,.4)!important}
-.bvArrR{right:24px}.bvArrL{left:24px}
-/* ── Footer dots ── */
-.bvFoot{position:absolute!important;bottom:32px;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:center;gap:28px}
-.bvDots{display:flex;align-items:center;gap:10px}
-.bvDot{height:3px;width:20px;border-radius:3px;background:rgba(255,255,255,.25);border:none!important;padding:0!important;margin:0!important;cursor:pointer;transition:all .5s;overflow:hidden;position:relative}
-.bvDot.bvDotOn{width:40px;background:rgba(59,130,246,.35)}
+.bvPb{height:100%!important;background:linear-gradient(to left,#60A5FA,#3B82F6)!important;width:0%;transition:width .1s linear!important}
+/* محتوى وسط */
+.bvBody{position:absolute!important;inset:0!important;z-index:20;display:flex;align-items:flex-end;justify-content:center;padding-bottom:72px}
+.bvBodyIn{text-align:center}
+/* الأزرار */
+.bvBtns{display:inline-flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.bvBtnBl{
+  display:inline-flex!important;align-items:center;gap:7px;
+  padding:11px 26px!important;border-radius:50px!important;
+  font-size:13px;font-weight:800;letter-spacing:.2px;
+  color:#fff!important;
+  background:linear-gradient(135deg,#3B82F6,#1D4ED8)!important;
+  border:none!important;text-decoration:none!important;
+  box-shadow:0 6px 20px rgba(59,130,246,.4);
+  transition:all .3s;
+}
+.bvBtnBl:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 10px 28px rgba(59,130,246,.55)!important;color:#fff!important}
+.bvBtnWa{
+  display:inline-flex!important;align-items:center;gap:8px;
+  padding:10px 22px!important;border-radius:50px!important;
+  font-size:13px;font-weight:700;
+  color:#fff!important;
+  background:rgba(255,255,255,.09)!important;
+  border:1px solid rgba(255,255,255,.22)!important;
+  text-decoration:none!important;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:all .3s;
+}
+.bvBtnWa:hover{background:rgba(37,211,102,.18)!important;border-color:rgba(37,211,102,.5)!important;color:#fff!important}
+/* نقاط التنقل */
+.bvFoot{position:absolute!important;bottom:20px;left:0;right:0;z-index:30;display:flex;justify-content:center}
+.bvDots{display:flex;align-items:center;gap:8px}
+.bvDot{height:3px;width:18px;border-radius:3px;background:rgba(255,255,255,.2);border:none!important;padding:0!important;margin:0!important;cursor:pointer;transition:all .5s;overflow:hidden;position:relative}
+.bvDot.bvDotOn{width:36px;background:rgba(59,130,246,.3)}
 .bvDot.bvDotOn::after{content:"";position:absolute;inset:0;background:#3B82F6;animation:bvProg 6s linear forwards}
-.bvCtr{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,.3)}
-.bvCtrN{color:#60A5FA;font-size:20px;font-weight:800}
-.bvCtrL{width:22px;height:1px;background:rgba(255,255,255,.2);display:block}
-/* ── Posts section ── */
-#bvPosts{background:linear-gradient(180deg,#0a1628,#0d1a2e);padding:80px 0;direction:rtl}
-#bvPosts *{box-sizing:border-box!important}
-.bvPI{max-width:1280px;margin:0 auto;padding:0 24px}
-.bvPH{text-align:center;margin-bottom:44px}
-.bvPTag{display:inline-block;padding:6px 18px;border-radius:50px;background:rgba(59,130,246,.12);color:#60A5FA;border:1px solid rgba(59,130,246,.22)!important;font-size:12px;font-weight:700;margin-bottom:14px}
-.bvPTitle{font-size:clamp(26px,3vw,40px);font-weight:900;color:#fff!important;margin:0 0 10px!important}
-.bvPSub{color:rgba(255,255,255,.5)!important;font-size:15px;margin:0!important}
-.bvPGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px}
-.bvPC{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)!important;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none!important;transition:all .35s}
-.bvPC:hover{transform:translateY(-7px);background:rgba(255,255,255,.08);border-color:rgba(59,130,246,.35)!important;box-shadow:0 18px 36px rgba(0,0,0,.35)}
-.bvPImg{width:100%;height:155px;object-fit:cover;background:linear-gradient(135deg,#1e3a5f,#0a1628);display:block;flex:0 0 155px}
-.bvPBody{padding:14px;flex:1;display:flex;flex-direction:column}
-.bvPMeta{font-size:11px;color:rgba(255,255,255,.4);margin:0 0 7px!important;display:flex;gap:8px;align-items:center}
-.bvPCat{background:rgba(59,130,246,.12);color:#60A5FA;padding:2px 8px;border-radius:50px;font-size:10px;font-weight:700}
-.bvPTtl{color:#fff!important;font-size:13.5px;font-weight:700;line-height:1.5;margin:0 0 10px!important;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.bvPLnk{color:#60A5FA!important;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:4px;text-decoration:none!important;margin:0!important;transition:gap .25s}
-.bvPC:hover .bvPLnk{gap:8px}
-/* ── Pinned badge ── */
-.bvPinnedBadge{position:absolute;top:8px;right:8px;background:rgba(59,130,246,.85);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:50px;backdrop-filter:blur(6px)}
-/* ── Skeleton ── */
-.bvSk{background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.09) 50%,rgba(255,255,255,.04) 75%);background-size:800px 100%;animation:bvSk 1.5s infinite}
-.bvErr{grid-column:1/-1;text-align:center;color:rgba(255,120,120,.7);padding:40px}
-/* ── Animations ── */
-@keyframes bvUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-@keyframes bvProg{from{transform:translateX(-100%)}to{transform:translateX(0)}}
-@keyframes bvSk{0%{background-position:-800px 0}100%{background-position:800px 0}}
-/* ── Responsive ── */
-@media(max-width:1023px){.bvArr{display:none!important}.bvCtr{display:none}.bvPGrid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:767px){.bvPGrid{grid-template-columns:repeat(2,1fr);gap:12px}#bvPosts{padding:56px 0}.bvTitle{font-size:clamp(22px,5vw,36px)}.bvLogoIco{width:48px;height:48px;min-width:48px}}
-@media(max-width:599px){.bvBodyIn{padding:0 18px}.bvBtns{gap:10px}.bvBtnBl,.bvBtnWa{padding:13px 22px!important;font-size:13px}.bvPGrid{grid-template-columns:1fr}.bvLogo{margin-bottom:16px}}
+@keyframes bvProg{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@media(max-width:599px){
+  #bvH{height:85vh;min-height:400px}
+  .bvBtnBl,.bvBtnWa{padding:10px 18px!important;font-size:12px}
+}
 </style>
 
 <script>
-(function () {
+(function(){
   "use strict";
 
-  /* ═══════════════════════════════════════════════
-     ⚙️  إعدادات الشريط المتحرك
-     ══════════════════════════════════════════════*/
-
-  /**
-   * PINNED_SLIDES – الصور الثابتة (حتى 10)
-   * ─────────────────────────────────────────────
-   * اتركها فارغة [] لتعتمد كلياً على WordPress.
-   * كل عنصر يحتوي:
-   *   t   : العنوان
-   *   d   : الوصف
-   *   l   : رابط الزر "احجز الآن"
-   *   img : رابط الصورة (يُفضَّل 1800×1000)
-   *   pin : true  (اختياري، يُظهر شارة "مثبّت")
-   *
-   * مثال:
-   * { t:"إسطنبول", d:"اكتشف...", l:"https://...", img:"https://...", pin:true }
-   */
-  var PINNED_SLIDES = [
-    // ── الصورة 1 ──────────────────────────────────
+  var SLIDES = [
     {
-      t: "إسطنبول.. سحر البوسفور وعبقرية التاريخ",
-      d: "اكتشف روعة المزارات السياحية في إسطنبول، حيث تلتقي الحضارات وتتعانق القارتان",
-      l: "https://blueviatravel.com/",
-      img: "https://images.pexels.com/photos/17872545/pexels-photo-17872545.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800",
-      pin: true
+      img:"https://images.unsplash.com/photo-1527838832700-5059252407fa?w=1800&q=80&fit=crop",
+      alt:"إسطنبول"
     },
-    // ── الصورة 2 ──────────────────────────────────
     {
-      t: "كبادوكيا.. أرض البالونات والخيال",
-      d: "تجربة لا تُنسى في أحضان التكوينات الصخرية الفريدة والتحليق عند شروق الشمس",
-      l: "https://blueviatravel.com/",
-      img: "https://images.pexels.com/photos/30370450/pexels-photo-30370450.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800",
-      pin: true
+      img:"https://images.unsplash.com/photo-1574872849676-013dc2e8d553?w=1800&q=80&fit=crop",
+      alt:"كبادوكيا"
     },
-    // ── الصورة 3 ──────────────────────────────────
     {
-      t: "سيدي بوسعيد.. أيقونة المتوسط الزرقاء",
-      d: "رحلة في أعماق الجمال التونسي بين الأبواب العتيقة والإطلالات البحرية الساحرة",
-      l: "https://blueviatravel.com/",
-      img: "https://images.pexels.com/photos/27594853/pexels-photo-27594853.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800",
-      pin: true
+      img:"https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=1800&q=80&fit=crop",
+      alt:"تونس"
     },
-    // ── الصورة 4 ──────────────────────────────────
     {
-      t: "شواطئ الحمّامات.. لؤلؤة السياحة التونسية",
-      d: "أجمل المنتجعات السياحية والشواطئ الذهبية لرحلة استجمام لا مثيل لها",
-      l: "https://blueviatravel.com/",
-      img: "https://images.pexels.com/photos/14038291/pexels-photo-14038291.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800",
-      pin: true
+      img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=80&fit=crop",
+      alt:"شاطئ"
     },
-    // ── الصورة 5 ──────────────────────────────────
     {
-      t: "أنطاليا.. عروس الريفيرا التركية",
-      d: "شلالات مبهرة وطبيعة خضراء ومعالم أثرية تعود لآلاف السنين في انتظارك",
-      l: "https://blueviatravel.com/",
-      img: "https://images.pexels.com/photos/20524206/pexels-photo-20524206.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800",
-      pin: true
+      img:"https://images.unsplash.com/photo-1599640842225-85d9cd7efa9d?w=1800&q=80&fit=crop",
+      alt:"أنطاليا"
     }
-    // ── أضف هنا حتى الصورة 10 ───────────────────
-    // ,{ t:"...", d:"...", l:"...", img:"...", pin:true }
   ];
 
-  /* عدد الشرائح القادمة من WordPress (0 = لا تسحب من WP) */
-  var WP_POSTS_IN_SLIDER = 5; /* اجعلها 0 إذا أردت الصور الثابتة فقط */
-
-  /* عدد مقالات قسم "آخر المقالات" */
-  var WP_POSTS_GRID = 10;
-
-  /* ═══════════════════════════════════════════════
-     المتغيرات الداخلية – لا تعدّل ما بعد هذا
-     ══════════════════════════════════════════════*/
-  var SLIDES = PINNED_SLIDES.slice(0, 10); /* نقطة البداية */
+  var INTERVAL_MS = 6000;
   var cur = 0, busy = false, prog = 0, progT = null, paused = false;
-  var INTERVAL_MS = 6000; /* مدة كل شريحة */
 
-  var hero  = document.getElementById("bvH");
-  if (!hero) return;
+  var hero = document.getElementById("bvH");
+  if(!hero) return;
+  var sC  = document.getElementById("bvSlides");
+  var dC  = document.getElementById("bvDots");
+  var bar = document.getElementById("bvBar");
 
-  var sC   = document.getElementById("bvSlides");
-  var dC   = document.getElementById("bvDots");
-  var bar  = document.getElementById("bvBar");
-  var tEl  = document.getElementById("bvT");
-  var dEl  = document.getElementById("bvD");
-  var lEl  = document.getElementById("bvLink");
-  var cEl  = document.getElementById("bvCtr");
+  /* بناء الشرائح */
+  SLIDES.forEach(function(s,i){
+    var sl = document.createElement("div");
+    sl.className = "bvSlide" + (i===0?" bvOn":"");
+    var img = document.createElement("img");
+    img.src = s.img;
+    img.alt = s.alt;
+    img.loading = i===0?"eager":"lazy";
+    var ov = document.createElement("div");
+    ov.className = "bvOv";
+    sl.appendChild(img);
+    sl.appendChild(ov);
+    sC.appendChild(sl);
 
-  /* ── HTML escape ── */
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
-    });
-  }
+    var dot = document.createElement("button");
+    dot.className = "bvDot" + (i===0?" bvDotOn":"");
+    dot.setAttribute("aria-label","شريحة "+(i+1));
+    dot.addEventListener("click",function(){ goTo(i); });
+    dC.appendChild(dot);
+  });
 
-  /* ── بناء DOM الشرائح ── */
-  function buildDOM(arr) {
-    sC.innerHTML = "";
-    dC.innerHTML = "";
-    document.getElementById("bvCtrT").textContent = String(arr.length).padStart(2, "0");
+  function getEls(){ return { s: hero.querySelectorAll(".bvSlide"), d: hero.querySelectorAll(".bvDot") }; }
 
-    arr.forEach(function (s, i) {
-      var sl = document.createElement("div");
-      sl.className = "bvSlide" + (i === 0 ? " bvOn" : "");
-      sl.innerHTML =
-        '<img src="' + esc(s.img) + '" alt="' + esc(s.t) + '" loading="' + (i === 0 ? "eager" : "lazy") + '">' +
-        '<div class="bvOv"></div>' +
-        (s.pin ? '<span class="bvPinnedBadge">📌 مثبّت</span>' : "");
-      sC.appendChild(sl);
-
-      var dot = document.createElement("button");
-      dot.className = "bvDot" + (i === 0 ? " bvDotOn" : "");
-      dot.setAttribute("data-i", i);
-      dot.setAttribute("aria-label", "الشريحة " + (i + 1));
-      dot.addEventListener("click", function () { goTo(i); });
-      dC.appendChild(dot);
-    });
-
-    goTo(0);
-    startProg();
-  }
-
-  function getEls() {
-    return { slides: hero.querySelectorAll(".bvSlide"), dots: hero.querySelectorAll(".bvDot") };
-  }
-
-  /* ── الانتقال إلى شريحة ── */
-  function goTo(idx) {
-    if (busy) return;
-    var els = getEls();
-    if (idx < 0 || idx >= els.slides.length) return;
+  function goTo(idx){
+    if(busy) return;
+    var e = getEls();
+    if(idx<0||idx>=e.s.length) return;
     busy = true;
     prog = 0;
     bar.style.width = "0%";
-
-    els.slides[cur].classList.remove("bvOn");
-    els.dots[cur].classList.remove("bvDotOn");
+    e.s[cur].classList.remove("bvOn");
+    e.d[cur].classList.remove("bvDotOn");
     cur = idx;
-    els.slides[cur].classList.add("bvOn");
-    els.dots[cur].classList.add("bvDotOn");
-
-    var sl = SLIDES[cur] || SLIDES[0];
-    [tEl, dEl].forEach(function (el, j) {
-      if (!el) return;
-      el.style.animation = "none";
-      el.offsetHeight;
-      el.style.opacity = "0";
-      el.style.animation = "bvUp .7s ease " + (j === 0 ? ".05s" : ".15s") + " both";
-    });
-    if (tEl) tEl.textContent = sl.t;
-    if (dEl) dEl.textContent = sl.d;
-    if (lEl) lEl.href = sl.l;
-    if (cEl) cEl.textContent = String(cur + 1).padStart(2, "0");
-
-    /* إعادة تشغيل حركة dot */
-    var dotEl = els.dots[cur];
-    dotEl.classList.remove("bvDotOn");
-    dotEl.offsetHeight;
-    dotEl.classList.add("bvDotOn");
-
-    setTimeout(function () { busy = false; }, 900);
+    e.s[cur].classList.add("bvOn");
+    var dot = e.d[cur];
+    dot.classList.remove("bvDotOn");
+    dot.offsetHeight;
+    dot.classList.add("bvDotOn");
+    setTimeout(function(){ busy=false; }, 900);
   }
 
-  /* ── شريط التقدم ── */
-  function startProg() {
+  function startProg(){
     clearInterval(progT);
-    var step = 100 / (INTERVAL_MS / 75);
-    progT = setInterval(function () {
-      if (!paused && !busy) {
+    var step = 100/(INTERVAL_MS/75);
+    progT = setInterval(function(){
+      if(!paused && !busy){
         prog += step;
-        bar.style.width = Math.min(prog, 100) + "%";
-        if (prog >= 100) {
-          var els = getEls();
-          goTo((cur + 1) % els.slides.length);
-        }
+        bar.style.width = Math.min(prog,100)+"%";
+        if(prog>=100){ prog=0; goTo((cur+1)%SLIDES.length); }
       }
     }, 75);
   }
 
-  /* ── Hover pause (صامت) ── */
-  hero.addEventListener("mouseenter", function () { paused = true; });
-  hero.addEventListener("mouseleave", function () { paused = false; });
+  hero.addEventListener("mouseenter",function(){ paused=true; });
+  hero.addEventListener("mouseleave",function(){ paused=false; });
 
-  /* ── أزرار السهم ── */
-  var nb = document.getElementById("bvNext");
-  var pb = document.getElementById("bvPrev");
-  if (nb) nb.addEventListener("click", function () { var e = getEls(); goTo((cur + 1) % e.slides.length); });
-  if (pb) pb.addEventListener("click", function () { var e = getEls(); goTo((cur - 1 + e.slides.length) % e.slides.length); });
+  /* Swipe */
+  var tx=0;
+  hero.addEventListener("touchstart",function(e){ tx=e.touches[0].clientX; },{passive:true});
+  hero.addEventListener("touchend",function(e){
+    var d=tx-e.changedTouches[0].clientX;
+    if(Math.abs(d)>50) goTo(d>0?(cur+1)%SLIDES.length:(cur-1+SLIDES.length)%SLIDES.length);
+  },{passive:true});
 
-  /* ── Swipe ── */
-  var tx = 0;
-  hero.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
-  hero.addEventListener("touchend", function (e) {
-    var d = tx - e.changedTouches[0].clientX;
-    if (Math.abs(d) > 50) {
-      var els = getEls();
-      goTo(d > 0 ? (cur + 1) % els.slides.length : (cur - 1 + els.slides.length) % els.slides.length);
-    }
-  }, { passive: true });
-
-  /* ── Keyboard ── */
-  document.addEventListener("keydown", function (e) {
-    var els = getEls();
-    if (e.key === "ArrowLeft")  goTo((cur + 1) % els.slides.length);
-    if (e.key === "ArrowRight") goTo((cur - 1 + els.slides.length) % els.slides.length);
-  });
-
-  /* ═══════════════════════════════════════════════
-     عرض المقالات في القسم السفلي
-     ══════════════════════════════════════════════*/
-  function renderGrid(posts) {
-    var g = document.getElementById("bvGrid");
-    if (!g) return;
-    if (!posts || !posts.length) {
-      g.innerHTML = '<div class="bvErr">لا توجد مقالات.</div>';
-      return;
-    }
-    var html = "";
-    posts.forEach(function (p, i) {
-      var img = "";
-      if (p._embedded && p._embedded["wp:featuredmedia"] && p._embedded["wp:featuredmedia"][0])
-        img = p._embedded["wp:featuredmedia"][0].source_url || "";
-      var cat = "";
-      if (p._embedded && p._embedded["wp:term"] && p._embedded["wp:term"][0] && p._embedded["wp:term"][0][0])
-        cat = esc(p._embedded["wp:term"][0][0].name);
-      var dt = new Date(p.date_gmt + "Z").toLocaleDateString("ar-EG", { day: "numeric", month: "long" });
-      var imgH = img
-        ? '<img class="bvPImg" src="' + esc(img) + '" alt="' + esc(p.title.rendered) + '" loading="lazy">'
-        : '<div class="bvPImg" style="display:flex;align-items:center;justify-content:center;color:#3B82F6;font-size:28px">✈️</div>';
-      html +=
-        '<a class="bvPC" href="' + esc(p.link) + '" target="_blank" rel="noopener" style="animation:bvUp .5s ease ' + (i * .08) + 's both;opacity:0">' +
-          imgH +
-          '<div class="bvPBody">' +
-            '<div class="bvPMeta">' + (cat ? '<span class="bvPCat">' + cat + "</span>" : "") + "<span>" + dt + "</span></div>" +
-            '<h3 class="bvPTtl">' + p.title.rendered + "</h3>" +
-            '<span class="bvPLnk">اقرأ المقال ←</span>' +
-          "</div>" +
-        "</a>";
-    });
-    g.innerHTML = html;
-  }
-
-  /* ═══════════════════════════════════════════════
-     تحويل مقال WP إلى شريحة
-     ══════════════════════════════════════════════*/
-  function postToSlide(p) {
-    var img = "https://images.pexels.com/photos/17872545/pexels-photo-17872545.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800";
-    if (p._embedded && p._embedded["wp:featuredmedia"] && p._embedded["wp:featuredmedia"][0])
-      img = p._embedded["wp:featuredmedia"][0].source_url || img;
-    var tmp = document.createElement("div");
-    tmp.innerHTML = p.excerpt ? p.excerpt.rendered || "" : "";
-    return { t: p.title.rendered, d: tmp.textContent || "استكشف أحدث عروض بلوفيا ترافيل", l: p.link, img: img, pin: false };
-  }
-
-  /* ═══════════════════════════════════════════════
-     جلب البيانات من WordPress
-     ══════════════════════════════════════════════*/
-  var BASE = "https://blueviatravel.com";
-  var SLIDER_FETCHED = WP_POSTS_IN_SLIDER > 0
-    ? WP_POSTS_IN_SLIDER
-    : 0;
-  /* نطلب ما يكفي للشريط + الشبكة معاً في طلب واحد */
-  var FETCH_COUNT = Math.max(WP_POSTS_GRID, SLIDER_FETCHED);
-
-  function init() {
-    /* عرض الصور الثابتة فوراً إذا وُجدت */
-    if (SLIDES.length) buildDOM(SLIDES);
-
-    if (FETCH_COUNT === 0) return; /* لا حاجة للجلب */
-
-    fetch(BASE + "/wp-json/wp/v2/posts?per_page=" + FETCH_COUNT + "&_embed=1")
-      .then(function (r) {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.json();
-      })
-      .then(function (data) {
-        if (!data || !data.length) return;
-
-        /* ── قسم المقالات السفلي ── */
-        renderGrid(data.slice(0, WP_POSTS_GRID));
-
-        /* ── دمج الشرائح الثابتة + شرائح WP ── */
-        if (SLIDER_FETCHED > 0) {
-          var wpSlides = data.slice(0, SLIDER_FETCHED).map(postToSlide);
-          /* الصور الثابتة أولاً ثم WP */
-          SLIDES = PINNED_SLIDES.slice(0, 10).concat(wpSlides).slice(0, 20);
-          buildDOM(SLIDES);
-        }
-      })
-      .catch(function () {
-        /* الاحتياط: اعرض الثابتة وحاول الشبكة مرة ثانية */
-        if (!SLIDES.length) buildDOM([
-          { t: "عروض بلوفيا ترافيل", d: "استكشف أحدث رحلاتنا إلى تركيا وتونس", l: BASE + "/itineraries", img: "https://images.pexels.com/photos/17872545/pexels-photo-17872545.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800", pin: false }
-        ]);
-        /* إعادة المحاولة للشبكة (grid فقط) */
-        setTimeout(function () {
-          fetch(BASE + "/wp-json/wp/v2/posts?per_page=" + WP_POSTS_GRID + "&_embed=1")
-            .then(function (r) { return r.json(); })
-            .then(renderGrid)
-            .catch(function () {});
-        }, 3000);
-      });
-  }
-
-  init();
+  startProg();
 }());
 </script>
