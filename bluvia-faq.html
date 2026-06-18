@@ -1,689 +1,343 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الأسئلة الشائعة - Bluevia Travel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- [bluvia_faq] الأسئلة الشائعة -->
+<div id="bvFq-wrap">
 <style>
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap');
 
-  body {
-    font-family: 'Tajawal', sans-serif;
-    background: #0a1628;
-    color: #e2e8f0;
-    direction: rtl;
-    min-height: 100vh;
-  }
+#bvFq-wrap { display:block!important; width:100%!important; }
 
-  /* Full-width section */
-  .bvFq_section {
-    position: relative;
-    left: 50%;
-    margin-left: -50vw;
-    width: 100vw;
-    background: #0a1628;
-    padding: 90px 0 110px;
-    overflow: hidden;
-  }
+#bvFq {
+  position:relative!important;
+  left:50%!important; right:50%!important;
+  margin-left:-50vw!important; margin-right:-50vw!important;
+  width:100vw!important; max-width:100vw!important;
+  box-sizing:border-box!important;
+  background:#0a1628;
+  padding:90px 0 110px;
+  direction:rtl;
+  overflow:hidden;
+}
+#bvFq * { box-sizing:border-box!important; font-family:Cairo,sans-serif!important; }
 
-  /* Decorative background elements */
-  .bvFq_bg_orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    opacity: 0.18;
-  }
+/* Background decorations */
+.bvFq_orb {
+  position:absolute; border-radius:50%;
+  filter:blur(80px); pointer-events:none; opacity:.18;
+}
+.bvFq_orb--1 { width:600px;height:600px;background:radial-gradient(circle,#3B82F6 0%,transparent 70%);top:-150px;right:-100px; }
+.bvFq_orb--2 { width:500px;height:500px;background:radial-gradient(circle,#1d4ed8 0%,transparent 70%);bottom:-100px;left:-80px; }
+.bvFq_orb--3 { width:300px;height:300px;background:radial-gradient(circle,#60a5fa 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%); }
 
-  .bvFq_bg_orb--1 {
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, #3B82F6 0%, transparent 70%);
-    top: -150px;
-    right: -100px;
-  }
+.bvFq_grid {
+  position:absolute; inset:0;
+  background-image:linear-gradient(rgba(59,130,246,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.04) 1px,transparent 1px);
+  background-size:60px 60px; pointer-events:none;
+}
 
-  .bvFq_bg_orb--2 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, #1d4ed8 0%, transparent 70%);
-    bottom: -100px;
-    left: -80px;
-  }
+.bvFq_inner {
+  position:relative; z-index:2;
+  max-width:860px; margin:0 auto; padding:0 24px;
+}
 
-  .bvFq_bg_orb--3 {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, #60a5fa 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+/* Header */
+.bvFq_head { text-align:center; margin-bottom:60px; opacity:0; transform:translateY(30px); animation:bvFqUp .8s ease forwards; }
+.bvFq_tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(59,130,246,.12); border:1px solid rgba(59,130,246,.3);
+  color:#60a5fa; font-size:13px; font-weight:600;
+  padding:7px 18px; border-radius:50px; margin-bottom:22px;
+}
+.bvFq_tag_dot {
+  width:7px; height:7px; background:#3B82F6; border-radius:50%;
+  box-shadow:0 0 8px #3B82F6; animation:bvFqPulse 2s ease-in-out infinite;
+}
+.bvFq_title { font-size:clamp(28px,4vw,46px); font-weight:900; color:#fff; margin:0 0 18px!important; }
+.bvFq_title span { background:linear-gradient(135deg,#3B82F6,#60a5fa,#93c5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.bvFq_desc { font-size:16px; color:#94a3b8; max-width:560px; margin:0 auto!important; line-height:1.75; }
+.bvFq_divider { width:60px; height:3px; background:linear-gradient(90deg,#3B82F6,#60a5fa); border-radius:2px; margin:24px auto 0; }
 
-  /* Grid lines decoration */
-  .bvFq_grid_overlay {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-  }
+/* Accordion */
+.bvFq_list { display:flex; flex-direction:column; gap:14px; }
 
-  /* Inner container */
-  .bvFq_container {
-    position: relative;
-    z-index: 2;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+.bvFq_item {
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08)!important;
+  border-radius:16px; overflow:hidden;
+  transition:border-color .35s,box-shadow .35s,background .35s;
+  opacity:0; transform:translateY(24px);
+}
+.bvFq_item.bvFq_vis { animation:bvFqUp .6s ease forwards; }
+.bvFq_item:hover { border-color:rgba(59,130,246,.3)!important; background:rgba(255,255,255,.06); }
+.bvFq_item.bvFq_open {
+  border-color:rgba(59,130,246,.5)!important;
+  background:rgba(59,130,246,.07);
+  box-shadow:0 0 0 1px rgba(59,130,246,.2),0 8px 40px rgba(59,130,246,.12),inset 0 1px 0 rgba(255,255,255,.08);
+}
 
-  /* Header */
-  .bvFq_header {
-    text-align: center;
-    margin-bottom: 60px;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: bvFq_fadeUp 0.8s ease forwards;
-  }
+.bvFq_q {
+  width:100%; background:none; border:none!important; cursor:pointer;
+  padding:22px 26px; display:flex; align-items:center; gap:16px;
+  text-align:right; direction:rtl; transition:background .2s;
+}
+.bvFq_q:focus-visible { outline:2px solid #3B82F6; outline-offset:-2px; border-radius:16px; }
 
-  .bvFq_tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(59,130,246,0.12);
-    border: 1px solid rgba(59,130,246,0.3);
-    color: #60a5fa;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 7px 18px;
-    border-radius: 50px;
-    margin-bottom: 22px;
-    letter-spacing: 0.5px;
-  }
+.bvFq_num {
+  flex-shrink:0; width:36px; height:36px; border-radius:10px;
+  background:rgba(59,130,246,.12); border:1px solid rgba(59,130,246,.2)!important;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; color:#60a5fa;
+  transition:background .3s,border-color .3s;
+}
+.bvFq_open .bvFq_num { background:rgba(59,130,246,.22); border-color:rgba(59,130,246,.5)!important; color:#93c5fd; }
 
-  .bvFq_tag_dot {
-    width: 7px;
-    height: 7px;
-    background: #3B82F6;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #3B82F6;
-    animation: bvFq_pulse 2s ease-in-out infinite;
-  }
+.bvFq_qtext { flex:1; font-size:16px; font-weight:700; color:#e2e8f0; line-height:1.5; transition:color .3s; }
+.bvFq_open .bvFq_qtext { color:#fff; }
 
-  .bvFq_title {
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 800;
-    line-height: 1.25;
-    color: #ffffff;
-    margin-bottom: 18px;
-    letter-spacing: -0.5px;
-  }
+.bvFq_ico {
+  flex-shrink:0; width:34px; height:34px; border-radius:50%;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1)!important;
+  display:flex; align-items:center; justify-content:center;
+  color:#94a3b8; font-size:20px; font-weight:300; line-height:1;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1),background .3s,border-color .3s,color .3s;
+  user-select:none;
+}
+.bvFq_open .bvFq_ico { transform:rotate(45deg); background:rgba(59,130,246,.2); border-color:rgba(59,130,246,.4)!important; color:#60a5fa; }
 
-  .bvFq_title span {
-    background: linear-gradient(135deg, #3B82F6 0%, #60a5fa 50%, #93c5fd 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+.bvFq_body { max-height:0; overflow:hidden; transition:max-height .5s cubic-bezier(.4,0,.2,1); }
+.bvFq_ans { padding:0 26px 26px; padding-right:78px; }
+.bvFq_ans_inner {
+  border-top:1px solid rgba(255,255,255,.07); padding-top:18px;
+  font-size:15px; color:#94a3b8; line-height:1.85;
+}
+.bvFq_ans_inner strong { color:#60a5fa; font-weight:700; }
+.bvFq_ans_inner ul { margin-top:10px; padding-right:20px; display:flex; flex-direction:column; gap:6px; }
+.bvFq_ans_inner ul li::marker { color:#3B82F6; }
 
-  .bvFq_desc {
-    font-size: 17px;
-    font-weight: 400;
-    color: #94a3b8;
-    max-width: 580px;
-    margin: 0 auto;
-    line-height: 1.75;
-  }
+/* Footer note */
+.bvFq_foot { text-align:center; margin-top:52px; opacity:0; transform:translateY(20px); animation:bvFqUp .8s ease .8s forwards; }
+.bvFq_foot p { font-size:15px; color:#64748b; line-height:1.7; }
+.bvFq_foot a { color:#3B82F6; text-decoration:none!important; font-weight:700; border-bottom:1px solid rgba(59,130,246,.3); padding-bottom:1px; transition:color .2s,border-color .2s; }
+.bvFq_foot a:hover { color:#60a5fa; border-color:#60a5fa; }
 
-  /* Divider */
-  .bvFq_divider {
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #3B82F6, #60a5fa);
-    border-radius: 2px;
-    margin: 24px auto 0;
-  }
+/* Stagger delays */
+.bvFq_item:nth-child(1){animation-delay:.10s}
+.bvFq_item:nth-child(2){animation-delay:.18s}
+.bvFq_item:nth-child(3){animation-delay:.26s}
+.bvFq_item:nth-child(4){animation-delay:.34s}
+.bvFq_item:nth-child(5){animation-delay:.42s}
+.bvFq_item:nth-child(6){animation-delay:.50s}
+.bvFq_item:nth-child(7){animation-delay:.58s}
+.bvFq_item:nth-child(8){animation-delay:.66s}
 
-  /* Accordion list */
-  .bvFq_list {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
+@keyframes bvFqUp { to { opacity:1; transform:translateY(0); } }
+@keyframes bvFqPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
 
-  /* Accordion item */
-  .bvFq_item {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    overflow: hidden;
-    transition: border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  .bvFq_item.bvFq_visible {
-    animation: bvFq_fadeUp 0.6s ease forwards;
-  }
-
-  .bvFq_item:hover {
-    border-color: rgba(59,130,246,0.3);
-    background: rgba(255,255,255,0.06);
-  }
-
-  .bvFq_item.bvFq_open {
-    border-color: rgba(59,130,246,0.5);
-    background: rgba(59,130,246,0.07);
-    box-shadow:
-      0 0 0 1px rgba(59,130,246,0.2),
-      0 8px 40px rgba(59,130,246,0.12),
-      inset 0 1px 0 rgba(255,255,255,0.08);
-  }
-
-  /* Question button */
-  .bvFq_question {
-    width: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 22px 26px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    text-align: right;
-    direction: rtl;
-    transition: background 0.2s ease;
-  }
-
-  .bvFq_question:focus-visible {
-    outline: 2px solid #3B82F6;
-    outline-offset: -2px;
-    border-radius: 16px;
-  }
-
-  .bvFq_question_num {
-    flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: rgba(59,130,246,0.12);
-    border: 1px solid rgba(59,130,246,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    color: #60a5fa;
-    transition: background 0.3s ease, border-color 0.3s ease;
-  }
-
-  .bvFq_open .bvFq_question_num {
-    background: rgba(59,130,246,0.22);
-    border-color: rgba(59,130,246,0.5);
-    color: #93c5fd;
-  }
-
-  .bvFq_question_text {
-    flex: 1;
-    font-size: 17px;
-    font-weight: 600;
-    color: #e2e8f0;
-    line-height: 1.5;
-    transition: color 0.3s ease;
-  }
-
-  .bvFq_open .bvFq_question_text {
-    color: #ffffff;
-  }
-
-  .bvFq_icon {
-    flex-shrink: 0;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #94a3b8;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 1;
-    transition:
-      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-      background 0.3s ease,
-      border-color 0.3s ease,
-      color 0.3s ease;
-    user-select: none;
-  }
-
-  .bvFq_open .bvFq_icon {
-    transform: rotate(45deg);
-    background: rgba(59,130,246,0.2);
-    border-color: rgba(59,130,246,0.4);
-    color: #60a5fa;
-  }
-
-  /* Answer panel */
-  .bvFq_answer_wrap {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .bvFq_answer {
-    padding: 0 26px 26px;
-    padding-right: 78px;
-  }
-
-  .bvFq_answer_inner {
-    border-top: 1px solid rgba(255,255,255,0.07);
-    padding-top: 18px;
-    font-size: 15.5px;
-    font-weight: 400;
-    color: #94a3b8;
-    line-height: 1.85;
-  }
-
-  .bvFq_answer_inner strong {
-    color: #60a5fa;
-    font-weight: 600;
-  }
-
-  .bvFq_answer_inner ul {
-    margin-top: 10px;
-    padding-right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .bvFq_answer_inner ul li {
-    position: relative;
-  }
-
-  .bvFq_answer_inner ul li::marker {
-    color: #3B82F6;
-  }
-
-  /* Animations */
-  @keyframes bvFq_fadeUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes bvFq_pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.85); }
-  }
-
-  /* Stagger delays for items */
-  .bvFq_item:nth-child(1) { animation-delay: 0.1s; }
-  .bvFq_item:nth-child(2) { animation-delay: 0.18s; }
-  .bvFq_item:nth-child(3) { animation-delay: 0.26s; }
-  .bvFq_item:nth-child(4) { animation-delay: 0.34s; }
-  .bvFq_item:nth-child(5) { animation-delay: 0.42s; }
-  .bvFq_item:nth-child(6) { animation-delay: 0.50s; }
-  .bvFq_item:nth-child(7) { animation-delay: 0.58s; }
-  .bvFq_item:nth-child(8) { animation-delay: 0.66s; }
-
-  /* Footer note */
-  .bvFq_footer_note {
-    text-align: center;
-    margin-top: 52px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: bvFq_fadeUp 0.8s ease 0.8s forwards;
-  }
-
-  .bvFq_footer_note p {
-    font-size: 15px;
-    color: #64748b;
-    line-height: 1.7;
-  }
-
-  .bvFq_footer_note a {
-    color: #3B82F6;
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(59,130,246,0.3);
-    padding-bottom: 1px;
-    transition: border-color 0.2s ease, color 0.2s ease;
-  }
-
-  .bvFq_footer_note a:hover {
-    color: #60a5fa;
-    border-color: #60a5fa;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    .bvFq_section {
-      padding: 60px 0 80px;
-    }
-    .bvFq_question {
-      padding: 18px 18px;
-      gap: 12px;
-    }
-    .bvFq_answer {
-      padding: 0 18px 22px;
-      padding-right: 18px;
-    }
-    .bvFq_question_text {
-      font-size: 15px;
-    }
-    .bvFq_answer_inner {
-      font-size: 14.5px;
-    }
-  }
+@media(max-width:600px) {
+  #bvFq { padding:60px 0 80px; }
+  .bvFq_q { padding:18px; gap:12px; }
+  .bvFq_ans { padding:0 18px 22px; }
+  .bvFq_qtext { font-size:14px; }
+  .bvFq_ans_inner { font-size:14px; }
+}
 </style>
-</head>
-<body>
 
-<section class="bvFq_section">
+<section id="bvFq" dir="rtl">
+  <div class="bvFq_orb bvFq_orb--1"></div>
+  <div class="bvFq_orb bvFq_orb--2"></div>
+  <div class="bvFq_orb bvFq_orb--3"></div>
+  <div class="bvFq_grid"></div>
 
-  <!-- Background decorations -->
-  <div class="bvFq_bg_orb bvFq_bg_orb--1"></div>
-  <div class="bvFq_bg_orb bvFq_bg_orb--2"></div>
-  <div class="bvFq_bg_orb bvFq_bg_orb--3"></div>
-  <div class="bvFq_grid_overlay"></div>
+  <div class="bvFq_inner">
 
-  <div class="bvFq_container">
-
-    <!-- Section Header -->
-    <div class="bvFq_header">
-      <div class="bvFq_tag">
-        <span class="bvFq_tag_dot"></span>
-        مركز المساعدة
-      </div>
+    <div class="bvFq_head">
+      <div class="bvFq_tag"><span class="bvFq_tag_dot"></span>مركز المساعدة</div>
       <h2 class="bvFq_title">الأسئلة <span>الشائعة</span></h2>
-      <p class="bvFq_desc">
-        نجيب على أبرز تساؤلاتكم حول رحلاتنا وباقاتنا السياحية، وإن لم تجد إجابتك فريقنا دائمًا في خدمتك.
-      </p>
+      <p class="bvFq_desc">نجيب على أبرز تساؤلاتكم حول رحلاتنا وباقاتنا السياحية، وإن لم تجد إجابتك فريقنا دائمًا في خدمتك.</p>
       <div class="bvFq_divider"></div>
     </div>
 
-    <!-- Accordion List -->
-    <div class="bvFq_list" id="bvFq_accordion">
+    <div class="bvFq_list" id="bvFqList">
 
-      <!-- Item 1 -->
-      <div class="bvFq_item" data-index="0">
-        <button class="bvFq_question" aria-expanded="false">
-          <span class="bvFq_question_num">01</span>
-          <span class="bvFq_question_text">هل تشمل الباقة تأشيرة السفر؟</span>
-          <span class="bvFq_icon" aria-hidden="true">+</span>
+      <div class="bvFq_item">
+        <button class="bvFq_q" aria-expanded="false">
+          <span class="bvFq_num">01</span>
+          <span class="bvFq_qtext">هل تشمل الباقة تأشيرة السفر؟</span>
+          <span class="bvFq_ico" aria-hidden="true">+</span>
         </button>
-        <div class="bvFq_answer_wrap" role="region">
-          <div class="bvFq_answer">
-            <div class="bvFq_answer_inner">
-              نعم، تشمل معظم باقاتنا السياحية خدمة <strong>استخراج التأشيرة</strong> بشكل كامل. يتولى فريقنا المتخصص الإجراءات الكاملة من تجميع المستندات المطلوبة وتقديم الطلبات نيابةً عنكم، مما يوفر عليكم الوقت والجهد. وتشمل الباقة عادةً:
-              <ul>
-                <li>رسوم التأشيرة الرسمية لجميع أفراد المجموعة</li>
-                <li>متابعة ملف الطلب حتى الحصول على الموافقة</li>
-                <li>إرشادات حول الوثائق المطلوبة وتقديم النماذج</li>
-                <li>دعم في حالة طلب وثائق إضافية من السفارة</li>
-              </ul>
-              في حالات استثنائية لبعض الوجهات، قد تكون التأشيرة منفصلة عن الباقة وسيُنبّه إليها صراحةً عند العرض.
-            </div>
-          </div>
-        </div>
+        <div class="bvFq_body"><div class="bvFq_ans"><div class="bvFq_ans_inner">
+          نعم، تشمل معظم باقاتنا خدمة <strong>استخراج التأشيرة</strong> بشكل كامل. يتولى فريقنا المتخصص الإجراءات الكاملة من تجميع المستندات وتقديم الطلبات نيابةً عنكم:
+          <ul>
+            <li>رسوم التأشيرة الرسمية لجميع أفراد المجموعة</li>
+            <li>متابعة ملف الطلب حتى الحصول على الموافقة</li>
+            <li>إرشادات حول الوثائق المطلوبة وتقديم النماذج</li>
+            <li>دعم في حالة طلب وثائق إضافية من السفارة</li>
+          </ul>
+          في حالات استثنائية قد تكون التأشيرة منفصلة وسيُنبّه إليها صراحةً عند العرض.
+        </div></div></div>
       </div>
 
-      <!-- Item 2 -->
-      <div class="bvFq_item" data-index="1">
-        <button class="bvFq_question" aria-expanded="false">
-          <span class="bvFq_question_num">02</span>
-          <span class="bvFq_question_text">ما هي وسائل الدفع المتاحة؟</span>
-          <span class="bvFq_icon" aria-hidden="true">+</span>
+      <div class="bvFq_item">
+        <button class="bvFq_q" aria-expanded="false">
+          <span class="bvFq_num">02</span>
+          <span class="bvFq_qtext">ما هي وسائل الدفع المتاحة؟</span>
+          <span class="bvFq_ico" aria-hidden="true">+</span>
         </button>
-        <div class="bvFq_answer_wrap" role="region">
-          <div class="bvFq_answer">
-            <div class="bvFq_answer_inner">
-              نوفر لعملائنا مجموعة واسعة من خيارات الدفع المرنة التي تناسب جميع الاحتياجات:
-              <ul>
-                <li><strong>التحويل البنكي المباشر:</strong> يمكنكم تحويل المبلغ إلى حساباتنا الرسمية في أي بنك معتمد، وسيصلكم إيصال تأكيد فور استلام المبلغ.</li>
-                <li><strong>بطاقات الائتمان والخصم:</strong> نقبل جميع البطاقات الدولية الرئيسية (Visa, MasterCard, American Express) عبر بوابة دفع مشفرة وآمنة.</li>
-                <li><strong>نظام الأقساط الميسّرة:</strong> نتيح تقسيم قيمة الباقة على 3 إلى 6 أشهر بدون فوائد، مع دفع عربون أولي 30% عند الحجز.</li>
-                <li><strong>المحافظ الإلكترونية:</strong> نقبل STC Pay وSTRIPA وغيرها من المحافظ المتاحة في منطقتك.</li>
-              </ul>
-              لأي استفسار حول آلية الدفع، تواصل مع فريق المبيعات لدينا.
-            </div>
-          </div>
-        </div>
+        <div class="bvFq_body"><div class="bvFq_ans"><div class="bvFq_ans_inner">
+          نوفر مجموعة واسعة من خيارات الدفع المرنة:
+          <ul>
+            <li><strong>التحويل البنكي المباشر:</strong> يصلكم إيصال تأكيد فور استلام المبلغ.</li>
+            <li><strong>بطاقات الائتمان والخصم:</strong> Visa، MasterCard، American Express عبر بوابة مشفرة.</li>
+            <li><strong>نظام الأقساط:</strong> تقسيم على 3 إلى 6 أشهر بدون فوائد مع عربون 30% عند الحجز.</li>
+            <li><strong>المحافظ الإلكترونية:</strong> STC Pay وغيرها من المحافظ المتاحة.</li>
+          </ul>
+        </div></div></div>
       </div>
 
-      <!-- Item 3 -->
-      <div class="bvFq_item" data-index="2">
-        <button class="bvFq_question" aria-expanded="false">
-          <span class="bvFq_question_num">03</span>
-          <span class="bvFq_question_text">هل يوجد مرافق عربي طوال الرحلة؟</span>
-          <span class="bvFq_icon" aria-hidden="true">+</span>
+      <div class="bvFq_item">
+        <button class="bvFq_q" aria-expanded="false">
+          <span class="bvFq_num">03</span>
+          <span class="bvFq_qtext">هل يوجد مرافق عربي طوال الرحلة؟</span>
+          <span class="bvFq_ico" aria-hidden="true">+</span>
         </button>
-        <div class="bvFq_answer_wrap" role="region">
-          <div class="bvFq_answer">
-            <div class="bvFq_answer_inner">
-              بالتأكيد! نحن في <strong>Bluevia Travel</strong> نؤمن بأن الراحة اللغوية جزء أساسي من تجربة السفر الناجحة. لذلك توفر جميع باقاتنا <strong>مرشدًا سياحيًا عربيًا محترفًا</strong> يرافق المجموعة منذ لحظة المغادرة وحتى العودة. مميزات مرشدنا:
-              <ul>
-                <li>إتقان تام للغة العربية الفصحى واللهجات المحلية</li>
-                <li>خبرة ميدانية واسعة في الوجهة السياحية</li>
-                <li>متاح على مدار الساعة للإجابة على الاستفسارات وحل أي طارئ</li>
-                <li>يقدم شروحات ثقافية وتاريخية غنية في كل موقع</li>
-                <li>يضمن سير البرنامج بدقة وفق الجدول المحدد</li>
-              </ul>
-              راحتكم ورضاكم هو هدفنا الأول في كل رحلة.
-            </div>
-          </div>
-        </div>
+        <div class="bvFq_body"><div class="bvFq_ans"><div class="bvFq_ans_inner">
+          بالتأكيد! توفر جميع باقاتنا <strong>مرشدًا سياحيًا عربيًا محترفًا</strong> يرافق المجموعة من المغادرة حتى العودة:
+          <ul>
+            <li>إتقان تام للغة العربية الفصحى واللهجات المحلية</li>
+            <li>خبرة ميدانية واسعة في الوجهة السياحية</li>
+            <li>متاح على مدار الساعة لحل أي طارئ</li>
+            <li>يقدم شروحات ثقافية وتاريخية غنية في كل موقع</li>
+          </ul>
+        </div></div></div>
       </div>
 
-      <!-- Item 4 -->
-      <div class="bvFq_item" data-index="3">
-        <button class="bvFq_question" aria-expanded="false">
-          <span class="bvFq_question_num">04</span>
-          <span class="bvFq_question_text">ما هو أفضل وقت للسفر إلى تركيا؟</span>
-          <span class="bvFq_icon" aria-hidden="true">+</span>
+      <div class="bvFq_item">
+        <button class="bvFq_q" aria-expanded="false">
+          <span class="bvFq_num">04</span>
+          <span class="bvFq_qtext">ما هو أفضل وقت للسفر إلى تركيا؟</span>
+          <span class="bvFq_ico" aria-hidden="true">+</span>
         </button>
-        <div class="bvFq_answer_wrap" role="region">
-          <div class="bvFq_answer">
-            <div class="bvFq_answer_inner">
-              تعد تركيا وجهة سياحية رائعة على مدار العام، غير أن الموسمين المفضّلَين هما:
-              <ul>
-                <li><strong>الربيع (مارس – مايو):</strong> الطقس معتدل ومناسب جدًا لاستكشاف المدن والمعالم التاريخية، وتتفتح فيه أزهار التيوليب الشهيرة في إسطنبول، مما يمنح المدينة جمالًا لا يُنسى.</li>
-                <li><strong>الخريف (سبتمبر – نوفمبر):</strong> حرارة لطيفة وأمطار خفيفة، مع انخفاض نسبي في أعداد السياح وأسعار الفنادق، مما يجعله موسمًا مثاليًا للاسترخاء والتجوال.</li>
-                <li><strong>الصيف (يونيو – أغسطس):</strong> مناسب لمحبي الشواطئ والسياحة الساحلية في أنطاليا ومرمريس، لكن الإقبال يكون كبيرًا والأسعار أعلى.</li>
-                <li><strong>الشتاء (ديسمبر – فبراير):</strong> رائع لمحبي الثلوج وزيارة إسطنبول في جو رومانسي هادئ، مع فرص لرؤية الثلوج في قبادوقيا.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <div class="bvFq_body"><div class="bvFq_ans"><div class="bvFq_ans_inner">
+          <ul>
+            <li><strong>الربيع (مارس – مايو):</strong> طقس معتدل وتفتح أزهار التيوليب في إسطنبول — الموسم المثالي.</li>
+            <li><strong>الخريف (سبتمبر – نوفمبر):</strong> هدوء وانخفاض أسعار، ممتاز للسياحة الثقافية.</li>
+            <li><strong>الصيف (يونيو – أغسطس):</strong> مناسب لشواطئ أنطاليا ومرمريس.</li>
+            <li><strong>الشتاء (ديسمبر – فبراير):</strong> جميل لرؤية الثلوج في قبادوقيا وإسطنبول.</li>
+          </ul>
+        </div></div></div>
       </div>
 
-      <!-- Item 5 -->
-      <div class="bvFq_item" data-index="4">
-        <button class="bvFq_question" aria-expanded="false">
-          <span class="bvFq_question_num">05</span>
-          <span class="bvFq_question_text">ما هو أفضل وقت للسفر إلى تونس؟</span>
-          <span class="bvFq_icon" aria-hidden="true">+</span>
+      <div class="bvFq_item">
+        <button class="bvFq_q" aria-expanded="false">
+          <span class="bvFq_num">05</span>
+          <span class="bvFq_qtext">ما هو أفضل وقت للسفر إلى تونس؟</span>
+          <span class="bvFq_ico" aria-hidden="true">+</span>
         </button>
-        <div class="bvFq_answer_wrap" role="region">
-          <div class="bvFq_answer">
-            <div class="bvFq_answer_inner">
-              تونس دولة متوسطية بمناخ متنوع، وأفضل الأوقات للزيارة هي:
-              <ul>
-                <li><strong>الربيع (أبريل – يونيو):</strong> يُعدّ الموسم الذهبي بامتياز، حيث يكون الطقس دافئًا ومشمسًا وملائمًا لاستكشاف المدن العتيقة كتونس العاصمة، سيدي بوسعيد، والمدينة العتيقة بالقيروان.</li>
-                <li><strong>الخريف (سبتمبر – أكتوبر):</strong> يهدأ الحر ويعود الطقس إلى الاعتدال، مما يجعله وقتًا ممتازًا للسياحة الثقافية وزيارة المعالم الأثرية كقرطاج ودقة.</li>
-                <li><strong>الصيف (يوليو – أغسطس):</strong> يشهد درجات حرارة مرتفعة تصل إلى 40°م في الجنوب، لكنه مناسب لمحبي شواطئ الحمامات وجربة، مع توقع ازدحام سياحي.</li>
-                <li><strong>الشتاء (ديسمبر – مارس):</strong> ملائم لاستكشاف الصحراء في دوز وقبلي، مع طقس بارد في الشمال وقد يكون ممطرًا.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <div class="bvFq_body"><div class="bvFq_ans"><div class="bvFq_ans_inner">
+          <ul>
+            <li><strong>الربيع (أبريل – يونيو):</strong> الموسم الذهبي — دافئ ومشمس لاستكشاف المدن العتيقة.</li>
+            <li><strong>الخريف (سبتمبر – أكتوبر):</strong> ممتاز للسياحة الثقافية وزيارة المعالم الأثرية كقرطاج.</li>
+            <li><strong>الصيف (يوليو – أغسطس):</strong> مناسب لشواطئ الحمامات وجربة.</li>
+            <li><strong>الشتاء (ديسمبر – مارس):</strong> ملائم لاستكشاف صحراء دوز وقبلي.</li>
+          </ul>
+        </div></div></div>
       </div>
 
-      <!-- Item 6 -->
-      <div class="bvFq_item" data-index="5">
-        <button class="bvFq_question" aria-expanded="false">
-          <span class="bvFq_question_num">06</span>
-          <span class="bvFq_question_text">هل يمكن تعديل برنامج الرحلة؟</span>
-          <span class="bvFq_icon" aria-hidden="true">+</span>
+      <div class="bvFq_item">
+        <button class="bvFq_q" aria-expanded="false">
+          <span class="bvFq_num">06</span>
+          <span class="bvFq_qtext">هل يمكن تعديل برنامج الرحلة؟</span>
+          <span class="bvFq_ico" aria-hidden="true">+</span>
         </button>
-        <div class="bvFq_answer_wrap" role="region">
-          <div class="bvFq_answer">
-            <div class="bvFq_answer_inner">
-              نعم، نتميز بمرونة عالية في <strong>تخصيص برامج الرحلات</strong> وفق رغباتكم وتوقعاتكم. يمكنكم طلب التعديلات التالية:
-              <ul>
-                <li>إضافة أو حذف وجهات ومواقع سياحية من البرنامج</li>
-                <li>اختيار مستوى الإقامة الفندقية (3 – 5 نجوم)</li>
-                <li>تمديد مدة الرحلة أو اختصارها</li>
-                <li>تنسيق رحلات جانبية إضافية خارج البرنامج الأساسي</li>
-                <li>تحديد تفضيلات المطاعم (حلال، نباتي، بحري...)</li>
-              </ul>
-              <strong>ملاحظة:</strong> تُقبل طلبات التعديل قبل 7 أيام كحد أدنى من تاريخ انطلاق الرحلة، وقد تترتب على بعض التعديلات تكاليف إضافية يُعلَم بها مسبقًا.
-            </div>
-          </div>
-        </div>
+        <div class="bvFq_body"><div class="bvFq_ans"><div class="bvFq_ans_inner">
+          نعم، نتميز بمرونة عالية في <strong>تخصيص برامج الرحلات</strong>:
+          <ul>
+            <li>إضافة أو حذف وجهات ومواقع سياحية من البرنامج</li>
+            <li>اختيار مستوى الإقامة الفندقية (3 – 5 نجوم)</li>
+            <li>تمديد مدة الرحلة أو اختصارها</li>
+            <li>تحديد تفضيلات المطاعم (حلال، نباتي، بحري...)</li>
+          </ul>
+          <strong>ملاحظة:</strong> تُقبل طلبات التعديل قبل 7 أيام كحد أدنى من تاريخ الانطلاق.
+        </div></div></div>
       </div>
 
-      <!-- Item 7 -->
-      <div class="bvFq_item" data-index="6">
-        <button class="bvFq_question" aria-expanded="false">
-          <span class="bvFq_question_num">07</span>
-          <span class="bvFq_question_text">ما سياسة الإلغاء والاسترجاع؟</span>
-          <span class="bvFq_icon" aria-hidden="true">+</span>
+      <div class="bvFq_item">
+        <button class="bvFq_q" aria-expanded="false">
+          <span class="bvFq_num">07</span>
+          <span class="bvFq_qtext">ما سياسة الإلغاء والاسترجاع؟</span>
+          <span class="bvFq_ico" aria-hidden="true">+</span>
         </button>
-        <div class="bvFq_answer_wrap" role="region">
-          <div class="bvFq_answer">
-            <div class="bvFq_answer_inner">
-              نتفهم أن الظروف قد تتغير، لذلك وضعنا سياسة إلغاء عادلة وشفافة:
-              <ul>
-                <li><strong>الإلغاء قبل 30 يومًا أو أكثر:</strong> استرداد كامل 100% من المبلغ المدفوع بعد خصم رسوم إدارية رمزية 2%.</li>
-                <li><strong>الإلغاء من 15 إلى 29 يومًا:</strong> استرداد 75% من قيمة الباقة.</li>
-                <li><strong>الإلغاء من 7 إلى 14 يومًا:</strong> استرداد 50% من قيمة الباقة.</li>
-                <li><strong>الإلغاء من 3 إلى 6 أيام:</strong> استرداد 25% فقط من قيمة الباقة.</li>
-                <li><strong>الإلغاء أقل من 72 ساعة أو عدم الحضور:</strong> لا يُستردّ أي مبلغ.</li>
-              </ul>
-              في حالات القوة القاهرة أو الظروف الاستثنائية الموثقة (كوباء أو كارثة طبيعية)، تُدرس كل حالة على حدة بروح من التفاهم والمرونة.
-            </div>
-          </div>
-        </div>
+        <div class="bvFq_body"><div class="bvFq_ans"><div class="bvFq_ans_inner">
+          <ul>
+            <li><strong>قبل 30 يومًا أو أكثر:</strong> استرداد كامل 100% بعد خصم رسوم إدارية 2%.</li>
+            <li><strong>15 إلى 29 يومًا:</strong> استرداد 75% من قيمة الباقة.</li>
+            <li><strong>7 إلى 14 يومًا:</strong> استرداد 50% من قيمة الباقة.</li>
+            <li><strong>3 إلى 6 أيام:</strong> استرداد 25% فقط.</li>
+            <li><strong>أقل من 72 ساعة أو عدم الحضور:</strong> لا يُستردّ أي مبلغ.</li>
+          </ul>
+          في حالات القوة القاهرة الموثقة تُدرس كل حالة بمرونة وتفاهم.
+        </div></div></div>
       </div>
 
-      <!-- Item 8 -->
-      <div class="bvFq_item" data-index="7">
-        <button class="bvFq_question" aria-expanded="false">
-          <span class="bvFq_question_num">08</span>
-          <span class="bvFq_question_text">هل الأسعار تشمل الإقامة والمواصلات؟</span>
-          <span class="bvFq_icon" aria-hidden="true">+</span>
+      <div class="bvFq_item">
+        <button class="bvFq_q" aria-expanded="false">
+          <span class="bvFq_num">08</span>
+          <span class="bvFq_qtext">هل الأسعار تشمل الإقامة والمواصلات؟</span>
+          <span class="bvFq_ico" aria-hidden="true">+</span>
         </button>
-        <div class="bvFq_answer_wrap" role="region">
-          <div class="bvFq_answer">
-            <div class="bvFq_answer_inner">
-              نعم، باقاتنا السياحية شاملة وتضم كل ما يلزمكم للاستمتاع برحلة خالية من القلق:
-              <ul>
-                <li><strong>الإقامة الفندقية:</strong> في فنادق مختارة بعناية وفق مستوى الباقة، مع خيارات تتراوح بين الفندق الاقتصادي الراقي والمنتجع الفاخر 5 نجوم.</li>
-                <li><strong>المواصلات الداخلية:</strong> تشمل التنقلات بين المطار والفندق والمواقع السياحية بسيارات خاصة مكيفة ومريحة.</li>
-                <li><strong>تذاكر الطيران:</strong> متضمنة في أغلب الباقات الشاملة (يُحدد ذلك في تفاصيل كل باقة).</li>
-                <li><strong>الوجبات:</strong> تتضمن الباقة الإفطار يوميًا كحد أدنى، مع خيار إضافة وجبات الغداء والعشاء.</li>
-                <li><strong>رسوم الدخول:</strong> لأبرز المعالم والمواقع السياحية المدرجة في البرنامج.</li>
-              </ul>
-              يُوضّح مستشارنا السياحي بدقة كل ما يشمله وما لا يشمله السعر عند تقديم العرض.
-            </div>
-          </div>
-        </div>
+        <div class="bvFq_body"><div class="bvFq_ans"><div class="bvFq_ans_inner">
+          نعم، باقاتنا شاملة وتضم كل ما يلزمكم:
+          <ul>
+            <li><strong>الإقامة الفندقية:</strong> فنادق مختارة بعناية من 3 إلى 5 نجوم.</li>
+            <li><strong>المواصلات الداخلية:</strong> تنقلات بين المطار والفندق والمواقع بسيارات مكيفة.</li>
+            <li><strong>تذاكر الطيران:</strong> متضمنة في أغلب الباقات الشاملة.</li>
+            <li><strong>الوجبات:</strong> الإفطار يوميًا كحد أدنى مع خيار إضافة وجبات أخرى.</li>
+            <li><strong>رسوم الدخول:</strong> لأبرز المعالم والمواقع المدرجة في البرنامج.</li>
+          </ul>
+        </div></div></div>
       </div>
 
-    </div><!-- /.bvFq_list -->
-
-    <!-- Footer note -->
-    <div class="bvFq_footer_note">
-      <p>لم تجد إجابتك؟ <a href="#">تواصل مع فريق الدعم</a> وسنرد عليك في أقرب وقت ممكن.</p>
     </div>
 
-  </div><!-- /.bvFq_container -->
+    <div class="bvFq_foot">
+      <p>لم تجد إجابتك؟ <a href="https://wa.me/905068668849?text=%D9%84%D8%AF%D9%8A+%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1" target="_blank" rel="noopener">تواصل مع فريق الدعم عبر واتساب</a></p>
+    </div>
+
+  </div>
 </section>
 
 <script>
-(function () {
-  'use strict';
+(function(){
+  var list = document.getElementById('bvFqList');
+  if (!list) return;
+  var items = list.querySelectorAll('.bvFq_item');
 
-  var accordion = document.getElementById('bvFq_accordion');
-  var items = accordion ? accordion.querySelectorAll('.bvFq_item') : [];
+  /* Scroll reveal */
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('bvFq_vis'); obs.unobserve(e.target); } });
+  }, { threshold:.1 });
+  items.forEach(function(it){ obs.observe(it); });
 
-  // Intersection Observer for entrance animations
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('bvFq_visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  items.forEach(function (item) {
-    observer.observe(item);
-  });
-
-  function openItem(item) {
-    var btn = item.querySelector('.bvFq_question');
-    var wrap = item.querySelector('.bvFq_answer_wrap');
-    var answerDiv = item.querySelector('.bvFq_answer');
-
+  function open(item){
+    var btn = item.querySelector('.bvFq_q');
+    var body = item.querySelector('.bvFq_body');
+    var ans = item.querySelector('.bvFq_ans');
     item.classList.add('bvFq_open');
-    btn.setAttribute('aria-expanded', 'true');
-
-    // Calculate height
-    var totalHeight = answerDiv.scrollHeight + 1;
-    wrap.style.maxHeight = totalHeight + 'px';
+    btn.setAttribute('aria-expanded','true');
+    body.style.maxHeight = (ans.scrollHeight + 1) + 'px';
   }
-
-  function closeItem(item) {
-    var btn = item.querySelector('.bvFq_question');
-    var wrap = item.querySelector('.bvFq_answer_wrap');
-
+  function close(item){
+    var btn = item.querySelector('.bvFq_q');
+    var body = item.querySelector('.bvFq_body');
     item.classList.remove('bvFq_open');
-    btn.setAttribute('aria-expanded', 'false');
-    wrap.style.maxHeight = '0px';
+    btn.setAttribute('aria-expanded','false');
+    body.style.maxHeight = '0';
   }
 
-  items.forEach(function (item) {
-    var btn = item.querySelector('.bvFq_question');
-
-    btn.addEventListener('click', function () {
+  items.forEach(function(item){
+    item.querySelector('.bvFq_q').addEventListener('click', function(){
       var isOpen = item.classList.contains('bvFq_open');
-
-      // Close all
-      items.forEach(function (other) {
-        if (other !== item) {
-          closeItem(other);
-        }
-      });
-
-      // Toggle clicked
-      if (isOpen) {
-        closeItem(item);
-      } else {
-        openItem(item);
-      }
+      items.forEach(function(other){ if(other !== item) close(other); });
+      isOpen ? close(item) : open(item);
     });
   });
-
-})();
+}());
 </script>
-
-</body>
-</html>
+</div>
