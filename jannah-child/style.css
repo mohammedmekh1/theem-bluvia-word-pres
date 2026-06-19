@@ -16,37 +16,56 @@
 /* write custom css after this line */
 
 /* ========================================
-   خط Cairo — بدون wildcard، بدون أيقونات
+   خط Cairo — Jannah Theme
    ======================================== */
 
-/* الوراثة الطبيعية — بدون !important هنا */
+/* إلغاء خط thameen القديم نهائياً */
+* { font-family: unset; }
+
 body {
     font-family: 'Cairo', sans-serif;
 }
 
-/* عناصر النص الصريحة فقط */
+/* ── عناصر النص ── */
 h1, h2, h3, h4, h5, h6,
-p, blockquote, cite, figcaption, caption,
-td, th, dt, dd,
+p, a, li, td, th, dt, dd,
+label, blockquote, cite, figcaption,
 input, textarea, select,
 .post-title, .post-title a,
-.post-excerpt,
-.entry-title, .entry-content,
+.post-excerpt, .post-excerpt p,
+.entry-title, .entry-content p,
+.entry-content li, .entry-content h2,
+.entry-content h3,
 .block-title, .block-area .post-title a,
-.widget-title,
 .cat-label, .post-cat, .cat-title a,
 .slide-title, .slide-title a,
 .breaking-news-title, .breaking-news span,
-.main-nav > ul > li > a,
-.main-nav .sub-menu li a,
-.top-bar-left, .top-bar-right,
+.widget-title, .widget ul li, .widget p,
 .footer-widget .widget-title,
 .footer-widget p, .footer-widget li,
-.footer-bottom,
-.comment-content, .comment-author,
-.author-box-title, .author-box p,
+.footer-bottom, .footer-bottom a,
+.comment-content p, .comment-author b,
+.author-box p,
 .pagination a, .pagination span,
-.read-more, .btn, .button,
-.search-form input {
+.btn, .button, .read-more {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+/* ── الهيدر والقائمة — selectors خاصة بـ Jannah ── */
+#tie-head-row,
+#tie-head-row a,
+.main-nav ul li a,
+.main-nav ul li,
+#main-nav ul li a,
+#main-nav .sub-menu li a,
+.nav-menu li a,
+.navbar li a,
+.header-layout a,
+.header-layout span,
+.top-bar, .top-bar a,
+.tie-header .logo,
+#logo .logo-title,
+.mobile-nav, .mobile-nav a,
+.mobile-menu-btn {
     font-family: 'Cairo', sans-serif !important;
 }
