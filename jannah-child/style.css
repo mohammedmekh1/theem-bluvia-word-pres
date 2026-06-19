@@ -16,41 +16,37 @@
 /* write custom css after this line */
 
 /* ========================================
-   خط Cairo — عناصر النص فقط (بدون أيقونات)
+   خط Cairo — بدون wildcard، بدون أيقونات
    ======================================== */
 
-/* الأساس عبر الوراثة */
+/* الوراثة الطبيعية — بدون !important هنا */
 body {
-    font-family: 'Cairo', sans-serif !important;
+    font-family: 'Cairo', sans-serif;
 }
 
-/* عناصر النص الصريحة */
+/* عناصر النص الصريحة فقط */
 h1, h2, h3, h4, h5, h6,
-p, a, li, td, th, dt, dd,
-span:not([class*="icon"]):not([class*="fa"]):not([class*="tie-icon"]):not([class*="dashicon"]),
-label, blockquote, cite, figcaption, caption,
-button, input, textarea, select,
+p, blockquote, cite, figcaption, caption,
+td, th, dt, dd,
+input, textarea, select,
 .post-title, .post-title a,
-.post-excerpt, .post-content p,
-.entry-title, .entry-content p,
-.widget-title, .cat-label, .post-cat,
+.post-excerpt,
+.entry-title, .entry-content,
+.block-title, .block-area .post-title a,
+.widget-title,
+.cat-label, .post-cat, .cat-title a,
 .slide-title, .slide-title a,
-.breaking-news-title,
+.breaking-news-title, .breaking-news span,
 .main-nav > ul > li > a,
 .main-nav .sub-menu li a,
-.footer-bottom {
+.top-bar-left, .top-bar-right,
+.footer-widget .widget-title,
+.footer-widget p, .footer-widget li,
+.footer-bottom,
+.comment-content, .comment-author,
+.author-box-title, .author-box p,
+.pagination a, .pagination span,
+.read-more, .btn, .button,
+.search-form input {
     font-family: 'Cairo', sans-serif !important;
-}
-
-/* استثناء صريح لخطوط الأيقونات — لا تلمسها */
-i,
-[class*="fa-"],
-[class*=" fa"],
-.fa, .fas, .far, .fab, .fal, .fad,
-[class*="tie-icon"],
-[class*="icon-"],
-[class*="dashicons"],
-[class*="genericon"] {
-    font-family: inherit !important;
-    font-family: unset !important;
 }
