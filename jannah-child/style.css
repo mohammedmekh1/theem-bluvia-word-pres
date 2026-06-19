@@ -15,49 +15,59 @@
 
 /* write custom css after this line */
 
-/* ===== تطبيق خط ثمين على العناصر التي لا ترثه تلقائياً ===== */
+/* ========================================
+   خط Cairo — تطبيق شامل على القالب
+   ======================================== */
 
-/* البلوكات */
-.block-area .post-title,
-.block-area .post-title a,
-.block-area .post-excerpt,
-.block-area .cat-title,
-.block-area .block-title,
-.block-area h2, .block-area h3,
-.posts-container .post-title a {
-    font-family: 'thameen', sans-serif !important;
-}
-
-/* السلايدرات */
-.slide-title,
-.slide-title a,
-.slider-overlay .slide-title,
-.main-slider .slide-title a,
-[class*="tie-slider"] .slide-title {
-    font-family: 'thameen', sans-serif !important;
+/* الأساس: كل عناصر الصفحة */
+body,
+body *,
+h1, h2, h3, h4, h5, h6,
+p, a, span, li, td, th,
+button, input, textarea, select, label,
+blockquote, figcaption, cite,
+.widget, .widget * {
+    font-family: 'Cairo', sans-serif !important;
 }
 
 /* الهيدر والقوائم */
 .main-nav > ul > li > a,
 .main-nav .sub-menu li a,
-.top-bar,
+.top-bar, .top-bar *,
+.site-header, .site-header *,
 .breaking-news-title,
-.breaking-news span {
-    font-family: 'thameen', sans-serif !important;
+.breaking-news span,
+#logo, .logo-text {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+/* المحتوى والمقالات */
+.post-title, .post-title a,
+.post-excerpt, .post-content,
+.post-content p, .post-content li,
+.entry-title, .entry-content,
+.block-area *, .posts-container *,
+.slide-title, .slide-title a,
+.slider-overlay *, [class*="tie-slider"] * {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+/* الشريط الجانبي والويدجت */
+.widget-title, .widget-title *,
+.sidebar *, .sidebar-inner *,
+.cat-label, .post-cat,
+.cat-title a, .categories-list li a {
+    font-family: 'Cairo', sans-serif !important;
 }
 
 /* الفوتر */
-.footer-widget .widget-title,
-.footer-widget li,
-.footer-widget p,
-.footer-bottom {
-    font-family: 'thameen', sans-serif !important;
+.footer-widget *, .footer-bottom,
+.footer-bottom *, #footer, #footer * {
+    font-family: 'Cairo', sans-serif !important;
 }
 
-/* التصنيفات */
-.cat-label,
-.post-cat,
-.cat-title a,
-.categories-list li a {
-    font-family: 'thameen', sans-serif !important;
+/* الأزرار والنماذج */
+button, input, textarea, select,
+.btn, .button, [class*="btn"] {
+    font-family: 'Cairo', sans-serif !important;
 }
