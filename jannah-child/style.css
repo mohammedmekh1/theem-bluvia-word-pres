@@ -16,58 +16,41 @@
 /* write custom css after this line */
 
 /* ========================================
-   خط Cairo — تطبيق شامل على القالب
+   خط Cairo — عناصر النص فقط (بدون أيقونات)
    ======================================== */
 
-/* الأساس: كل عناصر الصفحة */
-body,
-body *,
-h1, h2, h3, h4, h5, h6,
-p, a, span, li, td, th,
-button, input, textarea, select, label,
-blockquote, figcaption, cite,
-.widget, .widget * {
+/* الأساس عبر الوراثة */
+body {
     font-family: 'Cairo', sans-serif !important;
 }
 
-/* الهيدر والقوائم */
+/* عناصر النص الصريحة */
+h1, h2, h3, h4, h5, h6,
+p, a, li, td, th, dt, dd,
+span:not([class*="icon"]):not([class*="fa"]):not([class*="tie-icon"]):not([class*="dashicon"]),
+label, blockquote, cite, figcaption, caption,
+button, input, textarea, select,
+.post-title, .post-title a,
+.post-excerpt, .post-content p,
+.entry-title, .entry-content p,
+.widget-title, .cat-label, .post-cat,
+.slide-title, .slide-title a,
+.breaking-news-title,
 .main-nav > ul > li > a,
 .main-nav .sub-menu li a,
-.top-bar, .top-bar *,
-.site-header, .site-header *,
-.breaking-news-title,
-.breaking-news span,
-#logo, .logo-text {
+.footer-bottom {
     font-family: 'Cairo', sans-serif !important;
 }
 
-/* المحتوى والمقالات */
-.post-title, .post-title a,
-.post-excerpt, .post-content,
-.post-content p, .post-content li,
-.entry-title, .entry-content,
-.block-area *, .posts-container *,
-.slide-title, .slide-title a,
-.slider-overlay *, [class*="tie-slider"] * {
-    font-family: 'Cairo', sans-serif !important;
-}
-
-/* الشريط الجانبي والويدجت */
-.widget-title, .widget-title *,
-.sidebar *, .sidebar-inner *,
-.cat-label, .post-cat,
-.cat-title a, .categories-list li a {
-    font-family: 'Cairo', sans-serif !important;
-}
-
-/* الفوتر */
-.footer-widget *, .footer-bottom,
-.footer-bottom *, #footer, #footer * {
-    font-family: 'Cairo', sans-serif !important;
-}
-
-/* الأزرار والنماذج */
-button, input, textarea, select,
-.btn, .button, [class*="btn"] {
-    font-family: 'Cairo', sans-serif !important;
+/* استثناء صريح لخطوط الأيقونات — لا تلمسها */
+i,
+[class*="fa-"],
+[class*=" fa"],
+.fa, .fas, .far, .fab, .fal, .fad,
+[class*="tie-icon"],
+[class*="icon-"],
+[class*="dashicons"],
+[class*="genericon"] {
+    font-family: inherit !important;
+    font-family: unset !important;
 }
